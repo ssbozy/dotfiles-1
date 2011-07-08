@@ -1,8 +1,6 @@
 # Bind the up arrow to history search, instead of history step
 "\e[A": history-search-backward
 "\e[B": history-search-forward
-"\eOA": history-search-backward
-"\eOB": history-search-backward
 
 # Fix delete key
 "\e[3~": delete-char
