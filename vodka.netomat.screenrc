@@ -1,0 +1,38 @@
+# Shut the fuck up.
+startup_message off
+
+# Tell me where I am.
+hardstatus alwayslastline
+hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{=kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{W}%Y-%m-%d %{W}%c %{g}]'
+
+# Tell me where I've been.
+defscrollback 10000
+
+# And let me get there easily.
+escape ``
+
+# Log
+log on
+logfile /tmp/screen.%y-%m-%d.%n.log
+
+chdir /opt/lampp/
+
+# Launch various processes
+screen -t "lampp" 0 /usr/bin/env bash -c "sudo su - -c \"cd /opt/lampp; service memcached stop; service mysql stop; apache2ctl stop; /opt/lampp/lampp restart; /opt/lampp/memcached/bin/memcached -m 100 -d -u nobody -l 127.0.0.1\"; /usr/bin/env bash" 
+
+# Tail logs
+screen -t "logs" 1 /usr/bin/env bash -c "tail -n 0 -f /opt/lampp/htdocs/mobilityserver/log/*.log /opt/lampp/htdocs/csmobility/log/*.log /opt/lampp/logs/error_log; /usr/bin/env bash"
+
+# MobilityServer
+chdir /opt/lampp/htdocs/mobilityserver/
+screen -t "mobility" 2
+
+# MSAdmin folder
+chdir /opt/lampp/htdocs/csmobility/
+screen -t "msadmin" 3
+
+# MySQL
+screen -t "mysql" 4 /usr/bin/env bash -c "while [ ! -e /opt/lampp/var/mysql/mysql.sock ]; do echo Sleeping until mysql wakes up; sleep 10; done; /opt/lampp/bin/mysql -uroot mobilityserver; /usr/bin/env bash"
+
+select 0
+chdir /opt/lampp/htdocs/mobilityserver/
