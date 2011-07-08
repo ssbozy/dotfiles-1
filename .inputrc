@@ -1,0 +1,31 @@
+# Bind the up arrow to history search, instead of history step
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+"\eOA": history-search-backward
+"\eOB": history-search-backward
+
+# Fix delete key
+"\e[3~": delete-char
+
+# Control-arrow to move between words
+"\e[1;5C": forward-word
+"\e[1;5D": backward-word
+
+# Alt-arrow to move between words
+# "\e[1;3C": forward-word
+# "\e[1;3D": backward-word
+
+# Control-arrow to move to start/end of line
+# "\e[1;5C": end-of-line
+# "\e[1;5D": beginning-of-line
+# "\e[5C": end-of-line
+# "\e[5D": beginning-of-line
+# "\e\e[C": end-of-line
+# "\e\e[D": beginning-of-line
+
+# These might suck a little.
+# Default to showing options, rather than requiring two tabs
+set show-all-if-ambiguous on
+# Append slash when completing symlinks to directories
+set mark-symlinked-directories on
+

@@ -1,0 +1,40 @@
+# Be quiet.
+startup_message off
+
+# Tell me where I am.
+hardstatus alwayslastline
+hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{=kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{W}%Y-%m-%d %{W}%c%{g}]'
+
+# Tell me where I've been.
+defscrollback 10000
+
+# And let me get there easily.
+escape ``
+
+# Tell me funny things.
+# nethack on
+
+# don't destroy windows automatically
+zombie cr
+
+# Default screens
+screen -t shell 0 /usr/bin/env bash
+
+# detach on disconnect
+autodetach on
+
+# make the shell in every window a login shell
+shell -$SHELL
+
+# connect windows to the display so programs like mplayer can find it when
+# we're inside a screen in a terminal application in a graphical environment
+setenv DISPLAY ':0'
+
+# restore window contents after using (e.g.) vi
+altscreen on
+
+# UTF-8 everywhere
+defutf8 on
+
+# disable Ctrl-S/Ctrl-Q "flow control"
+defflow off
