@@ -32,8 +32,6 @@ COLOR_CLEAR="\[\033[0m\]"
 PS1="${COLOR_YELLOW}\u@\h$COLOR_CLEAR:$COLOR_LIGHT_CYAN$\w$COLOR_CLEAR
 \$ "
 
-alias grep='grep --color=auto'
-
 # Don't add this shit to history
 export HISTIGNORE="sudo shutdown:sudo re:bg:fg" 
 # Ignore duplicates, and commands that start with a space
@@ -46,11 +44,17 @@ shopt -s histappend
 # don't try to complete on nothing
 shopt -s no_empty_cmd_completion
 # check the window size after each command and, if necessary, update the values of LINES and COLUMNS.
-shopt -s checkwinsize
+# Uh, I think this is actually fucking shit up.
+# shopt -s checkwinsize
 
 if [ -d "${HOME}/bin" ]; then
     export PATH=${HOME}/bin:$PATH
 fi
+
+
+alias grep='grep --color=auto'
+
+
 
 ###################
 # OS specific stuff
@@ -70,7 +74,7 @@ esac
 # Host specific stuff
 #####################
 case $HOSTNAME in
-    vodkamat.netomat.net)
+    "vodkamat.netomat.net")
         # My Macbook
         #TODO this hostname is temporary, damnit, this thing should be called "austin"
 
@@ -106,16 +110,36 @@ case $HOSTNAME in
         export CLICOLOR=1
         export LSCOLORS=ExFxCxDxBxegedabagacad        
     ;;
+    "vodka")
+        # My virtualbox
+
+        export PS1="${COLOR_LIGHT_CYAN}\u@\h${COLOR_CLEAR}:${COLOR_LIGHT_GREEN}\w${COLOR_CLEAR}\n\$ "
+
+        # enable programmable completion features (you don't need to enable
+        # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+        # sources /etc/bash.bashrc).
+        if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+            . /etc/bash_completion
+        fi
+
+        # Update ForwardAgent settings
+        [[ -f $HOME/grabssh.sh ]] && $HOME/grabssh.sh
+
+        # Lol, node.js
+        export PATH=$HOME/local/node/bin:$PATH
+
+    ;;
     "champ" | "boom")
-        # Work server
+        # Work servers
 
         export PS1="${COLOR_LIGHT_GREEN}\u@\h${COLOR_CLEAR}:${COLOR_LIGHT_CYAN}\w${COLOR_CLEAR} \$ "
+
+        # Update ForwardAgent settings
+        [[ -f $HOME/grabssh.sh ]] && $HOME/grabssh.sh
         
     ;;
     *)
         # Everything else
         
-        # Update ForwardAgent settings
-        [[ -f $HOME/grabssh.sh ]] && $HOME/grabssh.sh
     ;;
 esac
