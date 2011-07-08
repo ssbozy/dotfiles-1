@@ -1,0 +1,15 @@
+# Shut the fuck up.
+startup_message off
+
+# Tell me where I am.
+hardstatus alwayslastline
+hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{=kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{W}%Y-%m-%d %{W}%c %{g}]'
+
+# Tell me where I've been.
+defscrollback 10000
+
+# And let me get there easily.
+escape ``
+
+screen -t "background" 0 /usr/bin/env bash --rcfile $HOME/.bashrc-startup
+screen 1
