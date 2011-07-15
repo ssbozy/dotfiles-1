@@ -1,6 +1,10 @@
 [user]
 	name = Pavel Lishin
 	email = pavel.lishin@gmail.com
+
+[core]
+    excludesfile = ~/.gitignore
+
 [color]
     ui = auto
 
