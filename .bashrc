@@ -32,6 +32,8 @@ COLOR_CLEAR="\[\033[0m\]"
 PS1="${COLOR_YELLOW}\u@\h$COLOR_CLEAR:$COLOR_LIGHT_CYAN$\w$COLOR_CLEAR
 \$ "
 
+# Bash-specific options
+
 # Don't add this shit to history
 export HISTIGNORE="sudo shutdown:sudo re:bg:fg" 
 # Ignore duplicates, and commands that start with a space
@@ -51,7 +53,6 @@ if [ -d "${HOME}/bin" ]; then
     export PATH=${HOME}/bin:$PATH
 fi
 
-
 alias grep='grep --color=auto'
 
 
@@ -63,10 +64,15 @@ case $OSTYPE in
     darwin*)
         # OS X
         alias ls='ls -G'
+        # git should use textmate for commit messages
+        export EDITOR=mate
+        
     ;;
     *)
         # Everything else
         alias ls='ls --color=auto'
+        # git should use vim for commit messages
+        export EDITOR=vim
     ;;
 esac
 
@@ -74,7 +80,7 @@ esac
 # Host specific stuff
 #####################
 case $HOSTNAME in
-    "vodkamat.netomat.net")
+    "vodkamat.netomat.net" | "austin")
         # My Macbook
         #TODO this hostname is temporary, damnit, this thing should be called "austin"
 
@@ -137,6 +143,19 @@ case $HOSTNAME in
         # Update ForwardAgent settings
         [[ -f $HOME/grabssh.sh ]] && $HOME/grabssh.sh
         
+    ;;
+    "moobox")
+        # Work server under my desk
+
+        export PS1="${COLOR_LIGHT_GREEN}\u@\h${COLOR_CLEAR}:${COLOR_LIGHT_CYAN}\w${COLOR_CLEAR} \$ "
+
+        # Update ForwardAgent settings
+        [[ -f $HOME/grabssh.sh ]] && $HOME/grabssh.sh
+        
+        # Start synergyc, unless it's already running
+        if ! ps ax | grep synergyc | grep -v grep > /dev/null; then
+            synergyc austin.netomat.net
+        fi
     ;;
     *)
         # Everything else

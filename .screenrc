@@ -15,7 +15,7 @@ escape ``
 # nethack on
 
 # don't destroy windows automatically
-zombie cr
+#zombie cr
 
 # Default screens
 screen -t shell 0 /usr/bin/env bash
