@@ -32,6 +32,8 @@ COLOR_CLEAR="\[\033[0m\]"
 PS1="${COLOR_YELLOW}\u@\h$COLOR_CLEAR:$COLOR_LIGHT_CYAN$\w$COLOR_CLEAR
 \$ "
 
+# Bash-specific options
+
 # Don't add this shit to history
 export HISTIGNORE="sudo shutdown:sudo re:bg:fg" 
 # Ignore duplicates, and commands that start with a space
@@ -51,7 +53,6 @@ if [ -d "${HOME}/bin" ]; then
     export PATH=${HOME}/bin:$PATH
 fi
 
-
 alias grep='grep --color=auto'
 
 
@@ -63,10 +64,15 @@ case $OSTYPE in
     darwin*)
         # OS X
         alias ls='ls -G'
+        # git should use textmate for commit messages
+        export EDITOR=mate
+        
     ;;
     *)
         # Everything else
         alias ls='ls --color=auto'
+        # git should use vim for commit messages
+        export EDITOR=vim
     ;;
 esac
 
