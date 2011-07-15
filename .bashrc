@@ -74,7 +74,7 @@ esac
 # Host specific stuff
 #####################
 case $HOSTNAME in
-    "vodkamat.netomat.net")
+    "vodkamat.netomat.net" | "austin")
         # My Macbook
         #TODO this hostname is temporary, damnit, this thing should be called "austin"
 
@@ -137,6 +137,19 @@ case $HOSTNAME in
         # Update ForwardAgent settings
         [[ -f $HOME/grabssh.sh ]] && $HOME/grabssh.sh
         
+    ;;
+    "moobox")
+        # Work server under my desk
+
+        export PS1="${COLOR_LIGHT_GREEN}\u@\h${COLOR_CLEAR}:${COLOR_LIGHT_CYAN}\w${COLOR_CLEAR} \$ "
+
+        # Update ForwardAgent settings
+        [[ -f $HOME/grabssh.sh ]] && $HOME/grabssh.sh
+        
+        # Start synergyc, unless it's already running
+        if ! ps ax | grep synergyc | grep -v grep > /dev/null; then
+            synergyc austin.netomat.net
+        fi
     ;;
     *)
         # Everything else
