@@ -116,6 +116,15 @@ case $HOSTNAME in
         export CLICOLOR=1
         export LSCOLORS=ExFxCxDxBxegedabagacad        
     ;;
+    "newyork")
+        # Ubuntu desktop, at home.
+
+        # Start synergys, unless it's already running
+        if ! ps ax | grep synergys | grep -v grep > /dev/null; then
+            synergys
+        fi
+        
+    ;;
     "vodka")
         # My virtualbox
 
