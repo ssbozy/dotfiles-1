@@ -65,7 +65,8 @@ case $OSTYPE in
         # OS X
         alias ls='ls -G'
         # git should use textmate for commit messages
-        export EDITOR=mate
+        # crontab should use textmate, too; we have to pull the _wait trick.
+        export EDITOR=mate_wait
         
     ;;
     *)
