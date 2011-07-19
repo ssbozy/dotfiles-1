@@ -49,7 +49,6 @@ fi
 alias grep='grep --color=auto'
 
 
-
 ###################
 # OS specific stuff
 ###################
@@ -89,11 +88,6 @@ case $HOSTNAME in
         # MacPorts
         export PATH=/opt/local/bin:/opt/local/sbin:$PATH
         
-        # If the startup screen isn't running, run it, using a custom .screenrc file that launches tinyur and synergy
-        #if ! screen -ls | grep 'startup' > /dev/null; then
-        #    screen -S startup -c .screenrc-startup
-        #fi
-
         # We tmux now
         if ! tmux ls 2>&1 1>/dev/null; then
             # Create new session

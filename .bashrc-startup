@@ -2,6 +2,7 @@
 /Users/pavel/projects/tinyur/tinyur.py &
 
 # Launch synergy
+#TODO only do this when at home
 /Users/pavel/synergy_moskva
 
 # Give me my nice bash prompt if I kill synergy
