@@ -3,13 +3,6 @@
 # if not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-function _inside_screen() { 
-    if [ "$STY" = "" ]; then echo "false"; else echo "true"; fi 
-}
-function _screen_name() { 
-    echo ${STY#*.} 
-}
-
 COLOR_BLACK="\[\033[0;30m\]"
 COLOR_BLUE="\[\033[0;34m\]"
 COLOR_GREEN="\[\033[0;32m\]"
