@@ -1,8 +1,10 @@
 # Launch tinyur desktop screenshot monitor
-/Users/pavel/projects/tinyur/tinyur.py &
+#/Users/pavel/projects/tinyur/tinyur.py &
 
 # Launch synergy
-/Users/pavel/synergy_moskva
+#/Users/pavel/synergy_moskva
 
 # Give me my nice bash prompt if I kill synergy
-/usr/bin/env bash
+#/usr/bin/env bash
+
+echo 'wat'
