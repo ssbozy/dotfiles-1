@@ -90,8 +90,29 @@ case $HOSTNAME in
         export PATH=/opt/local/bin:/opt/local/sbin:$PATH
         
         # If the startup screen isn't running, run it, using a custom .screenrc file that launches tinyur and synergy
-        if ! screen -ls | grep 'startup' > /dev/null; then
-            screen -S startup -c .screenrc-startup
+        #if ! screen -ls | grep 'startup' > /dev/null; then
+        #    screen -S startup -c .screenrc-startup
+        #fi
+
+        # We tmux now
+        if ! tmux ls 2>&1 1>/dev/null; then
+            # Create new session
+            tmux new-session -d -s startup
+
+            # Create new window to use as background stuff
+            tmux new-window -a -t startup:0 -n 'background' "/usr/bin/env bash $HOME/.bashrc-startup"
+            # Kill the window currently in slot 0
+            tmux kill-window -t startup:0
+            # Move "background" to slot 0
+            tmux move-window -s startup:1 -t startup:0
+
+            # Create new window to work in, after the 0th window.
+            tmux new-window -a -t startup:0
+            # Focus on first window
+            tmux select-window -t startup:1
+
+            # Attach tmux
+            tmux attach-session -t startup
         fi
         
         # Bash completion, obv.
