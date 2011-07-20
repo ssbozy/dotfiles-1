@@ -88,8 +88,10 @@ case $HOSTNAME in
         # MacPorts
         export PATH=/opt/local/bin:/opt/local/sbin:$PATH
         
-        # We tmux now
-        if ! tmux ls 2>&1 1>/dev/null; then
+        # If there isn't a tmux session currently running, then this is the first
+        # terminal window we've opened, and it's going to get pinned to the top
+        # with visor - I want tmux to automatically launch here.
+        if [[ `tmux attach -t startup 2>&1` == "no sessions" ]]; then
             # Create new session
             tmux new-session -d -s startup
 
