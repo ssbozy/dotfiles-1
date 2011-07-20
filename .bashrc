@@ -91,7 +91,11 @@ case $HOSTNAME in
         # If there isn't a tmux session currently running, then this is the first
         # terminal window we've opened, and it's going to get pinned to the top
         # with visor - I want tmux to automatically launch here.
-        if [[ `tmux attach -t startup 2>&1` == "no sessions" ]]; then
+        if ! tmux has-session -t startup 1>/dev/null 2>/dev/null; then
+            # For some reason, if you launch tmux right away,
+            # it looks like this: http://i.imgur.com/8Qkq4.png
+            sleep 1
+            
             # Create new session
             tmux new-session -d -s startup
 
