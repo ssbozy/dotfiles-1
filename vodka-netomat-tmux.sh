@@ -28,9 +28,9 @@ tail -n 0 -f /opt/lampp/logs/error_log
 " > /tmp/log_error
 
 echo "#! /usr/bin/env bash
-echo GOING INTO $1
-cd $1
-echo NOW IN $1
+echo GOING INTO $0
+cd $0
+echo NOW IN $0
 /usr/bin/env bash
 " > /tmp/cd
 
