@@ -57,24 +57,18 @@ chmod u+x /tmp/lampp_start   \
           /tmp/cd
 
 if ! tmux has-session -t netomat 1>/dev/null 2>/dev/null; then
-    # Create new session
-    # with a window that starts lampp
-
-
+    # Create new session with a window that starts lampp
     tmux new-session -d -s netomat -n 'lampp' "/usr/bin/env sudo su - /tmp/lampp_start"
-    # let's see what's going on
-    tmux set-option -t netomat set-remain-on-exit on
-    #tmux pipe-pane -o -t netomat:0 'cat >> /tmp/netomat.tmux.out'
 
     # Log window
-    tmux new-window -n "logs" "/usr/bin/env bash /tmp/log_ms"
+    tmux new-window -d -n "logs" "/usr/bin/env bash /tmp/log_ms"
     # Split this into panes, each of which follows a different set of logs
     tmux split-window -v -p 45 "/usr/bin/env bash /tmp/log_msadmin"
     tmux split-window -v -p 10 "/usr/bin/env bash /tmp/log_error"
 
 
     # Mobility Server and MSAdmin
-    tmux new-window -n "mobilityserver" "/usr/bin/env bash /tmp/cd /opt/lampp/htdocs/mobilityserver/"
+    tmux new-window -d -n "mobilityserver" "/usr/bin/env bash /tmp/cd /opt/lampp/htdocs/mobilityserver/"
     tmux new-window -d -n "msadmin" "/usr/bin/env bash /tmp/cd /opt/lampp/htdocs/csmobility/"
 
     # mysql
