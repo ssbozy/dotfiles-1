@@ -28,11 +28,14 @@ tail -n 0 -f /opt/lampp/logs/error_log
 " > /tmp/log_error
 
 echo "#! /usr/bin/env bash
-echo 0 is $0
-echo 1 is $1
-#cd $0
+cd /opt/lampp/htdocs/mobilityserver/
 /usr/bin/env bash
-" > /tmp/cd
+" > /tmp/cd_ms
+
+echo "#! /usr/bin/env bash
+cd /opt/lampp/htdocs/csmobility/
+/usr/bin/env bash
+" > /tmp/cd_msadmin
 
 echo "#! /usr/bin/env bash
 while [ ! -e /opt/lampp/var/mysql/mysql.sock ]; do 
@@ -56,7 +59,8 @@ chmod u+x /tmp/lampp_start   \
           /tmp/log_error     \
           /tmp/mysql_ms      \
           /tmp/mysql_msadmin \
-          /tmp/cd
+          /tmp/cd_ms         \
+          /tmp/cd_msadmin
 
 if ! tmux has-session -t netomat 1>/dev/null 2>/dev/null; then
     # Create new session with a window that starts lampp
@@ -70,8 +74,8 @@ if ! tmux has-session -t netomat 1>/dev/null 2>/dev/null; then
 
 
     # Mobility Server and MSAdmin
-    tmux new-window -d -n "mobilityserver" "/usr/bin/env bash -c /tmp/cd /opt/lampp/htdocs/mobilityserver/"
-    tmux new-window -d -n "msadmin"        "/usr/bin/env bash -c /tmp/cd /opt/lampp/htdocs/csmobility/"
+    tmux new-window -d -n "mobilityserver" "/usr/bin/env bash /tmp/cd_ms"
+    tmux new-window -d -n "msadmin"        "/usr/bin/env bash /tmp/cd_msadmin"
 
     # mysql
     tmux new-window -d -n "ms mysql"      "/usr/bin/env bash -c '/opt/lampp/bin/mysql -uroot mobilityserver; /bin/bash'"
@@ -88,7 +92,8 @@ rm /tmp/lampp_start   \
    /tmp/log_error     \
    /tmp/mysql_ms      \
    /tmp/mysql_msadmin \
-   /tmp/cd
+   /tmp/cd_ms         \
+   /tmp/cd_msadmin
    
 
 # Attach
