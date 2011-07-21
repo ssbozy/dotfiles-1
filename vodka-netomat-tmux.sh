@@ -70,8 +70,8 @@ if ! tmux has-session -t netomat 1>/dev/null 2>/dev/null; then
 
 
     # Mobility Server and MSAdmin
-    tmux new-window -d -n "mobilityserver" "/usr/bin/env bash /tmp/cd /opt/lampp/htdocs/mobilityserver/"
-    tmux new-window -d -n "msadmin"        "/usr/bin/env bash /tmp/cd /opt/lampp/htdocs/csmobility/"
+    tmux new-window -d -n "mobilityserver" "/usr/bin/env bash -c /tmp/cd /opt/lampp/htdocs/mobilityserver/"
+    tmux new-window -d -n "msadmin"        "/usr/bin/env bash -c /tmp/cd /opt/lampp/htdocs/csmobility/"
 
     # mysql
     tmux new-window -d -n "ms mysql"      "/usr/bin/env bash -c '/opt/lampp/bin/mysql -uroot mobilityserver; /bin/bash'"
