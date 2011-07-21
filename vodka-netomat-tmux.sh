@@ -28,9 +28,9 @@ tail -n 0 -f /opt/lampp/logs/error_log
 " > /tmp/log_error
 
 echo "#! /usr/bin/env bash
-echo GOING INTO $0
-cd $0
-echo NOW IN $0
+echo 0 is $0
+echo 1 is $1
+#cd $0
 /usr/bin/env bash
 " > /tmp/cd
 
@@ -70,8 +70,8 @@ if ! tmux has-session -t netomat 1>/dev/null 2>/dev/null; then
 
 
     # Mobility Server and MSAdmin
-    tmux new-window -d -n "mobilityserver" "/usr/bin/env bash /tmp/cd -- /opt/lampp/htdocs/mobilityserver/"
-    tmux new-window -d -n "msadmin"        "/usr/bin/env bash /tmp/cd -- /opt/lampp/htdocs/csmobility/"
+    tmux new-window -d -n "mobilityserver" "/usr/bin/env bash /tmp/cd /opt/lampp/htdocs/mobilityserver/"
+    tmux new-window -d -n "msadmin"        "/usr/bin/env bash /tmp/cd /opt/lampp/htdocs/csmobility/"
 
     # mysql
     tmux new-window -d -n "ms mysql"      "/usr/bin/env bash -c '/opt/lampp/bin/mysql -uroot mobilityserver; /bin/bash'"
