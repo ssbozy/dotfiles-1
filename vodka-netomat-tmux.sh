@@ -3,13 +3,13 @@
 # that'll drop me back into bash if I ^C it.
 
 echo "#! /usr/bin/env bash
+sudo service memcached stop
+sudo service mysql stop
+sudo apache2ctl stop
+sudo /opt/lampp/lampp restart
+sudo /opt/lampp/memcached/bin/memcached -m 100 -d -u nobody -l 127.0.0.1
+sudo cd /opt/lampp
 sudo su -
-service memcached stop
-service mysql stop
-apache2ctl stop
-/opt/lampp/lampp restart
-/opt/lampp/memcached/bin/memcached -m 100 -d -u nobody -l 127.0.0.1
-cd /opt/lampp
 /usr/bin/env bash
 " > /tmp/lampp_start
 
