@@ -3,6 +3,7 @@
 # that'll drop me back into bash if I ^C it.
 
 echo "#! /usr/bin/env bash
+sudo su -
 service memcached stop
 service mysql stop
 apache2ctl stop
