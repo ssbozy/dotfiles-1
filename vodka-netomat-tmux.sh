@@ -61,10 +61,10 @@ if ! tmux has-session -t netomat 1>/dev/null 2>/dev/null; then
     tmux new-session -d -s netomat -n 'lampp' "/usr/bin/env sudo su - /tmp/lampp_start"
 
     # Log window
-    tmux new-window -d -n "logs" "/usr/bin/env bash /tmp/log_ms"
-    # Split this into panes, each of which follows a different set of logs
-    tmux split-window -v -p 45 "/usr/bin/env bash /tmp/log_msadmin"
-    tmux split-window -v -p 10 "/usr/bin/env bash /tmp/log_error"
+    #tmux new-window -n "logs" "/usr/bin/env bash /tmp/log_ms"
+    ## Split this into panes, each of which follows a different set of logs
+    #tmux split-window -v -p 45 "/usr/bin/env bash /tmp/log_msadmin"
+    #tmux split-window -v -p 10 "/usr/bin/env bash /tmp/log_error"
 
 
     # Mobility Server and MSAdmin
