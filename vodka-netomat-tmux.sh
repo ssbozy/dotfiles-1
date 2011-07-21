@@ -61,8 +61,9 @@ if ! tmux has-session -t netomat 1>/dev/null 2>/dev/null; then
     # with a window that starts lampp
 
 
-    tmux set-option set-remain-on-exit on    # let's see what's going on
     tmux new-session -d -s netomat -n 'lampp' "/usr/bin/env sudo su - /tmp/lampp_start"
+    # let's see what's going on
+    tmux set-option -t netomat set-remain-on-exit on
     #tmux pipe-pane -o -t netomat:0 'cat >> /tmp/netomat.tmux.out'
 
     # Log window
