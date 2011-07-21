@@ -96,15 +96,8 @@ case $HOSTNAME in
             # it looks like this: http://i.imgur.com/8Qkq4.png
             sleep 1
             
-            # Create new session
-            tmux new-session -d -s startup
-
-            # Create new window to use as background stuff
-            tmux new-window -a -t startup:0 -n 'background' "/usr/bin/env bash $HOME/.bashrc-startup"
-            # Kill the window currently in slot 0
-            tmux kill-window -t startup:0
-            # Move "background" to slot 0
-            tmux move-window -s startup:1 -t startup:0
+            # Create new session, with initial window
+            tmux new-session -d -s startup -n 'background' "/usr/bin/env bash $HOME/.bashrc-startup"
 
             # Create new window to work in, after the 0th window.
             tmux new-window -a -t startup:0
