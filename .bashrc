@@ -22,7 +22,7 @@ COLOR_WHITE="\[\033[1;37m\]"
 COLOR_CLEAR="\[\033[0m\]"
 
 # Default prompt
-PS1="${COLOR_YELLOW}\u@\h$COLOR_CLEAR:$COLOR_LIGHT_CYAN$\w$COLOR_CLEAR
+PS1="${COLOR_YELLOW}\u@\h$COLOR_CLEAR:${COLOR_YELLOW}\D{%Y-%m-%d %H:%M:%S}$COLOR_CLEAR:$COLOR_LIGHT_CYAN$\w$COLOR_CLEAR
 \$ "
 
 # Bash-specific options
@@ -78,7 +78,7 @@ case $HOSTNAME in
         #TODO this hostname is temporary, damnit, this thing should be called "austin"
 
         # Prompt
-        export PS1="${COLOR_LIGHT_GREEN}\u@\h${COLOR_CLEAR}:${COLOR_LIGHT_CYAN}\w${COLOR_CLEAR}\n\$ "
+        export PS1="[${COLOR_LIGHT_GREEN}\D{%Y-%m-%d %H:%M:%S}$COLOR_CLEAR] ${COLOR_LIGHT_GREEN}\u@\h${COLOR_CLEAR}:${COLOR_LIGHT_CYAN}\w${COLOR_CLEAR}\n\$ "
         
         # Aliases
         alias mirror=/Users/pavel/projects/mirror/src/mirror.py
@@ -100,9 +100,9 @@ case $HOSTNAME in
             tmux new-session -d -s startup -n 'background' "/usr/bin/env bash $HOME/.bashrc-startup"
 
             # Create new window to work in, after the 0th window.
-            tmux new-window -a -t startup:0
-            # Focus on first window
-            tmux select-window -t startup:1
+            tmux new-window -a -t startup:1
+            # Focus on second window
+            tmux select-window -t startup:2
 
             # Attach tmux
             tmux attach-session -t startup
@@ -136,7 +136,7 @@ case $HOSTNAME in
     "vodka")
         # My virtualbox
 
-        export PS1="${COLOR_LIGHT_CYAN}\u@\h${COLOR_CLEAR}:${COLOR_LIGHT_GREEN}\w${COLOR_CLEAR}\n\$ "
+        export PS1="[${COLOR_LIGHT_CYAN}\D{%Y-%m-%d %H:%M:%S}$COLOR_CLEAR] ${COLOR_LIGHT_CYAN}\u@\h${COLOR_CLEAR}:${COLOR_LIGHT_GREEN}\w${COLOR_CLEAR}\n\$ "
 
         # enable programmable completion features (you don't need to enable
         # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -155,7 +155,7 @@ case $HOSTNAME in
     "champ" | "boom")
         # Work servers
 
-        export PS1="${COLOR_LIGHT_GREEN}\u@\h${COLOR_CLEAR}:${COLOR_LIGHT_CYAN}\w${COLOR_CLEAR} \$ "
+        export PS1="[${COLOR_LIGHT_GREEN}\D{%Y-%m-%d %H:%M:%S}$COLOR_CLEAR] ${COLOR_LIGHT_GREEN}\u@\h${COLOR_CLEAR}:${COLOR_LIGHT_CYAN}\w${COLOR_CLEAR} \$ "
 
         # Update ForwardAgent settings
         [[ -f $HOME/grabssh.sh ]] && $HOME/grabssh.sh
@@ -164,7 +164,7 @@ case $HOSTNAME in
     "moobox")
         # Work server under my desk
 
-        export PS1="${COLOR_LIGHT_GREEN}\u@\h${COLOR_CLEAR}:${COLOR_LIGHT_CYAN}\w${COLOR_CLEAR} \$ "
+        export PS1="[${COLOR_LIGHT_GREEN}\D{%Y-%m-%d %H:%M:%S}$COLOR_CLEAR] ${COLOR_LIGHT_GREEN}\u@\h${COLOR_CLEAR}:${COLOR_LIGHT_CYAN}\w${COLOR_CLEAR} \$ "
 
         # Update ForwardAgent settings
         [[ -f $HOME/grabssh.sh ]] && $HOME/grabssh.sh
