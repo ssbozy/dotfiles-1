@@ -94,7 +94,7 @@ case $HOSTNAME in
         if ! tmux has-session -t startup 1>/dev/null 2>/dev/null; then
             # For some reason, if you launch tmux right away,
             # it looks like this: http://i.imgur.com/8Qkq4.png
-            sleep 1
+            sleep 3
             
             # Create new session, with initial window
             tmux new-session -d -s startup -n 'background' "/usr/bin/env bash $HOME/.bashrc-startup"
