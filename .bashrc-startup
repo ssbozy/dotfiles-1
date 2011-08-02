@@ -1,9 +1,14 @@
+#/usr/bin/env bashrc
+
 # Launch tinyur desktop screenshot monitor
-/Users/pavel/projects/tinyur/tinyur.py &
+if ! ps ax | egrep tinyu[r] > /dev/null; then
+    /Users/pavel/projects/tinyur/tinyur.py &
+fi
 
 # Launch synergy
-#TODO only do this when at home
-/Users/pavel/synergy_moskva
+if ! ps ax | egrep synergy[c] > /dev/null; then
+    /Users/pavel/synergy_moskva
+fi
 
 # Give me my nice bash prompt if I kill synergy
 /usr/bin/env bash
