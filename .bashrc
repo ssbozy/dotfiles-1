@@ -22,8 +22,7 @@ COLOR_WHITE="\[\033[1;37m\]"
 COLOR_CLEAR="\[\033[0m\]"
 
 # Default prompt
-PS1="${COLOR_LIGHT_BLUE}\u@\h$COLOR_CLEAR:${COLOR_LIGHT_BLUE}\D{%Y-%m-%d %H:%M:%S}$COLOR_CLEAR:$COLOR_LIGHT_CYAN$\w$COLOR_CLEAR
-\$ "
+export PS1="[${COLOR_LIGHT_BLUE}\D{%Y-%m-%d %H:%M:%S}$COLOR_CLEAR] ${COLOR_LIGHT_BLUE}\u@\h${COLOR_CLEAR}:${COLOR_LIGHT_CYAN}\w${COLOR_CLEAR}\n\$ "
 
 # Bash-specific options
 
