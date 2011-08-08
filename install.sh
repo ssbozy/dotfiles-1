@@ -1,3 +1,5 @@
+#maybe add something to add myself as a user?
+
 # Assume that it's been cloned into ~/dotfiles/
 
 # mkdir ~/dot-bak/
