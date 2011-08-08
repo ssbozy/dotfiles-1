@@ -104,7 +104,7 @@ case $HOSTNAME in
                 tmux new-session -d -s startup -n 'background' "/usr/bin/env bash $HOME/.bashrc-startup"
 
                 # Create new window to work in, after the 0th window.
-                tmux new-window -a -t startup:0
+                tmux new-window -a -n 'bash' -t startup:0
                 # Focus on second window
                 tmux select-window -t startup:1
 
