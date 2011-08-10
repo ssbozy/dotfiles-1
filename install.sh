@@ -42,9 +42,9 @@ for dotfile_path in `find $DOT_DIR -type f -and -not -ipath '*/.git/*'`; do
 done
 
 # Now, take care of ~/bin/
-if [ ! -d $HOME/bin ]; the
+if [ ! -d $HOME/bin ]; then
     echo "Creating $HOME/bin"
-    mkdir $HOME/bin
+    mkdir $HOME/bin;
 fi
 
 cd $HOME/bin/
