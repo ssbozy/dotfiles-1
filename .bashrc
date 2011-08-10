@@ -156,7 +156,7 @@ case $HOSTNAME in
         fi
 
         # Update ForwardAgent settings
-        [[ -f $HOME/grabssh.sh ]] && $HOME/grabssh.sh
+        [[ -f $HOME/bin/grabssh.sh ]] && $HOME/bin/grabssh.sh
 
         # Lol, node.js
         export PATH=$HOME/local/node/bin:$PATH
@@ -168,7 +168,7 @@ case $HOSTNAME in
         export PS1="[${COLOR_LIGHT_GREEN}\D{%Y-%m-%d %H:%M:%S}$COLOR_CLEAR] ${COLOR_LIGHT_GREEN}\u@\h${COLOR_CLEAR}:${COLOR_LIGHT_CYAN}\w${COLOR_CLEAR} \$ "
 
         # Update ForwardAgent settings
-        [[ -f $HOME/grabssh.sh ]] && $HOME/grabssh.sh
+        [[ -f $HOME/bin/grabssh.sh ]] && $HOME/bin/grabssh.sh
         
     ;;
     "moobox")
@@ -177,7 +177,7 @@ case $HOSTNAME in
         export PS1="[${COLOR_LIGHT_GREEN}\D{%Y-%m-%d %H:%M:%S}$COLOR_CLEAR] ${COLOR_LIGHT_GREEN}\u@\h${COLOR_CLEAR}:${COLOR_LIGHT_CYAN}\w${COLOR_CLEAR} \$ "
 
         # Update ForwardAgent settings
-        [[ -f $HOME/grabssh.sh ]] && $HOME/grabssh.sh
+        [[ -f $HOME/bin/grabssh.sh ]] && $HOME/bin/grabssh.sh
         
         # Start synergyc, unless it's already running
         if ! ps ax | grep synergyc | grep -v grep > /dev/null; then

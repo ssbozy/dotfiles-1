@@ -5,6 +5,6 @@ for x in ${SSHV} ; do
     (eval echo $x=\$$x) | sed  's/=/="/
                                 s/$/"/
                                 s/^/export /'
-done 1>$HOME/fixssh
+done 1>$HOME/.fixssh
 
-chmod u+x $HOME/fixssh
+chmod u+x $HOME/.fixssh
