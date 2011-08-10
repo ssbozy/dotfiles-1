@@ -2,12 +2,16 @@
 
 # Launch tinyur desktop screenshot monitor
 if ! ps ax | egrep tinyu[r] > /dev/null; then
-    /Users/pavel/projects/tinyur/tinyur.py &
+    if [ -f /Users/pavel/projects/tinyur/tinyur.py ]; then
+        /Users/pavel/projects/tinyur/tinyur.py &
+    fi
 fi
 
 # Launch synergy
 if ! ps ax | egrep synergy[c] > /dev/null; then
-    /Users/pavel/synergy_moskva
+    if [ -f /Users/pavel/synergy_moskva ]; then
+        /Users/pavel/synergy_moskva
+    fi
 fi
 
 # Give me my nice bash prompt if I kill synergy
