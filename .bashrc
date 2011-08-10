@@ -44,6 +44,9 @@ shopt -s no_empty_cmd_completion
 if [ -d "${HOME}/bin" ]; then
     export PATH=${HOME}/bin:$PATH
 fi
+if [ -d "/var/lib/gems/1.8/bin" ]; then
+    export PATH=/var/lib/gems/1.8/bin:$PATH
+fi
 
 alias grep='grep --color=auto'
 
@@ -72,7 +75,7 @@ esac
 # Host specific stuff
 #####################
 case $HOSTNAME in
-    "vodkamat.netomat.net" | "austin")
+    "vodkamat.netomat.net" | "austin" | "addison")
         # My Macbook
         #TODO this hostname is temporary, damnit, this thing should be called "austin"
 
