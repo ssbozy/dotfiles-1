@@ -47,6 +47,9 @@ fi
 if [ -d "/var/lib/gems/1.8/bin" ]; then
     export PATH=/var/lib/gems/1.8/bin:$PATH
 fi
+if [ -d "${HOME}/.gem/ruby/1.8/bin" ]; then
+    export PATH=${HOME}/.gem/ruby/1.8/bin:$PATH
+fi
 
 alias grep='grep --color=auto'
 
