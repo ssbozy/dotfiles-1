@@ -63,3 +63,7 @@ if [[ "$MACHTYPE" == *redhat* ]]; then
         sudo rpm -ivh http://download.fedoraproject.org/pub/epel/5/i386/epel-release-5-4.noarch.rpm && sudo yum install tmux
     fi
 fi
+
+# Let's make sure we have pretties
+source ~/.bashrc
+bind -f ~/.inputrc
