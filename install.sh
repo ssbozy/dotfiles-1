@@ -10,11 +10,6 @@ BAK_DIR="$HOME/dot-bak-$(date +%Y%m%d.%H%M)"
 
 EXCLUDE="install.sh README .git bin"
 
-function _try_bak() { 
-    echo $1
-}
-
-
 # Go through all files in $DOT_DIR, excluding those in $EXCLUDE
 # If that file exists in $HOME, back it up to $HOME/dot-bak-%Y%m%d.%H%M/
 # Make a symlink to the file in $HOME/
