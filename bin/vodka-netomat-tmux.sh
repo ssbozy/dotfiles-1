@@ -81,7 +81,8 @@ if ! tmux has-session -t netomat 1>/dev/null 2>/dev/null; then
     tmux new-window -d -n "ms mysql"      "/usr/bin/env bash -c '/opt/lampp/bin/mysql -uroot mobilityserver; /bin/bash'"
     tmux new-window -d -n "msadmin mysql" "/usr/bin/env bash -c '/opt/lampp/bin/mysql -uroot netowem; /bin/bash'"    
 
-    tmux select-window -t netomat:mobilityserver
+    # This is where I get to type in my sudo password
+    tmux select-window -t netomat:lampp
 
 fi
 
