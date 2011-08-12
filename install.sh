@@ -68,5 +68,4 @@ if [[ "$MACHTYPE" == *redhat* ]]; then
 fi
 
 # Let's make sure we have pretties
-source ~/.bashrc
-bind -f ~/.inputrc
+exec bash   # thanks, Shaen!
