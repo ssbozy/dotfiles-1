@@ -23,7 +23,7 @@ cd $HOME
 
 mkdir -p $HOME/$BAK_DIR/bin
 
-for dotfile_path in `find $DOT_DIR -type f -and -not -ipath '*/.git/*'`; do 
+for dotfile_path in `find $DOT_DIR -type f -and -not -ipath "$DOT_DIR/.git/*" -and -not -ipath "$DOT_DIR/bin/*"`; do 
     dotfile_name=`basename $dotfile_path`
     for ignored in $EXCLUDE; do
         if [[ "$dotfile_name" == "$ignored" ]]; then
@@ -38,6 +38,7 @@ for dotfile_path in `find $DOT_DIR -type f -and -not -ipath '*/.git/*'`; do
         mv $HOME/$dotfile_name $HOME/$BAK_DIR/$dotfile_name
     fi
 
+    echo "Symlinking $dotfile_path in $(pwd)"
     ln -s $dotfile_path
 done
 
@@ -57,23 +58,13 @@ for binfile_path in `find $DOT_DIR/bin`; do
         mv $HOME/bin/$binfile_name $HOME/$BAK_DIR/bin/$binfile_name
     fi
 
+    print "Symlinking $binfile_path in $(pwd)"
     ln -s $binfile_path
 done
 
-
-
-
-
-#maybe add something to add myself as a user?
-
-# Assume that it's been cloned into ~/dotfiles/
-
-# mkdir ~/dot-bak/
-# cd dotfiles
-# find . -type f -not -ipath '*.git/*' -exec mv ~/{} ~/dot-bak/ \;
-# cd ~
-# find dotfiles/ -type f -not -ipath '*.git/*' -exec ln -s {} \;
-
-# For CentOS and RedHat, if I want tmux, I gotta:
-# rpm -ivh http://download.fedoraproject.org/pub/epel/5/i386/epel-release-5-4.noarch.rpm
-# yum install tmux
+if [[ "$MACHTYPE" == *redhat* ]]; then
+    read -p "Install tmux? [y/n, default n]" install_tmux
+    if [[ "$install_tmux" == "y" ]]; then
+        sudo rpm -ivh http://download.fedoraproject.org/pub/epel/5/i386/epel-release-5-4.noarch.rpm && sudo yum install tmux
+    fi
+fi

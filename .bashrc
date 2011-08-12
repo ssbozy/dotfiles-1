@@ -66,6 +66,10 @@ case $OSTYPE in
         export EDITOR=mate_wait
         
     ;;
+    linux-gnu)
+        # This is probably a work CentOS or RedHat machine.
+        # I might want to check $MACHTYPE, too
+    ;;
     *)
         # Everything else
         alias ls='ls --color=auto'
