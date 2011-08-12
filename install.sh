@@ -58,7 +58,7 @@ for binfile_path in `find $DOT_DIR/bin`; do
         mv $HOME/bin/$binfile_name $HOME/$BAK_DIR/bin/$binfile_name
     fi
 
-    print "Symlinking $binfile_path in $(pwd)"
+    echo "Symlinking $binfile_path in $(pwd)"
     ln -s $binfile_path
 done
 
