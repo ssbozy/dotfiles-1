@@ -6,7 +6,7 @@ if [[ "$(dirname install.sh)" != "." ]]; then
 fi
 
 DOT_DIR=`pwd`
-BAK_DIR="$HOME/dot-bak-$(date +%Y%m%d.%H%M)"
+BAK_DIR="$HOME/.dotfiles-$(date +%Y%m%d.%H%M)"
 
 EXCLUDE="install.sh README .git bin"
 
