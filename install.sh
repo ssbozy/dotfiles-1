@@ -18,6 +18,7 @@ cd $HOME
 
 mkdir -p $BAK_DIR/bin
 
+echo "Symlinking dot files."
 for dotfile_path in `find $DOT_DIR -type f -and -not -ipath "$DOT_DIR/.git/*" -and -not -ipath "$DOT_DIR/bin/*"`; do 
     dotfile_name=`basename $dotfile_path`
     for ignored in $EXCLUDE; do
@@ -27,7 +28,7 @@ for dotfile_path in `find $DOT_DIR -type f -and -not -ipath "$DOT_DIR/.git/*" -a
         fi
     done
 
-    if [ -f $HOME/$dotfile_name ]; then
+    if [[ -f $HOME/$dotfile_name || -L $HOME/$dotfile_name ]]; then
         # Back this sucker up!
         echo "Moving $HOME/$dotfile_name to $BAK_DIR/$dotfile_name"
         mv $HOME/$dotfile_name $BAK_DIR/$dotfile_name
@@ -36,6 +37,8 @@ for dotfile_path in `find $DOT_DIR -type f -and -not -ipath "$DOT_DIR/.git/*" -a
     echo "Symlinking $dotfile_path in $(pwd)"
     ln -s $dotfile_path
 done
+
+echo "Symlinking bin files."
 
 # Now, take care of ~/bin/
 if [ ! -d $HOME/bin ]; then
@@ -47,7 +50,7 @@ cd $HOME/bin/
 
 for binfile_path in `find $DOT_DIR/bin`; do 
     binfile_name=`basename $binfile_path`
-    if [ -f $HOME/bin/$binfile_name ]; then
+    if [[ -f $HOME/bin/$binfile_name || -L $HOME/bin/$binfile_name ]]; then
         # Back this sucker up!
         echo "Moving $HOME/bin/$binfile_name to $BAK_DIR/bin/$binfile_name"
         mv $HOME/bin/$binfile_name $BAK_DIR/bin/$binfile_name
