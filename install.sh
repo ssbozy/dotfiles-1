@@ -21,7 +21,7 @@ function _try_bak() {
 
 cd $HOME
 
-mkdir -p $HOME/$BAK_DIR/bin
+mkdir -p $BAK_DIR/bin
 
 for dotfile_path in `find $DOT_DIR -type f -and -not -ipath "$DOT_DIR/.git/*" -and -not -ipath "$DOT_DIR/bin/*"`; do 
     dotfile_name=`basename $dotfile_path`
@@ -34,8 +34,8 @@ for dotfile_path in `find $DOT_DIR -type f -and -not -ipath "$DOT_DIR/.git/*" -a
 
     if [ -f $HOME/$dotfile_name ]; then
         # Back this sucker up!
-        echo "Moving $HOME/$dotfile_name to $HOME/$BAK_DIR/$dotfile_name"
-        mv $HOME/$dotfile_name $HOME/$BAK_DIR/$dotfile_name
+        echo "Moving $HOME/$dotfile_name to $BAK_DIR/$dotfile_name"
+        mv $HOME/$dotfile_name $BAK_DIR/$dotfile_name
     fi
 
     echo "Symlinking $dotfile_path in $(pwd)"
@@ -54,8 +54,8 @@ for binfile_path in `find $DOT_DIR/bin`; do
     binfile_name=`basename $binfile_path`
     if [ -f $HOME/bin/$binfile_name ]; then
         # Back this sucker up!
-        echo "Moving $HOME/bin/$binfile_name to $HOME/$BAK_DIR/bin/$binfile_name"
-        mv $HOME/bin/$binfile_name $HOME/$BAK_DIR/bin/$binfile_name
+        echo "Moving $HOME/bin/$binfile_name to $BAK_DIR/bin/$binfile_name"
+        mv $HOME/bin/$binfile_name $BAK_DIR/bin/$binfile_name
     fi
 
     echo "Symlinking $binfile_path in $(pwd)"
