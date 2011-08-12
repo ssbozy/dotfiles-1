@@ -66,10 +66,6 @@ case $OSTYPE in
         export EDITOR=mate_wait
         
     ;;
-    linux-gnu)
-        # This is probably a work CentOS or RedHat machine.
-        # I might want to check $MACHTYPE, too
-    ;;
     *)
         # Everything else
         alias ls='ls --color=auto'
@@ -77,6 +73,17 @@ case $OSTYPE in
         export EDITOR=vim
     ;;
 esac
+
+# This is mostly a placeholder.
+case $MACHTYPE in
+    *redhat-linux-gnu)
+        # RedHat machine. Whatever.
+    ;;
+    *)
+        # Everything else;
+    ;;
+esac
+
 
 #####################
 # Host specific stuff
