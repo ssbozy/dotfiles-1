@@ -48,7 +48,7 @@ fi
 
 cd $HOME/bin/
 
-for binfile_path in `find $DOT_DIR/bin`; do 
+for binfile_path in `find $DOT_DIR/bin -not -ipath "$DOT_DIR/bin"`; do 
     binfile_name=`basename $binfile_path`
     if [[ -f $HOME/bin/$binfile_name || -L $HOME/bin/$binfile_name ]]; then
         # Back this sucker up!
