@@ -134,8 +134,7 @@ case $HOSTNAME in
         
         # Launch tinyur desktop screenshot monitor
         if ! ps ax | egrep tinyu[r] > /dev/null && which tinyur.py > /dev/null; then
-                nohup tinyur.py 0<&- 1>$HOME/tinyur.log 2>$HOME/tinyur.log &
-            fi
+            nohup tinyur.py 0<&- 1>$HOME/tinyur.log 2>$HOME/tinyur.log &
         fi
 
         # Bash completion, obv.
