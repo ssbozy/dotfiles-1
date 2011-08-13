@@ -16,8 +16,6 @@ EXCLUDE="install.sh README .git bin"
 
 cd $HOME
 
-mkdir -p $BAK_DIR/bin
-
 echo "Symlinking dot files."
 for dotfile_path in `find $DOT_DIR -type f -and -not -ipath "$DOT_DIR/.git/*" -and -not -ipath "$DOT_DIR/bin/*"`; do 
     dotfile_name=`basename $dotfile_path`
@@ -41,24 +39,11 @@ done
 echo "Symlinking bin files."
 
 # Now, take care of ~/bin/
-if [ ! -d $HOME/bin ]; then
-    echo "Creating $HOME/bin"
-    mkdir $HOME/bin;
+if [ -d $HOME/bin || -L $HOME/bin ]; then
+    echo "Moving $HOME/bin to $BAK_DIR/bin"
+    mv $HOME/bin $BAK_DIR/bin
 fi
-
-cd $HOME/bin/
-
-for binfile_path in `find $DOT_DIR/bin -not -ipath "$DOT_DIR/bin"`; do 
-    binfile_name=`basename $binfile_path`
-    if [[ -f $HOME/bin/$binfile_name || -L $HOME/bin/$binfile_name ]]; then
-        # Back this sucker up!
-        echo "Moving $HOME/bin/$binfile_name to $BAK_DIR/bin/$binfile_name"
-        mv $HOME/bin/$binfile_name $BAK_DIR/bin/$binfile_name
-    fi
-
-    echo "Symlinking $binfile_path in $(pwd)"
-    ln -s $binfile_path
-done
+ln -s $DOT_DIR/bin
 
 if [[ "$MACHTYPE" == *redhat* ]]; then
     read -p "Install tmux? [y/n, default n]" install_tmux
@@ -68,4 +53,8 @@ if [[ "$MACHTYPE" == *redhat* ]]; then
 fi
 
 # Let's make sure we have pretties
-exec bash   # thanks, Shaen!
+source $HOME/.bashrc
+bind -f $HOME/.inputrc
+
+# Go home
+cd $HOME

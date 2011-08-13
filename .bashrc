@@ -132,6 +132,12 @@ case $HOSTNAME in
             fi
         fi
         
+        # Launch tinyur desktop screenshot monitor
+        if ! ps ax | egrep tinyu[r] > /dev/null && which tinyur.py > /dev/null; then
+                nohup tinyur.py 0<&- 1>$HOME/tinyur.log 2>$HOME/tinyur.log &
+            fi
+        fi
+
         # Bash completion, obv.
         if [ -f `brew --prefix`/etc/bash_completion ]; then
             #source `brew --prefix`/etc/bash_completion

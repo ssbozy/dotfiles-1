@@ -1,11 +1,4 @@
-#/usr/bin/env bashrc
-
-# Launch tinyur desktop screenshot monitor
-if ! ps ax | egrep tinyu[r] > /dev/null; then
-    if [ -f /Users/pavel/projects/tinyur/tinyur.py ]; then
-        /Users/pavel/projects/tinyur/tinyur.py &
-    fi
-fi
+#/usr/bin/env bash
 
 # Launch synergy
 if ! ps ax | egrep synergy[c] > /dev/null; then
