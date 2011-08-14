@@ -158,7 +158,7 @@ case $HOSTNAME in
 
         # Start synergys, unless it's already running
         if ! ps ax | grep synergys | grep -v grep > /dev/null; then
-            synergys
+            synergys -c $HOME/.synergy.newyork.conf
         fi
         
     ;;
