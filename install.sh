@@ -7,6 +7,8 @@ fi
 
 DOT_DIR=`pwd`
 BAK_DIR="$HOME/.dotfiles-$(date +%Y%m%d.%H%M)"
+mkdir -p $BAK_DIR
+
 
 EXCLUDE="install.sh README .git bin"
 
