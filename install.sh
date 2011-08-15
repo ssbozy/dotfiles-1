@@ -9,7 +9,6 @@ DOT_DIR=`pwd`
 BAK_DIR="$HOME/.dotfiles-$(date +%Y%m%d.%H%M)"
 mkdir -p $BAK_DIR
 
-
 EXCLUDE="install.sh README .git bin"
 
 # Go through all files in $DOT_DIR, excluding those in $EXCLUDE
@@ -48,15 +47,19 @@ fi
 ln -s $DOT_DIR/bin
 
 if [[ "$MACHTYPE" == *redhat* ]]; then
-    read -p "Install tmux? [y/n, default n]" install_tmux
+    read -p "Install tmux? [y/n, default n] " install_tmux
     if [[ "$install_tmux" == "y" ]]; then
         sudo rpm -ivh http://download.fedoraproject.org/pub/epel/5/i386/epel-release-5-4.noarch.rpm && sudo yum install tmux
     fi
 fi
 
 # Let's make sure we have pretties
-source $HOME/.bashrc
-bind -f $HOME/.inputrc
+if [[ "$MACHTYPE" == *redhat* ]]; then
+    echo "Unable to source stuff in redhat for some dumb reason?"
+else
+    source $HOME/.bashrc
+    bind -f $HOME/.inputrc
+fi
 
 # Go home
 cd $HOME
