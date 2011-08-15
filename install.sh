@@ -39,7 +39,7 @@ done
 echo "Symlinking bin files."
 
 # Now, take care of ~/bin/
-if [ -d $HOME/bin || -L $HOME/bin ]; then
+if [[ -d $HOME/bin || -L $HOME/bin ]]; then
     echo "Moving $HOME/bin to $BAK_DIR/bin"
     mv $HOME/bin $BAK_DIR/bin
 fi
