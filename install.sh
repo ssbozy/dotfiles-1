@@ -46,7 +46,7 @@ if [[ -d $HOME/bin || -L $HOME/bin ]]; then
 fi
 ln -s $DOT_DIR/bin
 
-if [[ "$MACHTYPE" == *redhat* ]]; then
+if [[ "$MACHTYPE" == *redhat* ]] && ! which tmux >> /dev/null; then
     read -p "Install tmux? [y/n, default n] " install_tmux
     if [[ "$install_tmux" == "y" ]]; then
         sudo rpm -ivh http://download.fedoraproject.org/pub/epel/5/i386/epel-release-5-4.noarch.rpm && sudo yum install tmux
