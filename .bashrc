@@ -123,27 +123,31 @@ case $HOSTNAME in
         # terminal window we've opened, and it's going to get pinned to the top
         # with visor - I want tmux to automatically launch here.
         if ! tmux has-session -t startup 1>/dev/null 2>/dev/null; then
-            # Obviously if we have multiple terminals opening, 
-            # this would otherwise be a problem.
-            if [ ! -f /tmp/starting-tmux-meow ]; then
-                touch /tmp/starting-tmux-meow
 
+            if [[ ! -f /tmp/starting_tmux ]]; then
+                touch /tmp/starting_tmux
+                
                 # For some reason, if you launch tmux right away,
                 # it looks like this: http://i.imgur.com/8Qkq4.png
+                # So let's wait, and check for $COLUMNS - if it's more than 120,
+                # we're in visor!
                 sleep 3
-            
-                # Create new session, with initial window
-                tmux new-session -d -s startup -n 'background' "/usr/bin/env bash $HOME/.bashrc-startup"
 
-                # Create new window to work in, after the 0th window.
-                tmux new-window -a -n 'bash' -t startup:0
-                # Focus on second window
-                tmux select-window -t startup:1
+                if [[ $COLUMNS -gt 120 ]]; then
+        
+                    # Create new session, with initial window
+                    tmux new-session -d -s startup -n 'background' "/usr/bin/env bash $HOME/.bashrc-startup"
 
-                # Attach tmux
-                tmux attach-session -t startup
+                    # Create new window to work in, after the 0th window.
+                    tmux new-window -a -n 'bash' -t startup:0
+                    # Focus on second window
+                    tmux select-window -t startup:1
+
+                    # Attach tmux
+                    tmux attach-session -t startup
+                fi
                 
-                rm /tmp/starting-tmux-meow
+                rm /tmp/starting_tmux
             fi
         fi
         
