@@ -21,8 +21,6 @@ COLOR_YELLOW="\[\033[1;33m\]"
 COLOR_WHITE="\[\033[1;37m\]"
 COLOR_CLEAR="\[\033[0m\]"
 
-# Default prompt
-export PS1="[${COLOR_LIGHT_BLUE}\D{%Y-%m-%d %H:%M:%S}$COLOR_CLEAR] ${COLOR_LIGHT_BLUE}\u@\h${COLOR_CLEAR}:${COLOR_LIGHT_CYAN}\w${COLOR_CLEAR}\n\$ "
 
 # Bash-specific options
 
@@ -51,8 +49,22 @@ if [ -d "${HOME}/.gem/ruby/1.8/bin" ]; then
     export PATH=${HOME}/.gem/ruby/1.8/bin:$PATH
 fi
 
-alias grep='grep --color=auto'
+PS1=""
+PS1_DATE=1
+PS1_USER=1
+PS1_HOST=1
+PS1_PATH=1
+PS1_NEWLINE=1
+# 23:00:09 <@fancybone> hey, what's the last character of a bash prompt called
+# 23:00:18 <@brett_h> dicks
+# 23:00:23 <@fancybone> dicks it is
+PS1_DICKS="\n$ "
+PS1_DATE_COLOR=$COLOR_LIGHT_BLUE
+PS1_USER_COLOR=$COLOR_LIGHT_BLUE
+PS1_HOST_COLOR=$COLOR_LIGHT_BLUE
+PS1_PATH_COLOR=$COLOR_LIGHT_CYAN
 
+alias grep='grep --color=auto'
 
 ###################
 # OS specific stuff
@@ -94,8 +106,11 @@ case $HOSTNAME in
         #TODO this hostname is temporary, damnit, this thing should be called "austin"
 
         # Prompt
-        export PS1="[${COLOR_LIGHT_GREEN}\D{%Y-%m-%d %H:%M:%S}$COLOR_CLEAR] ${COLOR_LIGHT_GREEN}\u@\h${COLOR_CLEAR}:${COLOR_LIGHT_CYAN}\w${COLOR_CLEAR}\n\$ "
-        
+        PS1_DATE_COLOR=$COLOR_LIGHT_GREEN
+        PS1_USER_COLOR=$COLOR_LIGHT_GREEN
+        PS1_HOST_COLOR=$COLOR_LIGHT_GREEN
+        PS1_PATH_COLOR=$COLOR_LIGHT_CYAN
+
         # Aliases
         alias mirror=/Users/pavel/projects/mirror/src/mirror.py
         alias 4ch='/Users/pavel/projects/mirror/src/mirror.py --4ch'
@@ -165,7 +180,10 @@ case $HOSTNAME in
     "vodka")
         # My virtualbox
 
-        export PS1="[${COLOR_LIGHT_CYAN}\D{%Y-%m-%d %H:%M:%S}$COLOR_CLEAR] ${COLOR_LIGHT_CYAN}\u@\h${COLOR_CLEAR}:${COLOR_LIGHT_GREEN}\w${COLOR_CLEAR}\n\$ "
+        PS1_DATE_COLOR=$COLOR_LIGHT_CYAN
+        PS1_USER_COLOR=$COLOR_LIGHT_CYAN
+        PS1_HOST_COLOR=$COLOR_LIGHT_CYAN
+        PS1_PATH_COLOR=$COLOR_LIGHT_GREEN
 
         # enable programmable completion features (you don't need to enable
         # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -184,7 +202,10 @@ case $HOSTNAME in
     "champ" | "boom")
         # Work servers
 
-        export PS1="[${COLOR_LIGHT_GREEN}\D{%Y-%m-%d %H:%M:%S}$COLOR_CLEAR] ${COLOR_LIGHT_GREEN}\u@\h${COLOR_CLEAR}:${COLOR_LIGHT_CYAN}\w${COLOR_CLEAR} \$ "
+        PS1_DATE_COLOR=$COLOR_LIGHT_GREEN
+        PS1_USER_COLOR=$COLOR_LIGHT_GREEN
+        PS1_HOST_COLOR=$COLOR_YELLOW
+        PS1_PATH_COLOR=$COLOR_LIGHT_CYAN
 
         # Update ForwardAgent settings
         [[ -f $HOME/bin/grabssh.sh ]] && $HOME/bin/grabssh.sh
@@ -193,7 +214,10 @@ case $HOSTNAME in
     "moobox")
         # Work server under my desk
 
-        export PS1="[${COLOR_LIGHT_GREEN}\D{%Y-%m-%d %H:%M:%S}$COLOR_CLEAR] ${COLOR_LIGHT_GREEN}\u@\h${COLOR_CLEAR}:${COLOR_LIGHT_CYAN}\w${COLOR_CLEAR} \$ "
+        PS1_DATE_COLOR=$COLOR_LIGHT_GREEN
+        PS1_USER_COLOR=$COLOR_LIGHT_GREEN
+        PS1_HOST_COLOR=$COLOR_LIGHT_YELLOW
+        PS1_PATH_COLOR=$COLOR_LIGHT_CYAN
 
         # Update ForwardAgent settings
         [[ -f $HOME/bin/grabssh.sh ]] && $HOME/bin/grabssh.sh
@@ -208,3 +232,25 @@ case $HOSTNAME in
         
     ;;
 esac
+
+
+if [[ "$USER" == "root" ]]; then
+    PS1_USER_COLOR=$COLOR_RED
+    PS1_DICKS="${COLOR_RED} $ ${COLOR_CLEAR}"
+fi
+
+# prompt
+if [[ $PS1_DATE == 1 ]]; then
+    PS1="${PS1}[${PS1_DATE_COLOR}\D{%Y-%m-%d %H:%M:%S}$COLOR_CLEAR] "
+fi
+if [[ $PS1_USER == 1 ]]; then
+    PS1="${PS1}${PS1_USER_COLOR}\u$COLOR_CLEAR"
+fi
+if [[ $PS1_HOST == 1 ]]; then
+    PS1="${PS1}${PS1_HOST_COLOR}@\h$COLOR_CLEAR"
+fi
+if [[ $PS1_PATH == 1 ]]; then
+    PS1="${PS1}:${PS1_PATH_COLOR}\w$COLOR_CLEAR"
+fi
+PS1="${PS1}${PS1_DICKS}"
+export PS1
