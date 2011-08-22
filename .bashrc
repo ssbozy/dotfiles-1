@@ -131,7 +131,7 @@ case $HOSTNAME in
                 # it looks like this: http://i.imgur.com/8Qkq4.png
                 # So let's wait, and check for $COLUMNS - if it's more than 120,
                 # we're in visor!
-                sleep 3
+                # sleep 3
 
                 if [[ $COLUMNS -gt 120 ]]; then
         
