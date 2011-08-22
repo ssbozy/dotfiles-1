@@ -18,7 +18,7 @@ EXCLUDE="install.sh README .git bin"
 cd $HOME
 
 echo "Symlinking dot files."
-for dotfile_path in `find $DOT_DIR -type f -and -not -ipath "$DOT_DIR/.git/*" -and -not -ipath "$DOT_DIR/bin/*"`; do 
+for dotfile_path in `find $DOT_DIR -maxdepth 1 -not -ipath "$DOT_DIR/.git/*" -and -not -ipath "$DOT_DIR/bin/*"`; do 
     dotfile_name=`basename $dotfile_path`
     for ignored in $EXCLUDE; do
         if [[ "$dotfile_name" == "$ignored" ]]; then
