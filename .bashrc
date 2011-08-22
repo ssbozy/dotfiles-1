@@ -116,8 +116,8 @@ case $HOSTNAME in
         alias 4ch='/Users/pavel/projects/mirror/src/mirror.py --4ch'
         alias updatedb="LC_ALL='C' sudo gupdatedb --prunepaths='/Volumes'"  # Don't index any external drives, or anything mounted via sshfs, etc.
         #alias omacs='open -b org.gnu.Emacs'
-        alias omacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
-
+        #alias omacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
+	alias omacs='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -c'
 
         # MacPorts
         export PATH=/opt/local/bin:/opt/local/sbin:$PATH
