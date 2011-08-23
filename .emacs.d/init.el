@@ -18,6 +18,9 @@
 (progn (load-file (concat dotfiles-dir "themes/blackboard.el")) 
   (color-theme-blackboard))
 
+;; php
+(require 'php-mode)
+
 ;; scpaste
 (require 'scpaste)
 (setq scpaste-http-destination "http://paste.lishin.org"
