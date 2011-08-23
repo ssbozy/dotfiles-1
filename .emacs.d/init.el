@@ -6,6 +6,8 @@
 (setq inhibit-splash-screen t
       inhibit-startup-message t)
 
+;; I like seeing column numbers
+(setq column-number-mode t)
 
 ;; color-theme, with blackboard theme, i think
 (add-to-list 'load-path (concat dotfiles-dir "color-theme"))
@@ -20,7 +22,6 @@
 (require 'scpaste)
 (setq scpaste-http-destination "http://paste.lishin.org"
       scpaste-scp-destination "lishin.org:/var/domains/lishin.org/scpaste")
-
 
 ;; ido, as recommended by brett.
 ;; I do not know what this does.
