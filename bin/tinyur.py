@@ -1,9 +1,22 @@
 #!/usr/bin/python
 
+#TODO crashes if imagemagick is not installed
+"""TODO
+
+$ bin/tinyur.py 
+http://i.imgur.com/NEhW5.jpg @ 2011-08-22 17:34:12 from /Users/pavel/Temp/Screen Shot 2011-08-22 at 17.29.07.png.jpg
+Unable to parse JSON response:
+Traceback (most recent call last):
+  File "bin/tinyur.py", line 109, in <module>
+    print "Unable to parse JSON response:", err.error
+AttributeError: 'exceptions.OSError' object has no attribute 'error'
+"""
+
+
 import os, re, pycurl, simplejson, pprint, subprocess, datetime, time
 
 # regex = re.compile("^Picture [\d()]+.png$")
-regex = re.compile("^Screen shot.*\.png$")
+regex = re.compile("^Screen shot.*\.png$", re.I)
 searchdir = '/Users/pavel/Desktop/'
 storedir = '/Users/pavel/Temp/'
 
@@ -36,6 +49,7 @@ while 1:
     time.sleep(1)
 
     for filename in os.listdir( searchdir ):
+
         if not regex.search( filename ) == None:
             
             # move file to ~/Temp to get it out of my site

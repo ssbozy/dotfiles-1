@@ -1,5 +1,5 @@
-;; mac alt == emacs meta
 ;; mac ctrl == emacs ctrl
+;; mac alt == emacs meta
 ;; mac cmd == emacs alt
 ;; C-h f == look up any function
 ;; C-h a == search everything in emacs
@@ -22,11 +22,22 @@
 ;; http://www.xemacs.org/Links/tutorials_1.html told me to use the second
 (setq-default tab-always-indent nil)
 (setq-default indent-tabs-mode t)
+(setq indent-tabs-mode t)
 ;; tabs are represented as 4 spaces
-(setq-default tab-width 4)
+(setq default-tab-width 4)
+(setq tab-width 4)
+(setq c-basic-indent 4)
 ;; hitting backspace should delete a tab, not convert it to spaces
 (setq-default c-backspace-function 'backward-delete-char)
 (setq-default backward-delete-char-untabify-method nil)
+;; well, if i can't figure this out...
+;;(global-set-key (kbd "TAB") 'self-insert-command)
+
+;; okay seriously when I have
+;; 	public function whatever() {
+;; <-- if I hit tab here, it inserts a tab, and two spaces.
+;; what the fuck.
+
 
 ;; I want help to pop up in a new window the first time,
 ;; but after that, stay put forever
@@ -66,6 +77,10 @@
 
 ;; php
 (require 'php-mode)
+
+;; yaml
+(require 'yaml-mode)
+(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
 
 ;; scpaste
 (require 'scpaste)
