@@ -9,6 +9,8 @@
 
 ;;TODO - when i tab complete a file, i don't want it to automatically open
 ;;TODO - make directory browsing -alhrt style
+;;TODO - emulate texmate's column select mode.
+;;TODO - fuck you, tabs
 
 ;; 14:03:15 < Arkamist> look into a symbol tagging system
 ;; 14:03:32 < Arkamist> like xcscope or gnu global with emacs integration
@@ -75,6 +77,11 @@
 (progn (load-file (concat dotfiles-dir "themes/blackboard.el")) 
   (color-theme-blackboard))
 
+;; whitespace - show me trailing bullshit, and show tabs as characters
+(require 'whitespace)
+(whitespace-mode t)
+(setq-default whitespace-style '(face tabs trailing tab-mark) )
+
 ;; php
 (require 'php-mode)
 
@@ -139,7 +146,7 @@
 (mac-key-mode 1)
 
 ;; don't wrap long lines
-(set-default 'truncate-line t)
+(setq-default truncate-lines t)
 
 ;; I don't know what this does
 (require 'imenu)
