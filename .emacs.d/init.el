@@ -75,6 +75,10 @@
 ;; I like seeing column numbers
 (setq column-number-mode t)
 
+;; Make my cursor a vertical line, and quit blinking at me
+(setq-default cursor-type 'bar)
+(blink-cursor-mode -1)
+
 ;; color-theme, with blackboard theme, i think
 (add-to-list 'load-path (concat dotfiles-dir "color-theme"))
 (require 'color-theme)
