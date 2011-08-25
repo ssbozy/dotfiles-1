@@ -17,12 +17,19 @@
 ;; 14:03:43 < Arkamist> and be enlightened
 ;; 14:03:54 < Arkamist> also sr-speedbar
 
-;;; White space stuff
-(require 'whitespace)
+;;;
+;;; FUCK YOUUUUUUUUUUUUUUUU TABS
+;;;
+;; okay seriously when I have
+;; 	public function whatever() {
+;; <-- if I hit tab here, it inserts a tab, and two spaces.
+;; what the fuck.
+
 ;; always insert an ascii TAB char when I hit the TAB button
 ;; i'm not sure why I have two; brett told me to use the first, 
 ;; http://www.xemacs.org/Links/tutorials_1.html told me to use the second
 (setq-default tab-always-indent nil)
+(setq-default c-tab-always-indent nil)
 (setq-default indent-tabs-mode t)
 (setq indent-tabs-mode t)
 ;; tabs are represented as 4 spaces
@@ -32,13 +39,13 @@
 ;; hitting backspace should delete a tab, not convert it to spaces
 (setq-default c-backspace-function 'backward-delete-char)
 (setq-default backward-delete-char-untabify-method nil)
-;; well, if i can't figure this out...
-;;(global-set-key (kbd "TAB") 'self-insert-command)
+;; ok, well, on 20110825 in PHP-mode, TAB is apparently mapped to c-indent-line-or-region
+;; c-indent-line-or-region
+;; c-indent-command
 
-;; okay seriously when I have
-;; 	public function whatever() {
-;; <-- if I hit tab here, it inserts a tab, and two spaces.
-;; what the fuck.
+
+
+
 
 
 ;; I want help to pop up in a new window the first time,
@@ -78,9 +85,16 @@
   (color-theme-blackboard))
 
 ;; whitespace - show me trailing bullshit, and show tabs as characters
+;; but only for PHP-mode, I guess - will have to extend this later to most things
 (require 'whitespace)
-(whitespace-mode t)
 (setq-default whitespace-style '(face tabs trailing tab-mark) )
+(defun turn-on-whitespace ()
+  (whitespace-mode))
+(add-hook 'php-mode-hook
+  (lambda ()
+    (progn (turn-on-whitespace) ) ) )
+
+
 
 ;; php
 (require 'php-mode)
