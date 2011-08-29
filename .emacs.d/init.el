@@ -6,11 +6,15 @@
 ;; C-x C-d == browse directory
 ;; C-x C-e == execute expression at the end of your cursor
 ;; C-W == closes frame
+;; C-u M-! == executes shell
+;; S-: == execute arbitrary statement
 
 ;;TODO - when i tab complete a file, i don't want it to automatically open
 ;;TODO - make directory browsing -alhrt style
 ;;TODO - emulate texmate's column select mode.
 ;;TODO - fuck you, tabs
+;;TODO - date insert http://stackoverflow.com/questions/251908/how-can-i-insert-current-date-and-time-into-a-file-using-emacs
+;;TODO - fucking turn on fucking whitespace fucking FUCKING EMACS FUCK mode for PHP without murdering syntax highlighting
 
 ;; 14:03:15 < Arkamist> look into a symbol tagging system
 ;; 14:03:32 < Arkamist> like xcscope or gnu global with emacs integration
@@ -45,9 +49,6 @@
 
 
 
-
-
-
 ;; I want help to pop up in a new window the first time,
 ;; but after that, stay put forever
 ;; keep things in the same window
@@ -57,12 +58,13 @@
 ;;(add-to-list 'same-window-buffer-names "*Summary*")
 
 
-
+;; bind delete to forward-delete
+(global-set-key [delete] 'delete-char)
+(global-set-key [kp-delete] 'delete-char)
 ;; C-x C-c should not fucking kill emacs
 (define-key global-map (kbd "C-x C-c") 'ignore)
 ;; A-n (cmd-n) should open new frame
 (define-key global-map (kbd "A-n") 'make-frame-command)
-
 
 ;; This is where my stuff lives
 (setq dotfiles-dir (expand-file-name "~/.emacs.d/"))
@@ -93,14 +95,13 @@
 (require 'whitespace)
 (setq-default whitespace-style '(face tabs trailing tab-mark) )
 (defun turn-on-whitespace ()
-  (whitespace-mode))
+  (whitespace-mode 1))
 (add-hook 'php-mode-hook
   (lambda ()
     (progn (turn-on-whitespace) ) ) )
 
 
-
-;; php
+;; Php
 (require 'php-mode)
 
 ;; yaml
