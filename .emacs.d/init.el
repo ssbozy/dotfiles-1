@@ -7,7 +7,8 @@
 ;; C-x C-e == execute expression at the end of your cursor
 ;; C-W == closes frame
 ;; C-u M-! == executes shell
-;; S-: == execute arbitrary statement
+;; M-: == execute arbitrary statement
+;; A-l == go to line
 
 ;;TODO - when i tab complete a file, i don't want it to automatically open
 ;;TODO - make directory browsing -alhrt style
@@ -65,6 +66,8 @@
 (define-key global-map (kbd "C-x C-c") 'ignore)
 ;; A-n (cmd-n) should open new frame
 (define-key global-map (kbd "A-n") 'make-frame-command)
+
+
 
 ;; This is where my stuff lives
 (setq dotfiles-dir (expand-file-name "~/.emacs.d/"))
@@ -212,6 +215,8 @@ is a comment, uncomment."
     (comment-or-uncomment-line lines)))
 ;; bind above to alt-#
 (global-set-key [(meta ?#)] 'comment-or-uncomment-region-or-line)
+;;TODO - in PHP, this wraps every selected line in /* */ - I want it to just prepend // after the leading whitespace
+
 
 ;; column select
 ;;(setq cua-rectangle-mark-key (kbd "<f5>"))
