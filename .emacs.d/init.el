@@ -10,12 +10,19 @@
 ;; M-: == execute arbitrary statement
 ;; A-l == go to line
 
+;;TODO - map A-` to "next buffer", S-A-` to "previous buffer"
+;;TODO - CMD-F CMD-V should work, damnit. It works for brett.
 ;;TODO - when i tab complete a file, i don't want it to automatically open
 ;;TODO - make directory browsing -alhrt style
 ;;TODO - emulate texmate's column select mode.
 ;;TODO - fuck you, tabs
 ;;TODO - date insert http://stackoverflow.com/questions/251908/how-can-i-insert-current-date-and-time-into-a-file-using-emacs
-;;TODO - fucking turn on fucking whitespace fucking FUCKING EMACS FUCK mode for PHP without murdering syntax highlighting
+;;TODO - figure out how to open multiple files
+;;TODO - what the fuck, PHP mode. http://i.imgur.com/8dWRI.png
+;; Also, PHP mode - why are you shitting all over my dick tabs when I comment stuff?
+;; Before: http://i.imgur.com/OdhZU.png
+;; After: http://i.imgur.com/Lq6zS.png
+;; Or if I try to shove htem in before the tab: http://i.imgur.com/qnZ4C.png
 
 ;; 14:03:15 < Arkamist> look into a symbol tagging system
 ;; 14:03:32 < Arkamist> like xcscope or gnu global with emacs integration
@@ -34,16 +41,23 @@
 ;; i'm not sure why I have two; brett told me to use the first, 
 ;; http://www.xemacs.org/Links/tutorials_1.html told me to use the second
 (setq-default tab-always-indent nil)
-(setq-default c-tab-always-indent nil)
 (setq-default indent-tabs-mode t)
 (setq indent-tabs-mode t)
+
 ;; tabs are represented as 4 spaces
 (setq default-tab-width 4)
 (setq tab-width 4)
 (setq c-basic-indent 4)
+
 ;; hitting backspace should delete a tab, not convert it to spaces
 (setq-default c-backspace-function 'backward-delete-char)
 (setq-default backward-delete-char-untabify-method nil)
+
+;; I think this'll fix PHP
+(setq-default c-tab-always-indent nil)
+(setq c-basic-offset 4)
+(setq c-syntactic-indentation nil)
+
 ;; ok, well, on 20110825 in PHP-mode, TAB is apparently mapped to c-indent-line-or-region
 ;; c-indent-line-or-region
 ;; c-indent-command
@@ -68,6 +82,12 @@
 (define-key global-map (kbd "A-n") 'make-frame-command)
 
 
+;; bury *scratch* buffer instead of kill it
+(defadvice kill-buffer (around kill-buffer-around-advice activate)
+  (let ((buffer-to-kill (ad-get-arg 0)))
+    (if (equal buffer-to-kill "*scratch*")
+        (bury-buffer)
+      ad-do-it)))
 
 ;; This is where my stuff lives
 (setq dotfiles-dir (expand-file-name "~/.emacs.d/"))
@@ -95,6 +115,7 @@
 
 ;; whitespace - show me trailing bullshit, and show tabs as characters
 ;; but only for PHP-mode, I guess - will have to extend this later to most things
+;;TODO - I want my tab background color darker, so it's almost same as background http://i.imgur.com/cYvMn.png
 (require 'whitespace)
 (setq-default whitespace-style '(face tabs trailing tab-mark) )
 (defun turn-on-whitespace ()
@@ -217,9 +238,9 @@ is a comment, uncomment."
 (global-set-key [(meta ?#)] 'comment-or-uncomment-region-or-line)
 ;;TODO - in PHP, this wraps every selected line in /* */ - I want it to just prepend // after the leading whitespace
 
-
 ;; column select
 ;;(setq cua-rectangle-mark-key (kbd "<f5>"))
+;;TODO - holy god this is pretty miserable, gotta reconfuck this
 (global-set-key (kbd "<f5>") 'cua-set-rectangle-mark)
 (cua-mode t)
 (setq cua-enable-cua-keys nil)
