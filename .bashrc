@@ -211,6 +211,13 @@ case $HOSTNAME in
         export PATH=$HOME/local/node/bin:$PATH
 
     ;;
+	"yonk")
+		# My slicehost server
+		if [[ "$TERM" == "xterm-256color" ]]; then
+			# Screen can't handle the power of my mac
+			export TERM=xterm-color
+		fi
+	;;
     "champ" | "boom")
         # Work servers
 
