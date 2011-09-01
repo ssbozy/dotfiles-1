@@ -58,7 +58,7 @@ PS1_NEWLINE=1
 # 23:00:09 <@fancybone> hey, what's the last character of a bash prompt called
 # 23:00:18 <@brett_h> dicks
 # 23:00:23 <@fancybone> dicks it is
-PS1_DICKS="\n$ "
+PS1_DICKS="\n# "
 PS1_DATE_COLOR=$COLOR_LIGHT_BLUE
 PS1_USER_COLOR=$COLOR_LIGHT_BLUE
 PS1_HOST_COLOR=$COLOR_LIGHT_BLUE
