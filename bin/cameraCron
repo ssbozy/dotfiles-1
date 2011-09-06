@@ -1,0 +1,18 @@
+date_string=`date +%Y%m%d.%H%M`
+
+# Capture image.
+/Users/pavel/bin/isightcapture -w 640 -h 480 -t jpg /Users/pavel/Temp/pavelcam.jpg
+
+# Copy image to isight folder.
+mkdir -p /Users/pavel/Pictures/isight/`date +%Y`/`date +%m`/
+cp /Users/pavel/Temp/pavelcam.jpg /Users/pavel/Pictures/isight/`date +%Y`/`date +%m`/pavelcam.$date_string.jpg
+
+# Tag picture with date
+/usr/local/bin/convert /Users/pavel/Temp/pavelcam.jpg -fill white -draw "text 434,474 '`date '+%Y-%m-%d %H:%M'`'" -fill black -draw "text 435,475 '`date '+%Y-%m-%d %H:%M'`'" /Users/pavel/Temp/pavelcam_date.jpg
+
+# Upload to server.
+scp -i /Users/pavel/.ssh/id_dsa_pavelcam ~/Temp/pavelcam_date.jpg pavelcam@lishin.org:/home/pavel/pavelcam/pavelcam.$date_string.jpg
+
+ssh -i /Users/pavel/.ssh/id_dsa_pavelcam pavelcam@lishin.org "ln -sf /home/pavel/pavelcam/pavelcam.$date_string.jpg /var/domains/widgetsex.com/pavelcam.jpg"
+ssh -i /Users/pavel/.ssh/id_dsa_pavelcam pavelcam@lishin.org "ln -sf /home/pavel/pavelcam/pavelcam.$date_string.jpg /var/domains/lishin.org/pavelcam.jpg"
+ssh -i /Users/pavel/.ssh/id_dsa_pavelcam pavelcam@lishin.org "ln -sf /home/pavel/pavelcam/pavelcam.$date_string.jpg /var/domains/pavel.lishin.org/pavelcam.jpg"
