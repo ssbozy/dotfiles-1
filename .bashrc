@@ -73,6 +73,13 @@ case $OSTYPE in
     darwin*)
         # OS X
         alias ls='ls -G'
+
+		# Optional bash_completion
+        if [ -f `brew --prefix`/etc/bash_completion ]; then
+			alias bash_completion='source `brew --prefix`/etc/bash_completion'
+            #source `brew --prefix`/etc/bash_completion
+        fi
+
         # git should use textmate for commit messages
         # crontab should use textmate, too; we have to pull the _wait trick.
         export EDITOR=mate_wait

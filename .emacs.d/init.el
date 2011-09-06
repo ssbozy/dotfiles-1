@@ -10,6 +10,28 @@
 ;; M-: == execute arbitrary statement
 ;; A-l == go to line
 
+
+;;TODO - why does this happen? Occasionally, CMD-c will insert a ¢ character,
+;;and C-h k CMD-c shows this:
+;;		¢ (translated from A-c) runs the command self-insert-command, which is
+;;		an interactive built-in function in `C source code'.
+;;			
+;;		It is bound to many ordinary text characters.
+;;			
+;;		(self-insert-command N)
+;;			
+;;		Insert the character you type.
+;;		Whichever character you type to run this command is inserted.
+;;		Before insertion, `expand-abbrev' is executed if the inserted character does
+;;		not have word syntax and the previous character in the buffer does.
+;;		After insertion, the value of `auto-fill-function' is called if the
+;;		`auto-fill-chars' table has a non-nil value for the inserted character.
+;;			
+;;		[back]
+;;Temporary solution, I guess, is to re-bind it to 
+;;clipboard-kill-ring-save
+
+;;TODO - map C-S-d to duplicate line, or equiv
 ;;TODO - map A-` to "next buffer", S-A-` to "previous buffer"
 ;;TODO - CMD-F CMD-V should work, damnit. It works for brett.
 ;;TODO - when i tab complete a file, i don't want it to automatically open
@@ -80,6 +102,8 @@
 (define-key global-map (kbd "C-x C-c") 'ignore)
 ;; A-n (cmd-n) should open new frame
 (define-key global-map (kbd "A-n") 'make-frame-command)
+;; allow command-v to paste in search - I believe this is mac-only
+(define-key isearch-mode-map [(alt ?v)] 'isearch-yank-kill)
 
 
 ;; bury *scratch* buffer instead of kill it
