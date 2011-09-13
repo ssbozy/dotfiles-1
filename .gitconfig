@@ -10,6 +10,7 @@
 
 [alias]
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen%cn%Creset %Cblue(%cr)%Creset' --abbrev-commit --date=relative
+	logp = log -p --word-diff
 
 [format]
 	# pretty = format:Commit %C(red black)%H %Creset %nAuthor: %an %nDate: %cD %n%n%s %n
