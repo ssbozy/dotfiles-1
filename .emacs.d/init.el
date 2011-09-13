@@ -10,6 +10,7 @@
 ;; M-: == execute arbitrary statement
 ;; A-l == go to line
 
+;;TODO - code folding
 
 ;;TODO - why does this happen? Occasionally, CMD-c will insert a ¢ character,
 ;;and C-h k CMD-c shows this:
@@ -104,7 +105,8 @@
 (define-key global-map (kbd "A-n") 'make-frame-command)
 ;; allow command-v to paste in search - I believe this is mac-only
 (define-key isearch-mode-map [(alt ?v)] 'isearch-yank-kill)
-
+;; make sure command-x actually cuts the goddamned text
+(define-key global-map (kbd "A-x") 'kill-region)
 
 ;; bury *scratch* buffer instead of kill it
 (defadvice kill-buffer (around kill-buffer-around-advice activate)
