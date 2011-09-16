@@ -10,6 +10,7 @@
 ;; M-: == execute arbitrary statement
 ;; A-l == go to line
 
+;;TODO - I want tabs to be a darker grey.
 ;;TODO - code folding
 
 ;;TODO - why does this happen? Occasionally, CMD-c will insert a ¢ character,
