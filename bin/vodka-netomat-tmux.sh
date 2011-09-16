@@ -75,9 +75,9 @@ if ! tmux has-session -t netomat 1>/dev/null 2>/dev/null; then
     tmux new-window -d -n "msadmin mysql" "/usr/bin/env bash -c '/opt/lampp/bin/mysql -uroot netowem; /bin/bash'"    
 
     # Log windows
-    tmux new-window -n "logs" "/usr/bin/env bash /tmp/log_ms"
-    tmux new-window "/usr/bin/env bash /tmp/log_msadmin"
-    tmux new-window "/usr/bin/env bash /tmp/log_error"
+    tmux new-window -n "ms logs" "/usr/bin/env bash /tmp/log_ms"
+    tmux new-window -n "msadmin logs" "/usr/bin/env bash /tmp/log_msadmin"
+    tmux new-window -n "apache log" "/usr/bin/env bash /tmp/log_error"
 
     # This is where I get to type in my sudo password
     tmux select-window -t netomat:lampp
