@@ -1,7 +1,20 @@
 #! /usr/bin/env bash
 
+function print_standard() {
+    echo -e "\033[0m$1\033[0m"
+}
+function print_green() {
+    echo -e "\033[0;32m$1\033[0m"
+}
+function print_red() {
+    echo -e "\033[0;31m$1\033[0m"
+}
+function print_yellow() {
+    echo -e "\033[0;33m$1\033[0m"
+}
+
 if [[ "$(dirname install.sh)" != "." ]]; then 
-    echo "install.sh must be run from the dotfiles folder."
+    print_red "install.sh must be run from the dotfiles folder."
     exit
 fi
 
@@ -17,31 +30,31 @@ EXCLUDE="install.sh README .git bin"
 
 cd $HOME
 
-echo "Symlinking dot files."
+print_green "Symlinking dot files."
 for dotfile_path in `find $DOT_DIR -maxdepth 1 -not -ipath "$DOT_DIR/.git/*" -and -not -ipath "$DOT_DIR/bin/*"`; do 
     dotfile_name=`basename $dotfile_path`
     for ignored in $EXCLUDE; do
         if [[ "$dotfile_name" == "$ignored" ]]; then
-            echo "Ignoring $dotfile_name";
+            print_yellow "Ignoring $dotfile_name";
             continue 2;
         fi
     done
 
     if [[ -f $HOME/$dotfile_name || -L $HOME/$dotfile_name ]]; then
         # Back this sucker up!
-        echo "Moving $HOME/$dotfile_name to $BAK_DIR/$dotfile_name"
+        print_green "Moving $HOME/$dotfile_name to $BAK_DIR/$dotfile_name"
         mv $HOME/$dotfile_name $BAK_DIR/$dotfile_name
     fi
 
-    echo "Symlinking $dotfile_path in $(pwd)"
+    print_green "Symlinking $dotfile_path in $(pwd)"
     ln -s $dotfile_path
 done
 
-echo "Symlinking bin files."
+print_green "Symlinking bin files."
 
 # Now, take care of ~/bin/
 if [[ -d $HOME/bin || -L $HOME/bin ]]; then
-    echo "Moving $HOME/bin to $BAK_DIR/bin"
+    print_green "Moving $HOME/bin to $BAK_DIR/bin"
     mv $HOME/bin $BAK_DIR/bin
 fi
 ln -s $DOT_DIR/bin
@@ -55,7 +68,7 @@ fi
 
 # Let's make sure we have pretties
 if [[ "$MACHTYPE" == *redhat* ]]; then
-    echo "Unable to source stuff in redhat for some dumb reason?"
+    print_red "Unable to source stuff in redhat for some dumb reason?"
 else
     source $HOME/.bashrc
     bind -f $HOME/.inputrc
