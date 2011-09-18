@@ -66,6 +66,10 @@ PS1_PATH_COLOR=$COLOR_LIGHT_CYAN
 
 alias grep='grep --color=auto'
 
+# for crontabs, git, etc.
+export EDITOR=vim
+
+
 ###################
 # OS specific stuff
 ###################
@@ -88,8 +92,6 @@ case $OSTYPE in
     *)
         # Everything else
         alias ls='ls --color=auto'
-        # git should use vim for commit messages
-        export EDITOR=vim
     ;;
 esac
 
