@@ -272,3 +272,8 @@ is a comment, uncomment."
 (cua-mode t)
 (setq cua-enable-cua-keys nil)
 
+;; trying PHP debugging
+(add-to-list 'load-path "~/.emacs.d/cedet-1.0/eieio")
+(load-file "~/.emacs.d/cedet-1.0/common/cedet.el")
+(add-to-list 'load-path "~/.emacs.d/geben-0.26")
+(autoload 'geben "geben" "PHP Debugger on Emacs" t)
