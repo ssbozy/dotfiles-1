@@ -130,6 +130,9 @@ case $HOSTNAME in
 
         # MacPorts
         export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+
+		alias restart_growl="killall GrowlHelperApp; open -b com.Growl.GrowlHelperApp"
+
         
         # If there isn't a tmux session currently running, then this is the first
         # terminal window we've opened, and it's going to get pinned to the top
