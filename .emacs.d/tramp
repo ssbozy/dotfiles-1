@@ -95,4 +95,5 @@
   ("remote-encoding" "base64")
   ("remote-decoding" "base64 -d -i")
   ("inline-compress" "gzip")
-  ("inline-decompress" "gzip -d")))
+  ("inline-decompress" "gzip -d")
+  ("uid-integer" 1000)))
