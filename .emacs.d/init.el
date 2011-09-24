@@ -39,54 +39,26 @@
 ;;TODO - when i tab complete a file, i don't want it to automatically open
 ;;TODO - make directory browsing -alhrt style
 ;;TODO - emulate texmate's column select mode.
-;;TODO - fuck you, tabs
 ;;TODO - date insert http://stackoverflow.com/questions/251908/how-can-i-insert-current-date-and-time-into-a-file-using-emacs
 ;;TODO - figure out how to open multiple files
 ;;TODO - what the fuck, PHP mode. http://i.imgur.com/8dWRI.png
-;; Also, PHP mode - why are you shitting all over my dick tabs when I comment stuff?
-;; Before: http://i.imgur.com/OdhZU.png
-;; After: http://i.imgur.com/Lq6zS.png
-;; Or if I try to shove htem in before the tab: http://i.imgur.com/qnZ4C.png
 
 ;; 14:03:15 < Arkamist> look into a symbol tagging system
 ;; 14:03:32 < Arkamist> like xcscope or gnu global with emacs integration
 ;; 14:03:43 < Arkamist> and be enlightened
 ;; 14:03:54 < Arkamist> also sr-speedbar
 
-;;;
-;;; FUCK YOUUUUUUUUUUUUUUUU TABS
-;;;
-;; okay seriously when I have
-;; 	public function whatever() {
-;; <-- if I hit tab here, it inserts a tab, and two spaces.
-;; what the fuck.
 
-;; always insert an ascii TAB char when I hit the TAB button
-;; i'm not sure why I have two; brett told me to use the first, 
-;; http://www.xemacs.org/Links/tutorials_1.html told me to use the second
-(setq-default tab-always-indent nil)
-(setq-default indent-tabs-mode t)
-(setq indent-tabs-mode t)
+;; Default indent is four spaces
+(setq c-basic-offset 4)
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
+(setq indent-line-function 'insert-tab)
 
-;; tabs are represented as 4 spaces
-(setq default-tab-width 4)
-(setq tab-width 4)
-(setq c-basic-indent 4)
 
 ;; hitting backspace should delete a tab, not convert it to spaces
 (setq-default c-backspace-function 'backward-delete-char)
-(setq-default backward-delete-char-untabify-method nil)
-
-;; I think this'll fix PHP
-(setq-default c-tab-always-indent nil)
-(setq c-basic-offset 4)
-(setq c-syntactic-indentation nil)
-
-;; ok, well, on 20110825 in PHP-mode, TAB is apparently mapped to c-indent-line-or-region
-;; c-indent-line-or-region
-;; c-indent-command
-
-
+;;(setq-default backward-delete-char-untabify-method nil)
 
 ;; I want help to pop up in a new window the first time,
 ;; but after that, stay put forever
@@ -95,7 +67,6 @@
 ;;(add-to-list 'same-window-buffer-names "*Help*")
 ;;(add-to-list 'same-window-buffer-names "*Apropos*")
 ;;(add-to-list 'same-window-buffer-names "*Summary*")
-
 
 ;; bind delete to forward-delete
 (global-set-key [delete] 'delete-char)

@@ -61,7 +61,8 @@
   ("remote-encoding" "base64")
   ("remote-decoding" "base64 -d -i")
   ("inline-compress" "gzip")
-  ("inline-decompress" "gzip -d"))
+  ("inline-decompress" "gzip -d")
+  ("uid-integer" 1000))
  (["scpc" nil "www.vfcloud.http01.com" nil]
   ("uname" "Linux 2.6.21.7-2.fc8xen")
   ("test" "test")
@@ -96,4 +97,6 @@
   ("remote-decoding" "base64 -d -i")
   ("inline-compress" "gzip")
   ("inline-decompress" "gzip -d")
-  ("uid-integer" 1000)))
+  ("uid-integer" 1000)
+  ("ls" "/bin/ls --color=never")
+  ("ls-dired" t)))
