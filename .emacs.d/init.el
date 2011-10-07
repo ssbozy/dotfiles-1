@@ -236,6 +236,12 @@ is a comment, uncomment."
 (global-set-key [(meta ?#)] 'comment-or-uncomment-region-or-line)
 ;;TODO - in PHP, this wraps every selected line in /* */ - I want it to just prepend // after the leading whitespace
 
+
+;; (defun go-vodkamat ()
+;;   "Change directory into my virtual machine, so I don't have to do it by hand each morning."
+;;   (cd "/vodka:/home/pavel/projects/mobilityserver")
+;; )
+
 ;; column select
 ;;(setq cua-rectangle-mark-key (kbd "<f5>"))
 ;;TODO - holy god this is pretty miserable, gotta reconfuck this
