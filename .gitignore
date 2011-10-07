@@ -7,3 +7,6 @@
 
 # Has to be compiled
 bin/sshfs
+
+# Don't track me, bro
+.bip/logs/*
