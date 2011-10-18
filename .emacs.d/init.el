@@ -11,6 +11,7 @@
 ;; A-l == go to line
 
 ;;TODO - I want tabs to be a darker grey.
+;;TODO - When I C-x 3 I want the new pane to open to the most recently edited file, not the one i'm lookin' at
 ;;TODO - code folding
 
 ;;TODO - why does this happen? Occasionally, CMD-c will insert a ¢ character,
@@ -112,13 +113,15 @@
   (color-theme-blackboard))
 
 ;; whitespace - show me trailing bullshit, and show tabs as characters
-;; but only for PHP-mode, I guess - will have to extend this later to most things
 ;;TODO - I want my tab background color darker, so it's almost same as background http://i.imgur.com/cYvMn.png
 (require 'whitespace)
 (setq-default whitespace-style '(face tabs trailing tab-mark) )
 (defun turn-on-whitespace ()
   (whitespace-mode 1))
 (add-hook 'php-mode-hook
+  (lambda ()
+    (progn (turn-on-whitespace) ) ) )
+(add-hook 'python-mode-hook
   (lambda ()
     (progn (turn-on-whitespace) ) ) )
 
