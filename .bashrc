@@ -167,8 +167,18 @@ case $HOSTNAME in
         fi
         
         # Launch tinyur desktop screenshot monitor
+        # *after* my happy Tmux session starts, so we don't get multiples.
         if ! ps ax | egrep tinyu[r] > /dev/null && which tinyur.py > /dev/null; then
             nohup tinyur.py 0<&- 1>$HOME/tinyur.log 2>$HOME/tinyur.log &
+        fi
+
+        # Make sure TotalTerminal is running
+        # PROBLEM - this makes the current terminal window fuck off forever,
+        # even if you just open a new tab.
+        if [[ -f ~/bin/is_total_terminal_running.sh && `~/bin/is_total_terminal_running.sh` == "no" ]]; then
+            if [ -d /Applications/TotalTerminal.app/ ]; then
+                open /Applications/TotalTerminal.app/
+            fi
         fi
 
         # Bash completion, obv.

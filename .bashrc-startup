@@ -7,6 +7,11 @@ if ! ps ax | egrep synergy[c] > /dev/null; then
     fi
 fi
 
+# Launch tinyur desktop screenshot monitor
+if ! ps ax | egrep tinyu[r] > /dev/null && which tinyur.py > /dev/null; then
+    nohup tinyur.py 0<&- 1>$HOME/tinyur.log 2>$HOME/tinyur.log &
+fi
+
 # Give me my nice bash prompt if I kill synergy
 /usr/bin/env bash
 
