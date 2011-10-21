@@ -56,10 +56,8 @@
 (setq-default tab-width 4)
 (setq indent-line-function 'insert-tab)
 
-
 ;; hitting backspace should delete a tab, not convert it to spaces
 (setq-default c-backspace-function 'backward-delete-char)
-;;(setq-default backward-delete-char-untabify-method nil)
 
 ;; I want help to pop up in a new window the first time,
 ;; but after that, stay put forever
@@ -68,12 +66,15 @@
 ;;(add-to-list 'same-window-buffer-names "*Help*")
 ;;(add-to-list 'same-window-buffer-names "*Apropos*")
 ;;(add-to-list 'same-window-buffer-names "*Summary*")
+;; I think I also want the same thing to happen for the buffer window.
 
 ;; bind delete to forward-delete
 (global-set-key [delete] 'delete-char)
 (global-set-key [kp-delete] 'delete-char)
 ;; C-x C-c should not fucking kill emacs
 (define-key global-map (kbd "C-x C-c") 'ignore)
+;; C-z shouldn't minimize the frame, either.
+(define-key global-map (kbd "C-z") 'ignore)
 ;; A-n (cmd-n) should open new frame
 (define-key global-map (kbd "A-n") 'make-frame-command)
 ;; allow command-v to paste in search - I believe this is mac-only
@@ -212,8 +213,6 @@
   (if (find-file (ido-completing-read "Find recent file: " recentf-list))
       (message "Opening file...")
     (message "Aborting")))
-
-
 
 
 ;; comment line(s)
