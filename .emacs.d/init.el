@@ -49,7 +49,6 @@
 ;; 14:03:43 < Arkamist> and be enlightened
 ;; 14:03:54 < Arkamist> also sr-speedbar
 
-
 ;; Default indent is four spaces
 (setq c-basic-offset 4)
 (setq-default indent-tabs-mode nil)
@@ -256,3 +255,16 @@ is a comment, uncomment."
 (load-file "~/.emacs.d/cedet-1.0/common/cedet.el")
 (add-to-list 'load-path "~/.emacs.d/geben-0.26")
 (autoload 'geben "geben" "PHP Debugger on Emacs" t)
+
+;; Hey tramp, try not locking up every five minutes
+(setq-default tramp-chunksize 500)
+
+;; Open initial window with a reasonable size and position
+;; http://ilovett.com/blog/emacs/emacs-frame-size-position
+(defun arrange-frame (w h x y)
+  "Set the width, height, and x/y position of the current frame"
+  (let ((frame (selected-frame)))
+    (delete-other-windows)
+    (set-frame-position frame x y)
+    (set-frame-size frame w h)))
+(arrange-frame 240 60 2 22)
