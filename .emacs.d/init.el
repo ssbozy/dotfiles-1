@@ -116,14 +116,10 @@
 ;;TODO - I want my tab background color darker, so it's almost same as background http://i.imgur.com/cYvMn.png
 (require 'whitespace)
 (setq-default whitespace-style '(face tabs trailing tab-mark) )
-(defun turn-on-whitespace ()
-  (whitespace-mode 1))
-(add-hook 'php-mode-hook
-  (lambda ()
-    (progn (turn-on-whitespace) ) ) )
-(add-hook 'python-mode-hook
-  (lambda ()
-    (progn (turn-on-whitespace) ) ) )
+(defun turn-on-whitespace () (whitespace-mode 1))
+(add-hook 'javascript-mode-hook (lambda () (progn (turn-on-whitespace) ) ) )
+(add-hook 'php-mode-hook (lambda () (progn (turn-on-whitespace) ) ) )
+(add-hook 'python-mode-hook (lambda () (progn (turn-on-whitespace) ) ) )
 
 
 ;; Php
