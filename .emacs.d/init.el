@@ -117,7 +117,7 @@
 (require 'whitespace)
 (setq-default whitespace-style '(face tabs trailing tab-mark) )
 (defun turn-on-whitespace () (whitespace-mode 1))
-(add-hook 'javascript-mode-hook (lambda () (progn (turn-on-whitespace) ) ) )
+(add-hook 'js-mode-hook (lambda () (progn (turn-on-whitespace) ) ) )
 (add-hook 'php-mode-hook (lambda () (progn (turn-on-whitespace) ) ) )
 (add-hook 'python-mode-hook (lambda () (progn (turn-on-whitespace) ) ) )
 
