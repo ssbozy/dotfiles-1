@@ -22,6 +22,16 @@ if [[ "$LOCATION" == "work" ]]; then
     dest_camera="/media/MooDrive/pavel/backup/camera/"
     dest_porn=""
     dest_mirrors=""
+
+    # Make sure that the truecrypt volume is mounted.
+    if ssh moobox.netomat.net "ls /media/MooDrive/pavel/backup/lost+found/ 2>/dev/null"; then 
+        echo "TrueCrypt volume mounted, continuing with backup.";
+    else
+        echo "TrueCrypt volume not mounted; aborting backup script.";
+        exit 2;
+    fi
+
+
 elif [[ "$LOCATION" == "home" ]]; then
     hostname="192.168.0.100"
     dest_docs="/media/asimov/index/"
@@ -32,7 +42,7 @@ elif [[ "$LOCATION" == "home" ]]; then
     dest_mirrors="/media/asimov/Downloads/mirror/"
 else
     echo "Invalid location specified.";
-    exit
+    exit 1;
 fi
 
 
