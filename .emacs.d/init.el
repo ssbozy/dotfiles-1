@@ -3,6 +3,7 @@
 ;; mac cmd == emacs alt
 ;; C-h f == look up any function
 ;; C-h a == search everything in emacs
+;; C-h w == check to see if function is bound to a key
 ;; C-x C-d == browse directory
 ;; C-x C-e == execute expression at the end of your cursor
 ;; C-W == closes frame
@@ -80,6 +81,9 @@
 (define-key isearch-mode-map [(alt ?v)] 'isearch-yank-kill)
 ;; make sure command-x actually cuts the goddamned text
 (define-key global-map (kbd "A-x") 'kill-region)
+;; C-x h should run string-replace
+(define-key global-map (kbd "C-x h") 'replace-string)
+
 
 ;; bury *scratch* buffer instead of kill it
 (defadvice kill-buffer (around kill-buffer-around-advice activate)
