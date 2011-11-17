@@ -3,7 +3,15 @@
 
 date=`date`
 LOCATION=$1
-echo "Running backup.sh at $1"
+echo "Running backup.sh at $date to $LOCATION"
+
+hostname=""
+dest_docs=""
+dest_projects=""
+dest_images=""
+dest_camera=""
+dest_porn=""
+dest_mirrors=""
 
 
 if [[ "$LOCATION" == "work" ]]; then
@@ -23,17 +31,17 @@ elif [[ "$LOCATION" == "home" ]]; then
     dest_porn="/media/niven/porn/"
     dest_mirrors="/media/asimov/Downloads/mirror/"
 else
-    echo "Invalid location specified."
+    echo "Invalid location specified.";
+    exit
 fi
-
-
-
 
 
 # Backup documents
 if [[ "$dest_docs" != "" ]]; then
     rsync -a -r -z -v -u -h --delete --progress \
         ~/Documents/  \
+        --exclude=netomat/mobilityserver \
+        --exclude=netomat/csmobility \
         $hostname:$dest_docs
 else
     echo "No destination for documents"
