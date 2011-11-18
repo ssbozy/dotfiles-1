@@ -3,7 +3,7 @@
 
 date=`date`
 LOCATION=$1
-echo "Running backup.sh at $date to $LOCATION"
+echo -e "\n\nRunning backup.sh at $date to $LOCATION"
 
 hostname=""
 dest_docs=""
@@ -11,7 +11,7 @@ dest_projects=""
 dest_images=""
 dest_camera=""
 dest_porn=""
-dest_mirrors=""
+dest_mirror=""
 
 
 if [[ "$LOCATION" == "work" ]]; then
@@ -19,15 +19,16 @@ if [[ "$LOCATION" == "work" ]]; then
     dest_docs="/media/MooDrive/pavel/backup/index/"
     dest_projects="/media/MooDrive/pavel/backup/projects/"
     dest_images="/media/MooDrive/pavel/backup/images/"
+    dest_pictures="/media/MooDrive/pavel/backup/pictures/"
     dest_camera="/media/MooDrive/pavel/backup/camera/"
     dest_porn=""
-    dest_mirrors=""
+    dest_mirror=""
 
     # Make sure that the truecrypt volume is mounted.
-    if ssh moobox.netomat.net "ls /media/MooDrive/pavel/backup/lost+found/ 2>/dev/null"; then 
-        echo "TrueCrypt volume mounted, continuing with backup.";
+    if ssh moobox.netomat.net "ls /media/MooDrive/pavel/backup/mounted 2>/dev/null"; then 
+        echo -e "\n\nTrueCrypt volume mounted, continuing with backup.";
     else
-        echo "TrueCrypt volume not mounted; aborting backup script.";
+        echo -e "\n\nTrueCrypt volume not mounted; aborting backup script.";
         exit 2;
     fi
 
@@ -38,67 +39,86 @@ elif [[ "$LOCATION" == "home" ]]; then
     dest_projects="/media/asimov/projects/"
     dest_images="/media/asimov/images/"
     dest_camera="/media/niven/camera/"
+    dest_pictures="/media/niven/pictures/"
     dest_porn="/media/niven/porn/"
-    dest_mirrors="/media/asimov/Downloads/mirror/"
+    dest_mirror="/media/asimov/Downloads/mirror/"
 else
-    echo "Invalid location specified.";
+    echo -e "\n\nInvalid location specified.";
     exit 1;
 fi
 
 
 # Backup documents
 if [[ "$dest_docs" != "" ]]; then
+    echo -e "\n\nBacking up documents."
     rsync -a -r -z -v -u -h --delete --progress \
         ~/Documents/  \
         --exclude=netomat/mobilityserver \
         --exclude=netomat/csmobility \
+        --exclude=netomat/nycgo \
         $hostname:$dest_docs
 else
-    echo "No destination for documents"
+    echo -e "\n\nNo destination for documents"
 fi
 
 # Backup projects
 if [[ "$dest_projects" != "" ]]; then
+    echo -e "\n\nBacking up projects."
     rsync -a -r -z -v -u -h --delete --progress \
         --exclude=*.vdi \
         ~/projects/  \
         $hostname:$dest_projects
 else
-    echo "No destination for projects"
+    echo -e "\n\nNo destination for projects"
 fi
 
 # Backup images
 if [[ "$dest_images" != "" ]]; then
+    echo -e "\n\nBacking up images."
     rsync -a -r -z -v -u -h --delete --progress \
         ~/images/  \
         $hostname:$dest_images
 else
-    echo "No destination for images"
+    echo -e "\n\nNo destination for images"
+fi
+
+# Backup pictures
+if [[ "$dest_pictures" != "" ]]; then
+    echo -e "\n\nBacking up pictures."
+    rsync -a -r -z -v -u -h --delete --progress \
+        --exclude="iPhoto Library/*" \
+        ~/Pictures/  \
+        $hostname:$dest_pictures
+else
+    echo -e "\n\nNo destination for pictures"
 fi
 
 # Backup camera
 if [[ "$dest_camera" != "" ]]; then
+    echo -e "\n\nBacking up camera."
     rsync -a -r -z -v -u -h --progress \
         ~/camera/  \
         $hostname:$dest_camera
 else
-    echo "No destination for camera"
+    echo -e "\n\nNo destination for camera"
 fi
 
 # Backup porn
 if [[ "$dest_porn" != "" ]]; then
+    echo -e "\n\nBacking up porn."
     rsync -a -r -z -v -u -h --delete --progress \
         ~/porn/  \
         $hostname:$dest_porn
 else
-    echo "No destination for porn"
+    echo -e "\n\nNo destination for porn"
 fi
 
 # Backup mirrors
-if [[ "$dest_mirrors" != "" ]]; then
+if [[ "$dest_mirror" != "" ]]; then
+    echo -e "\n\nBacking up mirrors."
     rsync -a -r -z -v -u -h --delete --progress \
-        ~/Downloads/mirrors/  \
-        $hostname:$dest_mirrors
+        ~/Downloads/mirror/  \
+        $hostname:$dest_mirror
 else
-    echo "No destination for mirrors"
+    echo -e "\n\nNo destination for mirrors"
 fi
