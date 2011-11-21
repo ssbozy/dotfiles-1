@@ -83,7 +83,8 @@
 (define-key global-map (kbd "A-x") 'kill-region)
 ;; C-x h should run string-replace
 (define-key global-map (kbd "C-x h") 'replace-string)
-
+;; Tired of accidentally spellchecking.
+(define-key global-map (kbd "M-$") 'ignore)
 
 ;; bury *scratch* buffer instead of kill it
 (defadvice kill-buffer (around kill-buffer-around-advice activate)
