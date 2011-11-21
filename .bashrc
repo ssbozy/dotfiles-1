@@ -121,8 +121,8 @@ case $HOSTNAME in
         PS1_PATH_COLOR=$COLOR_LIGHT_CYAN
 
         # Aliases
-        alias mirror=/Users/pavel/projects/mirror/src/mirror.py
-        alias 4ch='/Users/pavel/projects/mirror/src/mirror.py --4ch'
+        alias mirror=/Users/pavel/projects/mirror/src/mirror2.py
+        alias 4ch='/Users/pavel/projects/mirror/src/mirror2.py --4ch'
         alias updatedb="LC_ALL='C' sudo gupdatedb --prunepaths='/Volumes'"  # Don't index any external drives, or anything mounted via sshfs, etc.
         #alias omacs='open -b org.gnu.Emacs'
         #alias omacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
