@@ -267,3 +267,8 @@ is a comment, uncomment."
     (set-frame-position frame x y)
     (set-frame-size frame w h)))
 (arrange-frame 240 60 2 22)
+
+
+
+;; let's see if I can remote sudo
+(set-default 'tramp-default-proxies-alist (quote ((".*" "\\`root\\'" "/ssh:%h:"))))
