@@ -34,4 +34,4 @@ set show-all-if-ambiguous on
 set mark-symlinked-directories on
 
 # Show only the end (differences) of available completions
-set completion-prefix-display-length 2
+#set completion-prefix-display-length 2
