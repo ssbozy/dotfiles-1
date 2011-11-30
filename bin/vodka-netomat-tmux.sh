@@ -40,18 +40,17 @@ cd /media/csmobility/
 " > /tmp/cd_msadmin
 
 echo "#! /usr/bin/env bash
-while [ ! -e /opt/lampp/var/mysql/mysql.sock ]; do 
+while ! /opt/lampp/bin/mysql -uroot mobilityserver; do 
     echo Sleeping until mysql wakes up; sleep 10; 
 done;
-/opt/lampp/bin/mysql -uroot mobilityserver
+
 /usr/bin/env bash
 " > /tmp/mysql_ms
 
 echo "#! /usr/bin/env bash
-while [ ! -e /opt/lampp/var/mysql/mysql.sock ]; do 
+while ! /opt/lampp/bin/mysql -uroot netowem; do 
     echo Sleeping until mysql wakes up; sleep 10; 
 done;
-/opt/lampp/bin/mysql -uroot netowem
 /usr/bin/env bash
 " > /tmp/mysql_msadmin
 
