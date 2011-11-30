@@ -240,7 +240,8 @@ is a comment, uncomment."
 ;;TODO - in PHP, this wraps every selected line in /* */ - I want it to just prepend // after the leading whitespace
 
 ;; Change directory into my virtual machine, so I don't have to do it by hand each morning.
-(defun go-vodkamat () (cd "/vodka:/home/pavel/projects/mobilityserver") )
+;;(defun go-vodkamat () (cd "/vodka:/home/pavel/projects/mobilityserver") )
+(defun go-vodkamat () (cd "~/Documents/netomat/mobilityserver") )
 
 ;; column select
 ;;(setq cua-rectangle-mark-key (kbd "<f5>"))
