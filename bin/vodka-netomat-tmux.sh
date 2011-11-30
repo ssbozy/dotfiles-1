@@ -13,12 +13,12 @@ sudo su - -c 'cd /opt/lampp'
 " > /tmp/lampp_start
 
 echo "#! /usr/bin/env bash
-tail -n 0 -f ~/projects/mobilityserver/log/*.log
+tail -n 0 -f /media/mobilityserver/log/*.log
 /usr/bin/env bash
 " > /tmp/log_ms
 
 echo "#! /usr/bin/env bash
-tail -n 0 -f ~/projects/csmobility/log/*.log
+tail -n 0 -f /media/csmobility/log/*.log
 /usr/bin/env bash
 " > /tmp/log_msadmin
 
@@ -28,12 +28,12 @@ tail -n 0 -f /opt/lampp/logs/error_log
 " > /tmp/log_error
 
 echo "#! /usr/bin/env bash
-cd ~/projects/mobilityserver/
+cd /media/mobilityserver/
 /usr/bin/env bash
 " > /tmp/cd_ms
 
 echo "#! /usr/bin/env bash
-cd ~/projects/csmobility/
+cd /media/csmobility/
 /usr/bin/env bash
 " > /tmp/cd_msadmin
 
