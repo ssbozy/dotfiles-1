@@ -1,4 +1,4 @@
-;; -*- emacs-lisp -*- <11/11/18 12:41:42 /Users/pavel/.emacs.d/tramp>
+;; -*- emacs-lisp -*- <11/11/29 17:45:41 /Users/pavel/.emacs.d/tramp>
 ;; Tramp connection history.  Don't change this file.
 ;; You can delete it, forcing Tramp to reapply the checks.
 
@@ -122,4 +122,35 @@
   ("ls" "/bin/ls --color=never")
   ("~" "/home/pavel")
   ("ls-dired" t)
-  ("uid-integer" 1000)))
+  ("uid-integer" 1000))
+ (["sudo" "root" "moobox.netomat.net" nil]
+  ("uname" "Linux 2.6.38-12-generic")
+  ("test" "test")
+  ("remote-path"
+   ("/bin" "/usr/bin" "/usr/sbin" "/usr/local/bin"))
+  ("remote-shell" "/bin/sh")
+  ("stat" "\\stat")
+  ("file-exists" "test -e")
+  ("id" "/usr/bin/id")
+  ("gid-integer" 0)
+  ("perl-file-spec" t)
+  ("perl-cwd-realpath" t)
+  ("perl" "\\perl")
+  ("readlink" "\\readlink")
+  ("local-encoding" base64-encode-region)
+  ("local-decoding" base64-decode-region)
+  ("remote-encoding" "base64")
+  ("remote-decoding" "base64 -d -i")
+  ("inline-compress" "gzip")
+  ("inline-decompress" "gzip -d")
+  ("uid-integer" 0))
+ (["scpc" nil "prgmr" nil]
+  ("uname" "Linux 2.6.32-22-server")
+  ("test" "test")
+  ("remote-path"
+   ("/bin" "/usr/bin" "/usr/sbin" "/usr/local/bin"))
+  ("remote-shell" "/bin/sh")
+  ("stat" "\\stat")
+  ("file-exists" "test -e")
+  ("id" "/usr/bin/id")
+  ("gid-integer" 1000)))
