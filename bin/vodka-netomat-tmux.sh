@@ -13,11 +13,13 @@ sudo su - -c 'cd /opt/lampp'
 " > /tmp/lampp_start
 
 echo "#! /usr/bin/env bash
+touch /media/mobilityserver/log/frontend_prod.log
 tail -n 0 -f /media/mobilityserver/log/*.log
 /usr/bin/env bash
 " > /tmp/log_ms
 
 echo "#! /usr/bin/env bash
+touch /media/mobilityserver/log/netowem_prod.log
 tail -n 0 -f /media/csmobility/log/*.log
 /usr/bin/env bash
 " > /tmp/log_msadmin
