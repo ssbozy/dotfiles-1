@@ -19,7 +19,7 @@ tail -n 0 -f /media/mobilityserver/log/*.log
 " > /tmp/log_ms
 
 echo "#! /usr/bin/env bash
-touch /media/mobilityserver/log/netowem_prod.log
+touch /media/csmobility/log/netowem_prod.log
 tail -n 0 -f /media/csmobility/log/*.log
 /usr/bin/env bash
 " > /tmp/log_msadmin
