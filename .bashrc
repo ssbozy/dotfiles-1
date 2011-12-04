@@ -48,6 +48,12 @@ fi
 if [ -d "${HOME}/.gem/ruby/1.8/bin" ]; then
     export PATH=${HOME}/.gem/ruby/1.8/bin:$PATH
 fi
+if [[ "$LC_ALL" == "" ]]; then
+    # Shut the fuck up, perl on prgmr
+    export LC_ALL="C"
+fi
+
+
 
 PS1=""
 PS1_DATE=1
