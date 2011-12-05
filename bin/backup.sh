@@ -13,6 +13,10 @@ dest_camera=""
 dest_porn=""
 dest_mirror=""
 
+# disabling auto-deletion since I plan on nuking ~/Documents - and running backup before it's restored
+# would severely fuck me.
+AND_delete="" # change to --delete to delete stuff
+
 
 if [[ "$LOCATION" == "work" ]]; then
     hostname="moobox.netomat.net"
@@ -51,7 +55,7 @@ fi
 # Backup documents
 if [[ "$dest_docs" != "" ]]; then
     echo -e "\n\nBacking up documents."
-    rsync -a -r -z -v -u -h --delete --progress \
+    rsync -a -r -z -v -u -h $AND_delete --progress \
         ~/Documents/  \
         --exclude=netomat/mobilityserver \
         --exclude=netomat/csmobility \
@@ -64,7 +68,7 @@ fi
 # Backup projects
 if [[ "$dest_projects" != "" ]]; then
     echo -e "\n\nBacking up projects."
-    rsync -a -r -z -v -u -h --delete --progress \
+    rsync -a -r -z -v -u -h $AND_delete --progress \
         --exclude=*.vdi \
         ~/projects/  \
         $hostname:$dest_projects
@@ -75,7 +79,7 @@ fi
 # Backup images
 if [[ "$dest_images" != "" ]]; then
     echo -e "\n\nBacking up images."
-    rsync -a -r -z -v -u -h --delete --progress \
+    rsync -a -r -z -v -u -h $AND_delete --progress \
         ~/images/  \
         $hostname:$dest_images
 else
@@ -85,7 +89,7 @@ fi
 # Backup pictures
 if [[ "$dest_pictures" != "" ]]; then
     echo -e "\n\nBacking up pictures."
-    rsync -a -r -z -v -u -h --delete --progress \
+    rsync -a -r -z -v -u -h $AND_delete --progress \
         --exclude="iPhoto Library/*" \
         ~/Pictures/  \
         $hostname:$dest_pictures
@@ -106,7 +110,7 @@ fi
 # Backup porn
 if [[ "$dest_porn" != "" ]]; then
     echo -e "\n\nBacking up porn."
-    rsync -a -r -z -v -u -h --delete --progress \
+    rsync -a -r -z -v -u -h $AND_delete --progress \
         ~/porn/  \
         $hostname:$dest_porn
 else
@@ -116,7 +120,7 @@ fi
 # Backup mirrors
 if [[ "$dest_mirror" != "" ]]; then
     echo -e "\n\nBacking up mirrors."
-    rsync -a -r -z -v -u -h --delete --progress \
+    rsync -a -r -z -v -u -h $AND_delete --progress \
         ~/Downloads/mirror/  \
         $hostname:$dest_mirror
 else
