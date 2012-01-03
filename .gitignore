@@ -5,6 +5,9 @@
 *.swp
 *~
 
+# emacs tramp, do not care
+.emacs.d/tramp
+
 # Has to be compiled
 bin/sshfs
 

@@ -14,6 +14,7 @@
 ;;TODO - I want tabs to be a darker grey.
 ;;TODO - When I C-x 3 I want the new pane to open to the most recently edited file, not the one i'm lookin' at
 ;;TODO - code folding
+;;TODO - I want replace to fucking show me how many things it goddamned replaced
 
 ;;TODO - why does this happen? Occasionally, CMD-c will insert a ¢ character,
 ;;and C-h k CMD-c shows this:
