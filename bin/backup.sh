@@ -1,15 +1,59 @@
 #!/usr/bin/env bash
 
+function print_standard() {
+    echo -e "\033[0m$1\033[0m"
+}
+function print_green() {
+    echo -e "\033[0;32m$1\033[0m"
+}
+function print_red() {
+    echo -e "\033[0;31m$1\033[0m"
+}
+function print_yellow() {
+    echo -e "\033[0;33m$1\033[0m"
+}
+function control_c() {
+    print_red "Quitting backup."
+    exit
+}
+
+
+trap control_c SIGINT
 
 date=`date`
 LOCATION=$1
-echo -e "\n\nRunning backup.sh at $date to $LOCATION"
+print_standard "Running backup.sh at $date to $LOCATION"
+
+if [[ -d ~/Library/Application\ Support/MobileSync/Backup/ ]]; then
+    # Copy iPhone sms sqlite databases to ~/Docs, but only if the file has changed
+    # TODO this assumes only a single file in backups!
+
+    find ~/Library/Application\ Support/MobileSync/Backup/ -iname 3d0d7e5fb2ce288813306e4d4636395e047a3d28 -exec cp {} /tmp/3d0d7e5fb2ce288813306e4d4636395e047a3d28 \;
+
+    if [[ -e ~/Documents/3d0d7e5fb2ce288813306e4d4636395e047a3d28 ]]; then
+        # A recent backup exists
+        if ! diff ~/Documents/3d0d7e5fb2ce288813306e4d4636395e047a3d28 /tmp/3d0d7e5fb2ce288813306e4d4636395e047a3d28 > /dev/null; then
+            # Files are different; make a copy.
+            print_green "Backing up new copy of iPhone SMS database."
+            mv ~/Documents/3d0d7e5fb2ce288813306e4d4636395e047a3d28 ~/Documents/3d0d7e5fb2ce288813306e4d4636395e047a3d28.`date +%Y%m%d.%H%M`.sqlite
+            mv /tmp/3d0d7e5fb2ce288813306e4d4636395e047a3d28 ~/Documents/
+        # else
+        #     print_green "Files are identical, not backing up"
+        fi
+    else
+        # There are no backups in ~/Documents yet
+        print_green "Backing up iPhone SMS database."
+        mv /tmp/3d0d7e5fb2ce288813306e4d4636395e047a3d28 ~/Documents/
+    fi
+fi
 
 hostname=""
 dest_docs=""
 dest_projects=""
 dest_images=""
+dest_pictures=""
 dest_camera=""
+dest_itunes=""
 dest_porn=""
 dest_mirror=""
 
@@ -25,17 +69,21 @@ if [[ "$LOCATION" == "work" ]]; then
     dest_images="/media/MooDrive/pavel/backup/images/"
     dest_pictures="/media/MooDrive/pavel/backup/pictures/"
     dest_camera="/media/MooDrive/pavel/backup/camera/"
+    dest_itunes="/media/MooDrive/Yonkpod/YonkLibrary/"
     dest_porn=""
     dest_mirror=""
 
     # Make sure that the truecrypt volume is mounted.
     if ssh moobox.netomat.net "ls /media/MooDrive/pavel/backup/mounted 2>/dev/null"; then 
-        echo -e "\n\nTrueCrypt volume mounted, continuing with backup.";
+        print_green "TrueCrypt volume mounted.";
     else
-        echo -e "\n\nTrueCrypt volume not mounted; aborting backup script.";
-        exit 2;
+        print_yellow "TrueCrypt volume not mounted - only certain folders will be backed up.";
+        dest_docs=""
+        dest_projects=""
+        dest_images=""
+        dest_pictures=""
+        dest_camera=""
     fi
-
 
 elif [[ "$LOCATION" == "home" ]]; then
     hostname="192.168.0.100"
@@ -44,85 +92,96 @@ elif [[ "$LOCATION" == "home" ]]; then
     dest_images="/media/asimov/images/"
     dest_camera="/media/niven/camera/"
     dest_pictures="/media/niven/pictures/"
+    dest_itunes="/media/asimov/Yonkpod/YonkLibrary/"
     dest_porn="/media/niven/porn/"
     dest_mirror="/media/asimov/Downloads/mirror/"
 else
-    echo -e "\n\nInvalid location specified.";
+    print_red "Invalid location specified.";
     exit 1;
 fi
 
 
 # Backup documents
 if [[ "$dest_docs" != "" ]]; then
-    echo -e "\n\nBacking up documents."
-    rsync -a -r -z -v -u -h $AND_delete --progress \
+    print_green "Backing up documents to $hostname:$dest_docs"
+    rsync -a -r -z -v -u -h $AND_delete --progress --partial --timeout=30 \
         ~/Documents/  \
         --exclude=netomat/mobilityserver \
         --exclude=netomat/csmobility \
         --exclude=netomat/nycgo \
         $hostname:$dest_docs
 else
-    echo -e "\n\nNo destination for documents"
+    print_yellow "No destination for documents"
 fi
 
 # Backup projects
 if [[ "$dest_projects" != "" ]]; then
-    echo -e "\n\nBacking up projects."
-    rsync -a -r -z -v -u -h $AND_delete --progress \
+    print_green "Backing up projects to $hostname:$dest_projects"
+    rsync -a -r -z -v -u -h $AND_delete --progress --partial --timeout=30 \
         --exclude=*.vdi \
         ~/projects/  \
         $hostname:$dest_projects
 else
-    echo -e "\n\nNo destination for projects"
+    print_yellow "No destination for projects"
 fi
 
 # Backup images
 if [[ "$dest_images" != "" ]]; then
-    echo -e "\n\nBacking up images."
-    rsync -a -r -z -v -u -h $AND_delete --progress \
+    print_green "Backing up images to $hostname:$dest_images"
+    rsync -a -r -z -v -u -h $AND_delete --progress --partial --timeout=30 \
         ~/images/  \
         $hostname:$dest_images
 else
-    echo -e "\n\nNo destination for images"
+    print_yellow "No destination for images"
 fi
 
 # Backup pictures
 if [[ "$dest_pictures" != "" ]]; then
-    echo -e "\n\nBacking up pictures."
-    rsync -a -r -z -v -u -h $AND_delete --progress \
+    print_green "Backing up pictures to $hostname:$dest_pictures"
+    rsync -a -r -z -v -u -h $AND_delete --progress --partial --timeout=30 \
         --exclude="iPhoto Library/*" \
         ~/Pictures/  \
         $hostname:$dest_pictures
 else
-    echo -e "\n\nNo destination for pictures"
+    print_yellow "No destination for pictures"
+fi
+
+# Backup iTunes
+if [[ "$dest_itunes" != "" ]]; then
+    print_green "Backing up iTunes to $hostname:$dest_itunes"
+    rsync -r -z -v -u -h --delete --progress --partial --timeout=30 \
+        ~/Music/iTunes/iTunes\ Media/  \
+        $hostname:$dest_itunes
+else
+    print_yellow "No destination for iTunes"
 fi
 
 # Backup camera
 if [[ "$dest_camera" != "" ]]; then
-    echo -e "\n\nBacking up camera."
-    rsync -a -r -z -v -u -h --progress \
+    print_green "Backing up camera to $hostname:$dest_camera"
+    rsync -a -r -z -v -u -h --progress --partial --timeout=30 \
         ~/camera/  \
         $hostname:$dest_camera
 else
-    echo -e "\n\nNo destination for camera"
+    print_yellow "No destination for camera"
 fi
 
 # Backup porn
 if [[ "$dest_porn" != "" ]]; then
-    echo -e "\n\nBacking up porn."
-    rsync -a -r -z -v -u -h $AND_delete --progress \
+    print_green "Backing up porn to $hostname:$dest_porn"
+    rsync -a -r -z -v -u -h $AND_delete --progress --partial --timeout=30 \
         ~/porn/  \
         $hostname:$dest_porn
 else
-    echo -e "\n\nNo destination for porn"
+    print_yellow "No destination for porn"
 fi
 
 # Backup mirrors
 if [[ "$dest_mirror" != "" ]]; then
-    echo -e "\n\nBacking up mirrors."
-    rsync -a -r -z -v -u -h $AND_delete --progress \
+    print_green "Backing up mirrors to $hostname:$dest_mirror"
+    rsync -a -r -z -v -u -h $AND_delete --progress --partial --timeout=30 \
         ~/Downloads/mirror/  \
         $hostname:$dest_mirror
 else
-    echo -e "\n\nNo destination for mirrors"
+    print_yellow "No destination for mirrors"
 fi
