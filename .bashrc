@@ -174,8 +174,8 @@ case $HOSTNAME in
         
         # Launch tinyur desktop screenshot monitor
         # *after* my happy Tmux session starts, so we don't get multiples.
-        if ! ps ax | egrep tinyu[r] > /dev/null && which tinyur.py > /dev/null; then
-            nohup tinyur.py 0<&- 1>$HOME/tinyur.log 2>$HOME/tinyur.log &
+        if ! ps ax | egrep tinyu[r].py > /dev/null && which tinyur.py > /dev/null; then
+            nohup tinyur.py 1>~/tinyur.err 2>~/tinyur.err &
         fi
 
         # Make sure TotalTerminal is running
