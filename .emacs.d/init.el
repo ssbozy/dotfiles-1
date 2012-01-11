@@ -86,6 +86,8 @@
 (define-key global-map (kbd "C-x h") 'replace-string)
 ;; Tired of accidentally spellchecking.
 (define-key global-map (kbd "M-$") 'ignore)
+;; Disable help, since it fucking breaks Command-C
+(define-key global-map (kbd "C-x C-h") 'ignore)
 
 ;; bury *scratch* buffer instead of kill it
 (defadvice kill-buffer (around kill-buffer-around-advice activate)
