@@ -109,6 +109,7 @@ if [[ "$dest_docs" != "" ]]; then
         --exclude=netomat/mobilityserver \
         --exclude=netomat/csmobility \
         --exclude=netomat/nycgo \
+        --exclude=*.screenflow \
         $hostname:$dest_docs
 else
     print_yellow "No destination for documents"
