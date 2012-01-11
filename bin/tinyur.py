@@ -100,7 +100,7 @@ while True:
       os.remove( filepath )
     except simplejson.JSONDecodeError as e:
       log("Invalid JSON received from imgur: %s" % ( r.content, ))
-    except Exception as e:
-      log("Unable to upload screenshot: %s" % ( e, ))
     except OSError:
       log("Unable to move or remove file %s" % ( filepath, ))
+    except Exception as e:
+      log("Unable to upload screenshot: %s" % ( e, ))
