@@ -130,6 +130,8 @@
 (add-hook 'php-mode-hook (lambda () (progn (turn-on-whitespace) ) ) )
 (add-hook 'python-mode-hook (lambda () (progn (turn-on-whitespace) ) ) )
 
+;; Markdown
+(require 'markdown-mode)
 
 ;; Php
 (require 'php-mode)
