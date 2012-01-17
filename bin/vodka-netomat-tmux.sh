@@ -19,8 +19,8 @@ tail -n 0 -f /media/mobilityserver/log/*.log
 " > /tmp/log_ms
 
 echo "#! /usr/bin/env bash
-touch /media/csmobility/log/netowem_prod.log
-tail -n 0 -f /media/csmobility/log/*.log
+touch /media/msadmin/log/netowem_prod.log
+tail -n 0 -f /media/msadmin/log/*.log
 /usr/bin/env bash
 " > /tmp/log_msadmin
 
@@ -35,7 +35,7 @@ cd /media/mobilityserver/
 " > /tmp/cd_ms
 
 echo "#! /usr/bin/env bash
-cd /media/csmobility/
+cd /media/msadmin/
 /usr/bin/env bash
 " > /tmp/cd_msadmin
 
