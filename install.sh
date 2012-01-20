@@ -78,7 +78,7 @@ fi
 cd $HOME
 
 # Here is where I need to figure out the hostname, and copy the correct bip.conf file
-$HOSTBIPCONF="$DOT_DIR/.bip/bip.$HOSTNAME.conf"
+HOSTBIPCONF="$DOT_DIR/.bip/bip.$HOSTNAME.conf"
 if [[ -f $HOSTBIPCONF ]]; then
     ln -s $HOSTBIPCONF .bip/.bip.conf
 fi
