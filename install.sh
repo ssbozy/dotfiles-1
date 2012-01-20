@@ -81,6 +81,7 @@ cd $HOME
 HOSTBIPCONF="$DOT_DIR/.bip/bip.$HOSTNAME.conf"
 if [[ -f $HOSTBIPCONF ]]; then
     print_green "Installing ~/.bip/bip.conf from $HOSTBIPCONF"
+    rm ~/.bip/bip.conf
     ln -s $HOSTBIPCONF .bip/bip.conf
 else
     print_yellow "Not configuring bip; $HOSTBIPCONF not found"
