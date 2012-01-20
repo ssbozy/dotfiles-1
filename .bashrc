@@ -246,6 +246,11 @@ case $HOSTNAME in
 			export TERM=xterm-color
 		fi
 	;;
+	"fancybone")
+		# My prgmr server
+        # Gotta say somethin'
+        true
+	;;
     "champ" | "boom")
         # Work servers
 
