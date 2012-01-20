@@ -246,7 +246,7 @@ case $HOSTNAME in
 			export TERM=xterm-color
 		fi
 	;;
-	"fancybone")
+	"fancybone.xen.prgmr.com")
 		# My prgmr server
         # Gotta say somethin'
         true
