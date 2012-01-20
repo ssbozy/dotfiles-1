@@ -80,5 +80,8 @@ cd $HOME
 # Here is where I need to figure out the hostname, and copy the correct bip.conf file
 HOSTBIPCONF="$DOT_DIR/.bip/bip.$HOSTNAME.conf"
 if [[ -f $HOSTBIPCONF ]]; then
-    ln -s $HOSTBIPCONF .bip/.bip.conf
+    print_green "Installing ~/.bip/bip.conf from $HOSTBIPCONF"
+    ln -s $HOSTBIPCONF .bip/bip.conf
+else
+    print_yellow "Not configuring bip; $HOSTBIPCONF not found"
 fi
