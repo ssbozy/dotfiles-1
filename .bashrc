@@ -199,6 +199,13 @@ case $HOSTNAME in
             cat /dev/null
         fi
 
+        if [ -f /Applications/XAMPP/xamppfiles/bin/php ]; then
+            alias xphp='/Applications/XAMPP/xamppfiles/bin/php'
+            alias xmysql='/Applications/XAMPP/xamppfiles/bin/mysql'
+        fi
+
+
+
         #TODO these might have to be global
         export CLICOLOR=1
         export LSCOLORS=ExFxCxDxBxegedabagacad        
