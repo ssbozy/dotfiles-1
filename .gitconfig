@@ -1,6 +1,6 @@
 [user]
-	name = Pavel Lishin
-	email = pavel.lishin@gmail.com
+    name = Pavel Lishin
+    email = pavel.lishin@gmail.com
 
 [core]
     excludesfile = ~/.gitignore
@@ -9,11 +9,13 @@
     ui = auto
 
 [alias]
-	co = checkout
     st = status
+    co = checkout
+    cm = commit -m
+
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen%cn%Creset %Cblue(%cr)%Creset' --abbrev-commit --date=relative
     logp = log -p --word-diff=color
-	diffp = diff --word-diff=color
+    diffp = diff --word-diff=colorb
 [format]
-	# pretty = format:Commit %C(red black)%H %Creset %nAuthor: %an %nDate: %cD %n%n%s %n
+    # pretty = format:Commit %C(red black)%H %Creset %nAuthor: %an %nDate: %cD %n%n%s %n
 
