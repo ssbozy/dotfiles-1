@@ -132,6 +132,7 @@
 
 ;; Markdown
 (require 'markdown-mode)
+(add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
 
 ;; Php
 (require 'php-mode)
@@ -273,6 +274,7 @@ is a comment, uncomment."
     (set-frame-position frame x y)
     (set-frame-size frame w h)))
 (arrange-frame 240 60 2 22)
+(split-window-right)
 
 
 
