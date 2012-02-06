@@ -31,6 +31,8 @@ export HISTCONTROL=ignoredups:ignorespace
 # Remember a lot.
 export HISTSIZE=5000
 export HISTFILESIZE=5000
+# Store timestamps
+export HISTTIMEFORMAT='%F %T'
 # Append to history file, don't overwrite.
 shopt -s histappend
 # don't try to complete on nothing
@@ -134,6 +136,9 @@ case $HOSTNAME in
         #alias omacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
         alias omacs='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -c'
 
+        # Make sure tmux can display UTF data correctly
+        alias tmux='tmux -u'
+
         # MacPorts
         export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 
@@ -157,7 +162,7 @@ case $HOSTNAME in
                 if [[ $COLUMNS -gt 120 ]]; then
         
                     # Create new session, with initial window
-                    tmux new-session -d -s startup -n 'background' "/usr/bin/env bash $HOME/.bashrc-startup"
+                    tmux -u new-session -d -s startup -n 'background' "/usr/bin/env bash $HOME/.bashrc-startup"
 
                     # Create new window to work in, after the 0th window.
                     tmux new-window -a -n 'bash' -t startup:0
