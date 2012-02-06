@@ -25,25 +25,30 @@ LOCATION=$1
 print_standard "Running backup.sh at $date to $LOCATION"
 
 if [[ -d ~/Library/Application\ Support/MobileSync/Backup/ ]]; then
+
+    messagedb=3d0d7e5fb2ce288813306e4d4636395e047a3d28
+    messagedir=~/Documents/iphone_messages
+
     # Copy iPhone sms sqlite databases to ~/Docs, but only if the file has changed
     # TODO this assumes only a single file in backups!
 
-    find ~/Library/Application\ Support/MobileSync/Backup/ -iname 3d0d7e5fb2ce288813306e4d4636395e047a3d28 -exec cp {} /tmp/3d0d7e5fb2ce288813306e4d4636395e047a3d28 \;
+    find ~/Library/Application\ Support/MobileSync/Backup/ -iname $messagedb -exec cp {} /tmp/$messagedb \;
 
-    if [[ -e ~/Documents/3d0d7e5fb2ce288813306e4d4636395e047a3d28 ]]; then
+    if [[ -e $messagedir/$messagedb ]]; then
         # A recent backup exists
-        if ! diff ~/Documents/3d0d7e5fb2ce288813306e4d4636395e047a3d28 /tmp/3d0d7e5fb2ce288813306e4d4636395e047a3d28 > /dev/null; then
+        if ! diff $messagedir/$messagedb /tmp/$messagedb > /dev/null; then
             # Files are different; make a copy.
             print_green "Backing up new copy of iPhone SMS database."
-            mv ~/Documents/3d0d7e5fb2ce288813306e4d4636395e047a3d28 ~/Documents/3d0d7e5fb2ce288813306e4d4636395e047a3d28.`date +%Y%m%d.%H%M`.sqlite
-            mv /tmp/3d0d7e5fb2ce288813306e4d4636395e047a3d28 ~/Documents/
+            #mv $messagedir/$messagedb $messagedir/$messagedb.`date +%Y%m%d.%H%M`.sqlite
+            tar -cvzf $messagedir/$messagedb.`date +%Y%m%d.%H%M`.tar.gz $messagedir/$messagedb
+            mv /tmp/$messagedb $messagedir/
         # else
         #     print_green "Files are identical, not backing up"
         fi
     else
         # There are no backups in ~/Documents yet
         print_green "Backing up iPhone SMS database."
-        mv /tmp/3d0d7e5fb2ce288813306e4d4636395e047a3d28 ~/Documents/
+        mv /tmp/$messagedb $messagedir/
     fi
 fi
 
@@ -170,7 +175,7 @@ fi
 # Backup porn
 if [[ "$dest_porn" != "" ]]; then
     print_green "Backing up porn to $hostname:$dest_porn"
-    rsync -a -r -z -v -u -h $AND_delete --progress --partial --timeout=30 \
+    rsync -a -r -z -v -u -h --delete --progress --partial --timeout=30 \
         ~/porn/  \
         $hostname:$dest_porn
 else
@@ -180,7 +185,7 @@ fi
 # Backup mirrors
 if [[ "$dest_mirror" != "" ]]; then
     print_green "Backing up mirrors to $hostname:$dest_mirror"
-    rsync -a -r -z -v -u -h $AND_delete --progress --partial --timeout=30 \
+    rsync -a -r -z -v -u -h --delete --progress --partial --timeout=30 \
         ~/Downloads/mirror/  \
         $hostname:$dest_mirror
 else
