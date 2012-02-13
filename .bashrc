@@ -32,7 +32,7 @@ export HISTCONTROL=ignoredups:ignorespace
 export HISTSIZE=5000
 export HISTFILESIZE=5000
 # Store timestamps
-export HISTTIMEFORMAT='%F %T'
+export HISTTIMEFORMAT='%F %T '
 # Append to history file, don't overwrite.
 shopt -s histappend
 # don't try to complete on nothing
@@ -94,7 +94,8 @@ case $OSTYPE in
 
         # git should use textmate for commit messages
         # crontab should use textmate, too; we have to pull the _wait trick.
-        export EDITOR=mate_wait
+        # bored of textmate
+        # export EDITOR=mate_wait
         
     ;;
     *)
