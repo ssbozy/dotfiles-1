@@ -249,12 +249,13 @@ is a comment, uncomment."
 ;;(defun go-vodkamat () (cd "/vodka:/home/pavel/projects/mobilityserver") )
 (defun go-vodkamat () (cd "~/Documents/netomat/mobilityserver") )
 
-;; column select
-;;(setq cua-rectangle-mark-key (kbd "<f5>"))
-;;TODO - holy god this is pretty miserable, gotta reconfuck this
-(global-set-key (kbd "<f5>") 'cua-set-rectangle-mark)
+;; cua-mode
+(setq cua-rectangle-mark-key (kbd "<f5>"))
 (cua-mode t)
+;; only use cua-mode for rectangle-edit
 (setq cua-enable-cua-keys nil)
+
+
 
 ;; trying PHP debugging
 (add-to-list 'load-path "~/.emacs.d/cedet-1.0/eieio")
