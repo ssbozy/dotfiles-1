@@ -135,6 +135,7 @@ fi
 if [[ "$dest_images" != "" ]]; then
     print_green "Backing up images to $hostname:$dest_images"
     rsync -a -r -z -v -u -h $AND_delete --progress --partial --timeout=30 \
+        --exclude="\!pf/*" \
         ~/images/  \
         $hostname:$dest_images
 else
