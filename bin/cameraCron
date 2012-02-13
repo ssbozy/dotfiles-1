@@ -1,4 +1,7 @@
 date_string=`date +%Y%m%d.%H%M`
+destination="/home/pavel/pavelcam/pavelcam.$date_string.jpg"
+key=/Users/pavel/.ssh/id_dsa_pavelcam
+
 
 # Capture image.
 /Users/pavel/bin/isightcapture -w 640 -h 480 -t jpg /Users/pavel/Temp/pavelcam.jpg
@@ -11,8 +14,7 @@ cp /Users/pavel/Temp/pavelcam.jpg /Users/pavel/Pictures/isight/`date +%Y`/`date 
 /usr/local/bin/convert /Users/pavel/Temp/pavelcam.jpg -fill white -draw "text 434,474 '`date '+%Y-%m-%d %H:%M'`'" -fill black -draw "text 435,475 '`date '+%Y-%m-%d %H:%M'`'" /Users/pavel/Temp/pavelcam_date.jpg
 
 # Upload to server.
-scp -i /Users/pavel/.ssh/id_dsa_pavelcam ~/Temp/pavelcam_date.jpg pavelcam@lishin.org:/home/pavel/pavelcam/pavelcam.$date_string.jpg
+scp -i /Users/pavel/.ssh/id_dsa_pavelcam ~/Temp/pavelcam_date.jpg pavelcam@lishin.org:$destination
 
-ssh -i /Users/pavel/.ssh/id_dsa_pavelcam pavelcam@lishin.org "ln -sf /home/pavel/pavelcam/pavelcam.$date_string.jpg /var/domains/widgetsex.com/pavelcam.jpg"
-ssh -i /Users/pavel/.ssh/id_dsa_pavelcam pavelcam@lishin.org "ln -sf /home/pavel/pavelcam/pavelcam.$date_string.jpg /var/domains/lishin.org/pavelcam.jpg"
-ssh -i /Users/pavel/.ssh/id_dsa_pavelcam pavelcam@lishin.org "ln -sf /home/pavel/pavelcam/pavelcam.$date_string.jpg /var/domains/pavel.lishin.org/pavelcam.jpg"
+# Symlink across domains
+ssh -i $key "ln -sf $destination /var/domains/widgetsex.com/pavelcam.jpg; ln -sf $destination /var/domains/lishin.org/pavelcam.jpg; ln -sf $destination /var/domains/pavel.lishin.org/pavelcam.jpg"
