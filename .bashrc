@@ -210,11 +210,11 @@ case $HOSTNAME in
             alias xmysql='/Applications/XAMPP/xamppfiles/bin/mysql'
         fi
 
-
-
         #TODO these might have to be global
         export CLICOLOR=1
         export LSCOLORS=ExFxCxDxBxegedabagacad        
+
+        [[ -s "/Users/pavel/.rvm/scripts/rvm" ]] && source "/Users/pavel/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
     ;;
     "newyork")
         # Ubuntu desktop, at home.
