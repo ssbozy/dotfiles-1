@@ -5,8 +5,9 @@
 *.swp
 *~
 
-# emacs tramp, do not care
+# emacs crap 
 .emacs.d/tramp
+.emacs.d/geben/.storage
 
 # Has to be compiled
 bin/sshfs

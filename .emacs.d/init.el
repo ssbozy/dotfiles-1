@@ -11,6 +11,9 @@
 ;; M-: == execute arbitrary statement
 ;; A-l == go to line
 
+;;TODO - C-f seems to just advance the cursor; maybe figger out a way to make it
+;; bring up a Textmate-style search/replace prompt?
+
 ;;TODO - I want tabs to be a darker grey.
 ;;TODO - When I C-x 3 I want the new pane to open to the most recently edited file, not the one i'm lookin' at
 ;;TODO - code folding
