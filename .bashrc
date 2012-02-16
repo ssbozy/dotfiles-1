@@ -274,7 +274,7 @@ case $HOSTNAME in
         # Path to python 2.6
         export PATH=/opt/py26/usr/local/bin/:$PATH
         # Path to Ruby 1.9.2
-        export PATH=/opt/ruby192/bin/ruby:$PATH
+        export PATH=/opt/ruby192/bin/:$PATH
 
     ;;
     "moobox")
