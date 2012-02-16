@@ -274,7 +274,10 @@ case $HOSTNAME in
 
         # Update ForwardAgent settings
         [[ -f $HOME/bin/grabssh.sh ]] && $HOME/bin/grabssh.sh
-        
+
+        # Path to python 2.6
+        export PATH=/opt/py26/usr/local/bin/:$PATH
+       
     ;;
     "moobox")
         # Work server under my desk
