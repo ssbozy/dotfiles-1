@@ -25,7 +25,7 @@ COLOR_CLEAR="\[\033[0m\]"
 # Bash-specific options
 
 # Don't add this shit to history
-export HISTIGNORE="sudo shutdown:sudo re:bg:fg" 
+export HISTIGNORE="sudo shutdown:sudo re:bg:fg"
 # Ignore duplicates, and commands that start with a space
 export HISTCONTROL=ignoredups:ignorespace
 # Remember a lot.
@@ -86,9 +86,9 @@ case $OSTYPE in
         # OS X
         alias ls='ls -G'
 
-		# Optional bash_completion
+        # Optional bash_completion
         if [ -f `brew --prefix`/etc/bash_completion ]; then
-			alias bash_completion='source `brew --prefix`/etc/bash_completion'
+            alias bash_completion='source `brew --prefix`/etc/bash_completion'
             #source `brew --prefix`/etc/bash_completion
         fi
 
@@ -96,7 +96,7 @@ case $OSTYPE in
         # crontab should use textmate, too; we have to pull the _wait trick.
         # bored of textmate
         # export EDITOR=mate_wait
-        
+
     ;;
     *)
         # Everything else
@@ -143,9 +143,14 @@ case $HOSTNAME in
         # MacPorts
         export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 
-		alias restart_growl="killall GrowlHelperApp; open -b com.Growl.GrowlHelperApp"
+        alias restart_growl="killall GrowlHelperApp; open -b com.Growl.GrowlHelperApp"
 
-        
+        # Launch tinyur desktop screenshot monitor
+        # *after* my happy Tmux session starts, so we don't get multiples.
+        if ! ps ax | egrep tinyu[r].py > /dev/null && which tinyur.py > /dev/null; then
+            nohup tinyur.py 1>~/tinyur.err 2>~/tinyur.err &
+        fi
+
         # If there isn't a tmux session currently running, then this is the first
         # terminal window we've opened, and it's going to get pinned to the top
         # with visor - I want tmux to automatically launch here.
@@ -153,7 +158,7 @@ case $HOSTNAME in
 
             if [[ ! -f /tmp/starting_tmux ]]; then
                 touch /tmp/starting_tmux
-                
+
                 # For some reason, if you launch tmux right away,
                 # it looks like this: http://i.imgur.com/8Qkq4.png
                 # So let's wait, and check for $COLUMNS - if it's more than 120,
@@ -161,7 +166,6 @@ case $HOSTNAME in
                 # sleep 3
 
                 if [[ $COLUMNS -gt 120 ]]; then
-        
                     # Create new session, with initial window
                     tmux -u new-session -d -s startup -n 'background' "/usr/bin/env bash $HOME/.bashrc-startup"
 
@@ -173,15 +177,8 @@ case $HOSTNAME in
                     # Attach tmux
                     tmux attach-session -t startup
                 fi
-                
                 rm /tmp/starting_tmux
             fi
-        fi
-        
-        # Launch tinyur desktop screenshot monitor
-        # *after* my happy Tmux session starts, so we don't get multiples.
-        if ! ps ax | egrep tinyu[r].py > /dev/null && which tinyur.py > /dev/null; then
-            nohup tinyur.py 1>~/tinyur.err 2>~/tinyur.err &
         fi
 
         # Make sure TotalTerminal is running
@@ -194,16 +191,14 @@ case $HOSTNAME in
         fi
 
         # Bash completion, obv.
-        if [ -f `brew --prefix`/etc/bash_completion ]; then
-            #source `brew --prefix`/etc/bash_completion
-            cat /dev/null
-        fi
+        # if [ -f `brew --prefix`/etc/bash_completion ]; then
+        #     source `brew --prefix`/etc/bash_completion
+        # fi
 
         # Virtualenv Wrapper
-        if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
-            #source /usr/local/bin/virtualenvwrapper.sh
-            cat /dev/null
-        fi
+        # if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
+        #     source /usr/local/bin/virtualenvwrapper.sh
+        # fi
 
         if [ -f /Applications/XAMPP/xamppfiles/bin/php ]; then
             alias xphp='/Applications/XAMPP/xamppfiles/bin/php'
@@ -212,9 +207,10 @@ case $HOSTNAME in
 
         #TODO these might have to be global
         export CLICOLOR=1
-        export LSCOLORS=ExFxCxDxBxegedabagacad        
+        export LSCOLORS=ExFxCxDxBxegedabagacad
 
-        [[ -s "/Users/pavel/.rvm/scripts/rvm" ]] && source "/Users/pavel/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+        # Load RVM into a shell session *as a function*
+        [[ -s "/Users/pavel/.rvm/scripts/rvm" ]] && source "/Users/pavel/.rvm/scripts/rvm"
     ;;
     "newyork")
         # Ubuntu desktop, at home.
@@ -223,12 +219,12 @@ case $HOSTNAME in
         if ! ps ax | grep synergy[s] > /dev/null; then
             synergys -c $HOME/.synergy.newyork.conf
         fi
-	# alternatively, i might actually start working on my new macbook
-	# since SYNERGY and EMACS don't FUCKING WORK WELL TOGETHER
-	# better UNSUBJUGATE MYSELF http://debbugs.gnu.org/cgi-bin/bugreport.cgi?bug=4008
-        #if ! ps ax | grep synergy[c] > /dev/null; tehn
-	#    synergyc -f -n newyork 192.168.0.11 # gotta figure out a permanent ip for adison
-	#fi
+        # alternatively, i might actually start working on my new macbook
+        # since SYNERGY and EMACS don't FUCKING WORK WELL TOGETHER
+        # better UNSUBJUGATE MYSELF http://debbugs.gnu.org/cgi-bin/bugreport.cgi?bug=4008
+            #if ! ps ax | grep synergy[c] > /dev/null; tehn
+        #    synergyc -f -n newyork 192.168.0.11 # gotta figure out a permanent ip for adison
+        #fi
     ;;
     "vodka")
         # My virtualbox
@@ -252,18 +248,18 @@ case $HOSTNAME in
         export PATH=$HOME/local/node/bin:$PATH
 
     ;;
-	"yonk")
-		# My slicehost server
-		if [[ "$TERM" == "xterm-256color" ]]; then
-			# Screen can't handle the power of my mac
-			export TERM=xterm-color
-		fi
-	;;
-	"fancybone.xen.prgmr.com")
-		# My prgmr server
+    "yonk")
+        # My slicehost server
+        if [[ "$TERM" == "xterm-256color" ]]; then
+            # Screen can't handle the power of my mac
+            export TERM=xterm-color
+        fi
+    ;;
+    "fancybone.xen.prgmr.com")
+        # My prgmr server
         # Gotta say somethin'
         true
-	;;
+    ;;
     "champ" | "boom")
         # Work servers
 
@@ -277,7 +273,7 @@ case $HOSTNAME in
 
         # Path to python 2.6
         export PATH=/opt/py26/usr/local/bin/:$PATH
-       
+
     ;;
     "moobox")
         # Work server under my desk
@@ -289,7 +285,7 @@ case $HOSTNAME in
 
         # Update ForwardAgent settings
         [[ -f $HOME/bin/grabssh.sh ]] && $HOME/bin/grabssh.sh
-        
+
         # Start synergyc, unless it's already running
         if ! ps ax | grep synergyc | grep -v grep > /dev/null; then
             synergyc austin.netomat.net
@@ -297,7 +293,7 @@ case $HOSTNAME in
     ;;
     *)
         # Everything else
-        
+
     ;;
 esac
 
