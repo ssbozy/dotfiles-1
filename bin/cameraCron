@@ -17,4 +17,4 @@ cp /Users/pavel/Temp/pavelcam.jpg /Users/pavel/Pictures/isight/`date +%Y`/`date 
 scp -i /Users/pavel/.ssh/id_dsa_pavelcam ~/Temp/pavelcam_date.jpg pavelcam@lishin.org:$destination
 
 # Symlink across domains
-ssh -i $key "ln -sf $destination /var/domains/widgetsex.com/pavelcam.jpg; ln -sf $destination /var/domains/lishin.org/pavelcam.jpg; ln -sf $destination /var/domains/pavel.lishin.org/pavelcam.jpg"
+ssh -i $key pavelcam@lishin.org "ln -sf $destination /var/domains/widgetsex.com/pavelcam.jpg; ln -sf $destination /var/domains/lishin.org/pavelcam.jpg; ln -sf $destination /var/domains/pavel.lishin.org/pavelcam.jpg"
