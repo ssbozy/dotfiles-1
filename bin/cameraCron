@@ -1,20 +1,25 @@
+#!/usr/bin/env bash
+
 date_string=`date +%Y%m%d.%H%M`
 destination="/home/pavel/pavelcam/pavelcam.$date_string.jpg"
 key=/Users/pavel/.ssh/id_dsa_pavelcam
 
 
 # Capture image.
-/Users/pavel/bin/isightcapture -w 640 -h 480 -t jpg /Users/pavel/Temp/pavelcam.jpg
+if ! /Users/pavel/bin/isightcapture -w 640 -h 480 -t jpg /Users/pavel/Temp/pavelcam.jpg; then
+    echo "Unable take photo."
+    /usr/local/bin/growlnotify -t 'Unable to take Pavelcam image' -m "Something went wrong." --sticky
+else
+    # Copy image to isight folder.
+    mkdir -p /Users/pavel/Pictures/isight/`date +%Y`/`date +%m`/
+    cp /Users/pavel/Temp/pavelcam.jpg /Users/pavel/Pictures/isight/`date +%Y`/`date +%m`/pavelcam.$date_string.jpg
 
-# Copy image to isight folder.
-mkdir -p /Users/pavel/Pictures/isight/`date +%Y`/`date +%m`/
-cp /Users/pavel/Temp/pavelcam.jpg /Users/pavel/Pictures/isight/`date +%Y`/`date +%m`/pavelcam.$date_string.jpg
+    # Tag picture with date
+    /usr/local/bin/convert /Users/pavel/Temp/pavelcam.jpg -fill white -draw "text 434,474 '`date '+%Y-%m-%d %H:%M'`'" -fill black -draw "text 435,475 '`date '+%Y-%m-%d %H:%M'`'" /Users/pavel/Temp/pavelcam_date.jpg
 
-# Tag picture with date
-/usr/local/bin/convert /Users/pavel/Temp/pavelcam.jpg -fill white -draw "text 434,474 '`date '+%Y-%m-%d %H:%M'`'" -fill black -draw "text 435,475 '`date '+%Y-%m-%d %H:%M'`'" /Users/pavel/Temp/pavelcam_date.jpg
+    # Upload to server.
+    scp -i /Users/pavel/.ssh/id_dsa_pavelcam ~/Temp/pavelcam_date.jpg pavelcam@lishin.org:$destination
 
-# Upload to server.
-scp -i /Users/pavel/.ssh/id_dsa_pavelcam ~/Temp/pavelcam_date.jpg pavelcam@lishin.org:$destination
-
-# Symlink across domains
-ssh -i $key pavelcam@lishin.org "ln -sf $destination /var/domains/widgetsex.com/pavelcam.jpg; ln -sf $destination /var/domains/lishin.org/pavelcam.jpg; ln -sf $destination /var/domains/pavel.lishin.org/pavelcam.jpg"
+    # Symlink across domains
+    ssh -i $key pavelcam@lishin.org "ln -sf $destination /var/domains/widgetsex.com/pavelcam.jpg; ln -sf $destination /var/domains/lishin.org/pavelcam.jpg; ln -sf $destination /var/domains/pavel.lishin.org/pavelcam.jpg"
+fi
