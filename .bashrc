@@ -92,10 +92,15 @@ case $OSTYPE in
             #source `brew --prefix`/etc/bash_completion
         fi
 
-        # git should use textmate for commit messages
-        # crontab should use textmate, too; we have to pull the _wait trick.
-        # bored of textmate
-        # export EDITOR=mate_wait
+        # Use OS X emacs
+        if [ -d /Applications/Emacs.app/Contents/MacOS/bin/ ]; then
+            export PATH=/Applications/Emacs.app/Contents/MacOS/bin/:$PATH
+            # Prevent Emacs from being launched twice;
+            # and from launching from /usr/bin/emacs
+            # and fuck it, this is what I mean all the time anyway.
+            alias emacs='emacsclient -c -n'
+            EDITOR="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -c"
+        fi
 
     ;;
     *)
@@ -133,9 +138,6 @@ case $HOSTNAME in
         alias mirror=/Users/pavel/projects/mirror/src/mirror2.py
         alias 4ch='/Users/pavel/projects/mirror/src/mirror2.py --4ch'
         alias updatedb="LC_ALL='C' sudo gupdatedb --prunepaths='/Volumes'"  # Don't index any external drives, or anything mounted via sshfs, etc.
-        #alias omacs='open -b org.gnu.Emacs'
-        #alias omacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
-        alias omacs='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -c'
 
         # Make sure tmux can display UTF data correctly
         alias tmux='tmux -u'

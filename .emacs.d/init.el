@@ -258,8 +258,6 @@ is a comment, uncomment."
 ;; only use cua-mode for rectangle-edit
 (setq cua-enable-cua-keys nil)
 
-
-
 ;; trying PHP debugging
 (add-to-list 'load-path "~/.emacs.d/cedet-1.0/eieio")
 (load-file "~/.emacs.d/cedet-1.0/common/cedet.el")
@@ -280,7 +278,12 @@ is a comment, uncomment."
 (arrange-frame 240 60 2 22)
 (split-window-right)
 
-
-
 ;; let's see if I can remote sudo
 (set-default 'tramp-default-proxies-alist (quote ((".*" "\\`root\\'" "/ssh:%h:"))))
+
+;; start server
+(server-start)
+;; I want Cmd-W (A-w) to run mac-key-close-window AND server-edit, so that
+;; my buffers/windows/whatever-the-fuck die and piss off, server or no.
+;;(define-key global-map (kbd "A-w") (lambda () (progn (mac-key-close-window) (server-edit))))
+(remove-hook 'kill-buffer-query-functions 'server-kill-buffer-query-function)
