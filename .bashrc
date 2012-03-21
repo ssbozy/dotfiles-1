@@ -77,6 +77,9 @@ alias grep='grep --color=auto'
 # for crontabs, git, etc.
 export EDITOR=vim
 
+# Write commands to history as soon as they are typed
+export PROMPT_COMMAND='history -a'
+
 
 ###################
 # OS specific stuff
@@ -101,10 +104,6 @@ case $OSTYPE in
             alias emacs='emacsclient -c -n'
             EDITOR="emacsclient"
         fi
-
-        # Write commands to history as soon as they are typed
-        export PROMPT_COMMAND='history -a'
-
     ;;
     *)
         # Everything else
