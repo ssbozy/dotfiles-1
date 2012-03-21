@@ -19,6 +19,9 @@
 ;;TODO - code folding
 ;;TODO - I want replace to fucking show me how many things it goddamned replaced
 
+;;TODO - When I launch emacs from command line, I think I always want it to use the same frame.
+;; not the one that I launched from the Dock - but spawn a new one, only once.
+
 ;;TODO - why does this happen? Occasionally, CMD-c will insert a ¢ character,
 ;;and C-h k CMD-c shows this:
 ;;		¢ (translated from A-c) runs the command self-insert-command, which is
@@ -41,10 +44,10 @@
 
 ;;TODO - map C-S-d to duplicate line, or equiv
 ;;TODO - map A-` to "next buffer", S-A-` to "previous buffer"
-;;TODO - CMD-F CMD-V should work, damnit. It works for brett.
 ;;TODO - when i tab complete a file, i don't want it to automatically open
 ;;TODO - make directory browsing -alhrt style
 ;;TODO - emulate texmate's column select mode.
+;; - eh, it's better now.
 ;;TODO - date insert http://stackoverflow.com/questions/251908/how-can-i-insert-current-date-and-time-into-a-file-using-emacs
 ;;TODO - figure out how to open multiple files
 ;;TODO - what the fuck, PHP mode. http://i.imgur.com/8dWRI.png
@@ -59,6 +62,10 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 (setq indent-line-function 'insert-tab)
+
+;; Quiet, scratch
+(setq initial-scratch-message "")
+
 
 ;; hitting backspace should delete a tab, not convert it to spaces
 (setq-default c-backspace-function 'backward-delete-char)

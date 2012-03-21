@@ -74,7 +74,7 @@ if [[ "$LOCATION" == "work" ]]; then
     dest_images="/media/MooDrive/pavel/backup/images/"
     dest_pictures="/media/MooDrive/pavel/backup/pictures/"
     dest_camera="/media/MooDrive/pavel/backup/camera/"
-    dest_itunes="/media/MooDrive/Yonkpod/YonkLibrary/"
+    dest_itunes="/media/MooDrive/pavel/Yonkpod/YonkLibrary/"
     dest_porn=""
     dest_mirror=""
 
@@ -188,6 +188,7 @@ if [[ "$dest_mirror" != "" ]]; then
     print_green "Backing up mirrors to $hostname:$dest_mirror"
     rsync -a -r -z -v -u -h --delete --progress --partial --timeout=30 \
         ~/Downloads/mirror/  \
+        --exclude="4ch/*" \
         $hostname:$dest_mirror
 else
     print_yellow "No destination for mirrors"

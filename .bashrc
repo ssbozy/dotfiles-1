@@ -99,7 +99,7 @@ case $OSTYPE in
             # and from launching from /usr/bin/emacs
             # and fuck it, this is what I mean all the time anyway.
             alias emacs='emacsclient -c -n'
-            EDITOR="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -c"
+            EDITOR="emacsclient"
         fi
 
         # Write commands to history as soon as they are typed
@@ -145,8 +145,8 @@ case $HOSTNAME in
         # Make sure tmux can display UTF data correctly
         alias tmux='tmux -u'
 
-        # MacPorts
-        export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+        # Homebrew
+        export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 
         alias restart_growl="killall GrowlHelperApp; open -b com.Growl.GrowlHelperApp"
 
@@ -189,6 +189,10 @@ case $HOSTNAME in
         if [ -f /Applications/XAMPP/xamppfiles/bin/php ]; then
             alias xphp='/Applications/XAMPP/xamppfiles/bin/php'
             alias xmysql='/Applications/XAMPP/xamppfiles/bin/mysql'
+        fi
+        if [ -f /Applications/MAMP/bin/php/php5.3.6/bin/php ]; then
+            alias mphp='/Applications/MAMP/bin/php/php5.3.6/bin/php'
+            alias mmysql='/Applications/MAMP/Library/bin/mysqll'
         fi
 
         #TODO these might have to be global
