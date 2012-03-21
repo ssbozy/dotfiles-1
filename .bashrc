@@ -102,6 +102,9 @@ case $OSTYPE in
             EDITOR="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -c"
         fi
 
+        # Write commands to history as soon as they are typed
+        export PROMPT_COMMAND='history -a'
+
     ;;
     *)
         # Everything else
