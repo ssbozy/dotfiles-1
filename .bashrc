@@ -78,7 +78,8 @@ alias grep='grep --color=auto'
 export EDITOR=vim
 
 # Write commands to history as soon as they are typed
-export PROMPT_COMMAND='history -a'
+# http://briancarper.net/blog/248/
+export PROMPT_COMMAND='history -a; history -n'
 
 
 ###################
