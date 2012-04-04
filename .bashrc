@@ -81,6 +81,9 @@ export EDITOR=vim
 # http://briancarper.net/blog/248/
 export PROMPT_COMMAND='history -a; history -n'
 
+# iPython should live in ~/.ipython/
+export IPYTHON_DIR=~/.ipython/
+
 
 ###################
 # OS specific stuff
