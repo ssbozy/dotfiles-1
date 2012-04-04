@@ -154,7 +154,7 @@
 ;; scpaste
 (require 'scpaste)
 (setq scpaste-http-destination "http://paste.lishin.org"
-      scpaste-scp-destination "lishin.org:/var/domains/lishin.org/scpaste")
+      scpaste-scp-destination "lishin.org:/var/domains/scpaste.lishin.org/")
 
 ;; ido, as recommended by brett.
 ;; I do not know what this does.
