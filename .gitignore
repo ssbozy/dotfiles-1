@@ -14,3 +14,6 @@ bin/sshfs
 
 # Don't track me, bro
 .bip/logs/*
+
+# iPython history
+.ipython/profile_default/history.sqlite
