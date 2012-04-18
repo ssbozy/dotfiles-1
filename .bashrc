@@ -141,8 +141,8 @@ case $HOSTNAME in
         PS1_PATH_COLOR=$COLOR_LIGHT_CYAN
 
         # Aliases
-        alias mirror=/Users/pavel/projects/mirror/src/mirror2.py
-        alias 4ch='/Users/pavel/projects/mirror/src/mirror2.py --4ch'
+        alias mirror=/Users/pavel/projects/mirror/mirror.py
+        alias 4ch='/Users/pavel/projects/mirror/mirror.py --4ch'
         alias updatedb="LC_ALL='C' sudo gupdatedb --prunepaths='/Volumes'"  # Don't index any external drives, or anything mounted via sshfs, etc.
 
         # Make sure tmux can display UTF data correctly
@@ -156,7 +156,7 @@ case $HOSTNAME in
         # Launch tinyur desktop screenshot monitor
         # *after* my happy Tmux session starts, so we don't get multiples.
         if ! ps ax | egrep tinyu[r].py > /dev/null && which tinyur.py > /dev/null; then
-            nohup tinyur.py 1>~/tinyur.err 2>~/tinyur.err &
+            nohup tinyur.py 2>&1 >> ~/tinyur.log &
         fi
 
         # Make sure TotalTerminal is running
