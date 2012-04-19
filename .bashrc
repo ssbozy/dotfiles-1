@@ -79,7 +79,7 @@ export EDITOR=vim
 
 # Write commands to history as soon as they are typed
 # http://briancarper.net/blog/248/
-export PROMPT_COMMAND='history -a; history -n'
+export PROMPT_COMMAND='history -a'
 
 # iPython should live in ~/.ipython/
 export IPYTHON_DIR=~/.ipython/
