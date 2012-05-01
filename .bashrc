@@ -100,8 +100,8 @@ case $OSTYPE in
         fi
 
         # Use OS X emacs
-        if [ -d /Applications/Emacs.app/Contents/MacOS/bin/ ]; then
-            export PATH=/Applications/Emacs.app/Contents/MacOS/bin/:$PATH
+        if [ -d /Applications/Emacs.app/Contents/MacOS/bin ]; then
+            export PATH=/Applications/Emacs.app/Contents/MacOS/bin:$PATH
             # Prevent Emacs from being launched twice;
             # and from launching from /usr/bin/emacs
             # and fuck it, this is what I mean all the time anyway.
@@ -296,6 +296,7 @@ esac
 if [[ "$USER" == "root" ]]; then
     PS1_USER_COLOR=$COLOR_RED
     PS1_DICKS="${COLOR_RED} $ ${COLOR_CLEAR}"
+    # TODO ಠ_ಠ
 fi
 
 # prompt
