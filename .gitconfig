@@ -19,3 +19,5 @@
 [format]
     # pretty = format:Commit %C(red black)%H %Creset %nAuthor: %an %nDate: %cD %n%n%s %n
 
+[branch]
+	autosetuprebase = always
