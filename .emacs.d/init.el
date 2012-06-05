@@ -63,10 +63,6 @@
 (setq-default tab-width 4)
 (setq indent-line-function 'insert-tab)
 
-;; Quiet, scratch
-(setq initial-scratch-message "")
-
-
 ;; hitting backspace should delete a tab, not convert it to spaces
 (setq-default c-backspace-function 'backward-delete-char)
 
@@ -98,13 +94,6 @@
 (define-key global-map (kbd "M-$") 'ignore)
 ;; Disable help, since it fucking breaks Command-C
 (define-key global-map (kbd "C-x C-h") 'ignore)
-
-;; bury *scratch* buffer instead of kill it
-(defadvice kill-buffer (around kill-buffer-around-advice activate)
-  (let ((buffer-to-kill (ad-get-arg 0)))
-    (if (equal buffer-to-kill "*scratch*")
-        (bury-buffer)
-      ad-do-it)))
 
 ;; This is where my stuff lives
 (setq dotfiles-dir (expand-file-name "~/.emacs.d/"))
@@ -295,3 +284,59 @@ is a comment, uncomment."
 ;; my buffers/windows/whatever-the-fuck die and piss off, server or no.
 ;;(define-key global-map (kbd "A-w") (lambda () (progn (mac-key-close-window) (server-edit))))
 (remove-hook 'kill-buffer-query-functions 'server-kill-buffer-query-function)
+
+
+;; Quiet, scratch
+(setq initial-scratch-message "")
+
+
+;; Persist the scratch buffer
+(defvar persistent-scratch-filename 
+    "~/Documents/.emacs-scratch"
+    "Location of *scratch* file contents for persistent-scratch.")
+(defvar persistent-scratch-backup-directory 
+    "~/Documents/.emacs-scratch-backups/"
+    "Location of backups of the *scratch* buffer contents for persistent-scratch.")
+(defun make-persistent-scratch-backup-name ()
+  "Create a filename to backup the current scratch file by
+  concatenating PERSISTENT-SCRATCH-BACKUP-DIRECTORY with the
+  current date and time."
+  (concat 
+   persistent-scratch-backup-directory
+   (format-time-string "%Y-%m-%d-%H%M%S.bak")))
+(defun save-persistent-scratch ()
+  "Write the contents of *scratch* to the file name
+  PERSISTENT-SCRATCH-FILENAME, making a backup copy in
+  PERSISTENT-SCRATCH-BACKUP-DIRECTORY."
+  (with-current-buffer (get-buffer "*scratch*")
+    (if (file-exists-p persistent-scratch-filename)
+        (copy-file persistent-scratch-filename
+                   (make-persistent-scratch-backup-name)))
+    (write-region (point-min) (point-max) 
+                  persistent-scratch-filename)))
+(defun load-persistent-scratch ()
+  "Load the contents of PERSISTENT-SCRATCH-FILENAME into the
+  scratch buffer, clearing its contents first."
+  (if (file-exists-p persistent-scratch-filename)
+      (with-current-buffer (get-buffer-create "*scratch*")
+        (message (concat "Loading saved buffer into " (buffer-name)))
+        (delete-region (point-min) (point-max))
+        (shell-command (format "cat %s" persistent-scratch-filename) (current-buffer)))))
+
+;; bury *scratch* buffer instead of kill it
+(defadvice kill-buffer (around kill-buffer-around-advice activate)
+  (progn
+    (message (concat "Advising kill-buffer on buffer " (buffer-name)))
+    (if (equal (buffer-name) "*scratch*")
+        (progn
+          (message "Burying scratch buffer instead of killing")
+          (bury-buffer)
+          )
+      (progn
+        (message "Killing scratch buffer")
+        ad-do-it))))
+
+;; Load last saved scratch on startup
+(load-persistent-scratch)
+;; Save scratch on emacs exit
+(push #'save-persistent-scratch kill-emacs-hook)
