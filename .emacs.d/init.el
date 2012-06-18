@@ -325,18 +325,23 @@ is a comment, uncomment."
 
 ;; bury *scratch* buffer instead of kill it
 (defadvice kill-buffer (around kill-buffer-around-advice activate)
-  (progn
-    (message (concat "Advising kill-buffer on buffer " (buffer-name)))
-    (if (equal (buffer-name) "*scratch*")
-        (progn
-          (message "Burying scratch buffer instead of killing")
-          (bury-buffer)
-          )
+  (if (equal (buffer-name) "*scratch*")
       (progn
-        (message "Killing scratch buffer")
-        ad-do-it))))
+        (message "Burying scratch buffer instead of killing")
+        (bury-buffer)
+        )
+    (progn
+      ad-do-it)))
 
 ;; Load last saved scratch on startup
 (load-persistent-scratch)
 ;; Save scratch on emacs exit
 (push #'save-persistent-scratch kill-emacs-hook)
+
+
+(defun insert-current-line-number ()
+  (interactive)
+  (insert (format "%d" (line-number-at-pos))))
+;; A-L (cmd-shift-L) should insert current line number
+(define-key global-map (kbd "A-L") 'insert-current-line-number)
+
