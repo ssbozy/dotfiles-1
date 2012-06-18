@@ -204,6 +204,10 @@ case $HOSTNAME in
 
         # Load RVM into a shell session *as a function*
         [[ -s "/Users/pavel/.rvm/scripts/rvm" ]] && source "/Users/pavel/.rvm/scripts/rvm"
+
+        # Weechat UTF8 support, hopefully.
+        export LC_ALL=en_US.UTF-8
+
     ;;
     "newyork")
         # Ubuntu desktop, at home.
