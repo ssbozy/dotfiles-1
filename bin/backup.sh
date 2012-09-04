@@ -107,6 +107,7 @@ fi
 
 # Grab the bip logs
 rsync -r --partial --progress -v --exclude='bip.log' lishin.org:~/.bip/logs ~/Documents/irclogs/bip-logs
+rsync -r --partial --progress -v --exclude='bip.log' moobox.netomat.net:~/.bip/logs ~/Documents/irclogs/bip-logs
 
 # Backup documents
 if [[ "$dest_docs" != "" ]]; then
