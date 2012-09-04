@@ -208,6 +208,8 @@ case $HOSTNAME in
         # Weechat UTF8 support, hopefully.
         export LC_ALL=en_US.UTF-8
 
+        export NODE_PATH="$NODE_PATH;/usr/local/lib/node_modules"
+
     ;;
     "newyork")
         # Ubuntu desktop, at home.
@@ -267,6 +269,9 @@ case $HOSTNAME in
 
         # Update ForwardAgent settings
         [[ -f $HOME/bin/grabssh.sh ]] && $HOME/bin/grabssh.sh
+
+        # No idea why /sbin/ isn't in path by default
+        export PATH=/sbin/:$PATH
 
         # Path to python 2.6
         export PATH=/opt/py26/usr/local/bin/:$PATH
