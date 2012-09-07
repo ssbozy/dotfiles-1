@@ -71,7 +71,7 @@ OPT_DRYRUN="" # Change to -n to only do a dry run, leave blank otherwise
 
 if [[ "$LOCATION" == "work" ]]; then
     hostname="moobox.netomat.net"
-    dest_logs="~/Documents/irclogs/bip-logs"
+    dest_logs="/Users/pavel/Documents/irclogs/bip-logs"
     dest_docs="/media/MooDrive/pavel/backup/index/"
     dest_projects="/media/MooDrive/pavel/backup/projects/"
     dest_images="/media/MooDrive/pavel/backup/images/"
@@ -94,7 +94,7 @@ if [[ "$LOCATION" == "work" ]]; then
     fi
 
 elif [[ "$LOCATION" == "home" ]]; then
-    dest_logs="~/Documents/irclogs/bip-logs"
+    dest_logs="/Users/pavel/Documents/irclogs/bip-logs"
     hostname="192.168.1.100"
     dest_docs="/media/asimov/index/"
     dest_projects="/media/asimov/projects/"
@@ -111,7 +111,7 @@ else
 fi
 
 # Grab the bip logs
-if [[ "$dest_logs" != "" && -d "$dest_logs" ]]; then
+if [[ "$dest_logs" != "" && -d $dest_logs ]]; then
     print_green "Backing up bip logs to $dest_logs"
     rsync $OPT_DRYRUN -r --partial --progress -v --exclude='- bip.log' lishin.org:~/.bip/logs ~/Documents/irclogs/bip-logs
     rsync $OPT_DRYRUN -r --partial --progress -v --exclude='- bip.log' moobox.netomat.net:~/.bip/logs ~/Documents/irclogs/bip-logs
@@ -127,6 +127,7 @@ if [[ "$dest_docs" != "" ]]; then
         --exclude="- netomat/mobilityserver/" \
         --exclude="- netomat/csmobility/" \
         --exclude="- netomat/nycgo/" \
+        --exclude="- netomat/nycgo-stuff/" \
         --exclude=*.screenflow \
         $hostname:$dest_docs
 else
