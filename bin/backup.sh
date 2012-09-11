@@ -25,29 +25,25 @@ LOCATION=$1
 print_standard "Running backup.sh at $date to $LOCATION"
 
 if [[ -d ~/Library/Application\ Support/MobileSync/Backup/ ]]; then
-
     messagedb=3d0d7e5fb2ce288813306e4d4636395e047a3d28
     messagedir=~/Documents/iphone_messages
-
     # Copy iPhone sms sqlite databases to ~/Docs, but only if the file has changed
     # TODO this assumes only a single file in backups!
-
     find ~/Library/Application\ Support/MobileSync/Backup/ -iname $messagedb -exec cp {} /tmp/$messagedb \;
-
     if [[ -e $messagedir/$messagedb ]]; then
         # A recent backup exists
         if ! diff $messagedir/$messagedb /tmp/$messagedb > /dev/null; then
             # Files are different; make a copy.
             print_green "Backing up new copy of iPhone SMS database."
-            #mv $messagedir/$messagedb $messagedir/$messagedb.`date +%Y%m%d.%H%M`.sqlite
-            tar -cvzf $messagedir/$messagedb.`date +%Y%m%d.%H%M`.tar.gz $messagedir/$messagedb
+            cd /tmp/ && tar -czf $messagedir/$messagedb.`date +%Y%m%d.%H%M`.tar.gz /tmp/$messagedb
             mv /tmp/$messagedb $messagedir/
-        # else
-        #     print_green "Files are identical, not backing up"
+        else
+            print_green "Files are identical, not backing up iPhone SMS database."
         fi
     else
         # There are no backups in ~/Documents yet
         print_green "Backing up iPhone SMS database."
+        cd /tmp/ && tar -czf $messagedir/$messagedb.`date +%Y%m%d.%H%M`.tar.gz /tmp/$messagedb
         mv /tmp/$messagedb $messagedir/
     fi
 fi
