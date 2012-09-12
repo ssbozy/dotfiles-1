@@ -209,6 +209,7 @@ case $HOSTNAME in
         export LC_ALL=en_US.UTF-8
 
         export NODE_PATH="$NODE_PATH;/usr/local/lib/node_modules"
+        export IPYTHONDIR="$IPYTHONDIR"
 
     ;;
     "newyork")
