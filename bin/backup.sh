@@ -98,8 +98,8 @@ elif [[ "$LOCATION" == "home" ]]; then
     dest_camera="/media/niven/camera/"
     dest_pictures="/media/niven/pictures/"
     dest_itunes="/media/asimov/Yonkpod/YonkLibrary/"
-    dest_porn="/media/niven/porn/"
-    dest_mirror="/media/asimov/Downloads/mirror/"
+    # dest_porn="/media/niven/porn/"
+    # dest_mirror="/media/asimov/Downloads/mirror/"
 
 else
     print_red "Invalid location specified.";
@@ -120,6 +120,7 @@ if [[ "$dest_docs" != "" ]]; then
     print_green "Backing up documents to $hostname:$dest_docs"
     rsync $OPT_DRYRUN -a -r -z -v -u -h $OPT_DELETE --progress --partial --timeout=30 \
         ~/Documents/  \
+        --exclude="- *.DS_Store" \
         --exclude="- netomat/mobilityserver/" \
         --exclude="- netomat/csmobility/" \
         --exclude="- netomat/nycgo/" \
@@ -135,6 +136,7 @@ if [[ "$dest_projects" != "" ]]; then
     print_green "Backing up projects to $hostname:$dest_projects"
     rsync $OPT_DRYRUN -a -r -z -v -u -h $OPT_DELETE --progress --partial --timeout=30 \
         --exclude="- *.vdi" \
+        --exclude="- *.DS_Store" \
         ~/projects/  \
         $hostname:$dest_projects
 else
@@ -146,6 +148,7 @@ if [[ "$dest_images" != "" ]]; then
     print_green "Backing up images to $hostname:$dest_images"
     rsync $OPT_DRYRUN -a -r -z -v -u -h $OPT_DELETE --progress --partial --timeout=30 \
         --exclude="- \!pf/" \
+        --exclude="- *.DS_Store" \
         ~/images/  \
         $hostname:$dest_images
 else
@@ -157,6 +160,7 @@ if [[ "$dest_pictures" != "" ]]; then
     print_green "Backing up pictures to $hostname:$dest_pictures"
     rsync $OPT_DRYRUN -a -r -z -v -u -h $OPT_DELETE --progress --partial --timeout=30 \
         --exclude="- iPhoto Library/" \
+        --exclude="- *.DS_Store" \
         ~/Pictures/  \
         $hostname:$dest_pictures
 else
@@ -167,6 +171,7 @@ fi
 if [[ "$dest_itunes" != "" ]]; then
     print_green "Backing up iTunes to $hostname:$dest_itunes"
     rsync $OPT_DRYRUN -r -z -v -u -h --delete --progress --partial --timeout=30 \
+        --exclude="- *.DS_Store" \
         ~/Music/iTunes/iTunes\ Media/  \
         $hostname:$dest_itunes
 else
@@ -177,6 +182,7 @@ fi
 if [[ "$dest_camera" != "" ]]; then
     print_green "Backing up camera to $hostname:$dest_camera"
     rsync $OPT_DRYRUN -a -r -z -v -u -h --progress --partial --timeout=30 \
+        --exclude="- *.DS_Store" \
         ~/camera/  \
         $hostname:$dest_camera
 else
@@ -187,6 +193,7 @@ fi
 if [[ "$dest_porn" != "" && -d ~/porn ]]; then
     print_green "Backing up porn to $hostname:$dest_porn"
     rsync $OPT_DRYRUN -a -r -z -v -u -h --delete --progress --partial --timeout=30 \
+        --exclude="- *.DS_Store" \
         ~/porn/  \
         $hostname:$dest_porn
 else
@@ -197,6 +204,7 @@ fi
 if [[ "$dest_mirror" != "" ]]; then
     print_green "Backing up mirrors to $hostname:$dest_mirror"
     rsync $OPT_DRYRUN -a -r -z -v -u -h --delete --progress --partial --timeout=30 \
+        --exclude="- *.DS_Store" \
         --exclude="- 4ch/" \
         --exclude="- rss/" \
         ~/Downloads/mirror/  \
@@ -206,6 +214,7 @@ if [[ "$dest_mirror" != "" ]]; then
         # Only sync 4ch if it exists
         print_green "Synching 4ch folder"
         rsync $OPT_DRYRUN -a -r -z -v -u -h --delete --progress --partial --timeout=30 --delete \
+            --exclude="- *.DS_Store" \
             ~/Downloads/mirror/4ch/  \
             $hostname:"$dest_mirror/4ch/"
     else
