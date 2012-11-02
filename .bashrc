@@ -84,6 +84,8 @@ export PROMPT_COMMAND='history -a'
 # iPython should live in ~/.ipython/
 export IPYTHON_DIR=~/.ipython/
 
+# http://bclary.com/blog/2006/07/20/pipefail-testing-pipeline-exit-codes/
+set -o pipefail
 
 ###################
 # OS specific stuff
@@ -206,7 +208,7 @@ case $HOSTNAME in
         [[ -s "/Users/pavel/.rvm/scripts/rvm" ]] && source "/Users/pavel/.rvm/scripts/rvm"
 
         # Weechat UTF8 support, hopefully.
-        export LC_ALL=en_US.UTF-8
+        # export LC_ALL=en_US.UTF-8
 
         export NODE_PATH="$NODE_PATH;/usr/local/lib/node_modules"
         export IPYTHONDIR="$IPYTHONDIR"
