@@ -82,7 +82,7 @@ export EDITOR=vim
 export PROMPT_COMMAND='history -a'
 
 # iPython should live in ~/.ipython/
-export IPYTHON_DIR=~/.ipython/
+export IPYTHONDIR=~/.ipython/
 
 # http://bclary.com/blog/2006/07/20/pipefail-testing-pipeline-exit-codes/
 set -o pipefail
