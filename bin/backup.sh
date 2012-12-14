@@ -101,6 +101,14 @@ elif [[ "$LOCATION" == "home" ]]; then
     # dest_porn="/media/niven/porn/"
     # dest_mirror="/media/asimov/Downloads/mirror/"
 
+    echo "Running backup for home2 as well"
+    bash $0 "home2"
+
+elif [[ "$LOCATION" == "home2" ]]; then
+    hostname="192.168.1.100"
+    dest_docs="/media/niven/index/"
+    dest_images="/media/niven/images/"
+
 else
     print_red "Invalid location specified.";
     exit 1;
@@ -121,8 +129,6 @@ if [[ "$dest_docs" != "" ]]; then
     rsync $OPT_DRYRUN -a -r -z -v -u -h $OPT_DELETE --progress --partial --timeout=30 \
         ~/Documents/  \
         --exclude="- *.DS_Store" \
-        --exclude="- netomat/mobilityserver/" \
-        --exclude="- netomat/csmobility/" \
         --exclude="- netomat/nycgo/" \
         --exclude="- netomat/nycgo-stuff/" \
         --exclude=*.screenflow \
