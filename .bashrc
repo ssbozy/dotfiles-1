@@ -211,7 +211,6 @@ case $HOSTNAME in
         export LC_ALL=en_US.UTF-8
 
         export NODE_PATH="$NODE_PATH;/usr/local/lib/node_modules"
-        export IPYTHONDIR="$IPYTHONDIR"
 
     ;;
     "newyork")
@@ -326,3 +325,10 @@ if [[ $PS1_PATH == 1 ]]; then
 fi
 PS1="${PS1}${PS1_DICKS}"
 export PS1
+
+
+if [ -f ~/.localbashrc ]; then
+    # Maybe I'm on a system I don't want to stick in the repo,
+    # but I still need/want to customize
+    . ~/.localbashrc
+fi
