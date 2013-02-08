@@ -161,15 +161,6 @@ case $HOSTNAME in
             nohup tinyur.py 2>&1 >> ~/tinyur.log &
         fi
 
-        # Make sure TotalTerminal is running
-        # PROBLEM - this makes the current terminal window fuck off forever,
-        # even if you just open a new tab.
-        if [[ -f ~/bin/is_total_terminal_running.sh && `~/bin/is_total_terminal_running.sh` == "no" ]]; then
-            if [ -d /Applications/TotalTerminal.app/ ]; then
-                open /Applications/TotalTerminal.app/
-            fi
-        fi
-
         # Bash completion, obv.
         # if [ -f `brew --prefix`/etc/bash_completion ]; then
         #     source `brew --prefix`/etc/bash_completion
