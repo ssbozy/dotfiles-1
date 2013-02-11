@@ -50,10 +50,8 @@ fi
 if [ -d "${HOME}/.gem/ruby/1.8/bin" ]; then
     export PATH=${HOME}/.gem/ruby/1.8/bin:$PATH
 fi
-if [[ "$LC_ALL" == "" ]]; then
-    # Shut the fuck up, perl on prgmr
-    export LC_ALL="C"
-fi
+
+export LC_ALL="C"
 
 
 
@@ -202,6 +200,19 @@ case $HOSTNAME in
         export LC_ALL=en_US.UTF-8
 
         export NODE_PATH="$NODE_PATH;/usr/local/lib/node_modules"
+
+        ### Set iTerm2 window/tab title
+        # $1 = type; 0 - both, 1 - tab, 2 - title
+        # rest = text
+        setTerminalText () {
+            # echo works in bash & zsh
+            local mode=$1 ; shift
+            echo -ne "\033]$mode;$@\007"
+        }
+        stt_both  () { setTerminalText 0 $@; }
+        stt_tab   () { setTerminalText 1 $@; }
+        stt_title () { setTerminalText 2 $@; }
+
 
     ;;
     "newyork")
