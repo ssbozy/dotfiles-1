@@ -102,10 +102,7 @@ case $OSTYPE in
         # Use OS X emacs
         if [ -d /Applications/Emacs.app/Contents/MacOS/bin ]; then
             export PATH=/Applications/Emacs.app/Contents/MacOS/bin:$PATH
-            # Prevent Emacs from being launched twice;
-            # and from launching from /usr/bin/emacs
-            # and fuck it, this is what I mean all the time anyway.
-            alias emacs='emacsclient -c -n'
+            alias emacs='emacsclient -n' # Open new files from command line in existing frame
             EDITOR="emacsclient"
         fi
     ;;
