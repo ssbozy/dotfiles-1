@@ -147,6 +147,9 @@ case $HOSTNAME in
 
         # Homebrew
         export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+        
+        # Android
+        export PATH=/Users/pavel/Downloads/android/adt-bundle-mac-x86_64-20130219/sdk/platform-tools:$PATH
 
         alias restart_growl="killall GrowlHelperApp; open -b com.Growl.GrowlHelperApp"
 
