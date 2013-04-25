@@ -98,8 +98,8 @@ elif [[ "$LOCATION" == "home" ]]; then
     dest_camera="/media/niven/camera/"
     dest_pictures="/media/niven/pictures/"
     dest_itunes="/media/asimov/Yonkpod/YonkLibrary/"
-    # dest_porn="/media/niven/porn/"
-    # dest_mirror="/media/asimov/Downloads/mirror/"
+    dest_porn="/media/niven/porn/"
+    dest_mirror="/media/asimov/Downloads/mirror/"
 
     echo "Running backup for home2 as well"
     bash $0 "home2"
