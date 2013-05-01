@@ -216,9 +216,9 @@
 	<key>NSTableView Sort Ordering KeyBingingTable</key>
 	<array/>
 	<key>NSWindow Frame NSColorPanel</key>
-	<string>367 342 214 309 0 0 1680 1028 </string>
+	<string>427 408 214 309 0 0 1920 1178 </string>
 	<key>NSWindow Frame Preferences</key>
-	<string>688 345 924 485 0 0 1680 1028 </string>
+	<string>688 495 924 485 0 0 1920 1178 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
 	<string>0 599 1619 429 0 0 1680 1028 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
@@ -323,9 +323,9 @@
 			<key>Ansi 4 Color</key>
 			<dict>
 				<key>Blue Component</key>
-				<real>0.73333334922790527</real>
+				<real>0.97311580181121826</real>
 				<key>Green Component</key>
-				<real>0.0</real>
+				<real>0.0049090567044913769</real>
 				<key>Red Component</key>
 				<real>0.0</real>
 			</dict>
@@ -1017,7 +1017,7 @@
 			<key>Terminal Type</key>
 			<string>xterm</string>
 			<key>Transparency</key>
-			<real>0.14480631053447723</real>
+			<real>0.10176590085029602</real>
 			<key>Triggers</key>
 			<array/>
 			<key>Unlimited Scrollback</key>
@@ -1841,7 +1841,7 @@
 			<key>Terminal Type</key>
 			<string>xterm</string>
 			<key>Transparency</key>
-			<real>0.30000001192092896</real>
+			<real>0.1019115224480629</real>
 			<key>Triggers</key>
 			<array/>
 			<key>Unlimited Scrollback</key>
