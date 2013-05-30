@@ -247,7 +247,7 @@ is a comment, uncomment."
 
 ;; Change directory into my virtual machine, so I don't have to do it by hand each morning.
 ;;(defun go-vodkamat () (cd "/vodka:/home/pavel/projects/mobilityserver") )
-(defun go-vodkamat () (cd "/projects/mobilityserver") )
+(defun go-vodkamat () (cd "/Users/pavel/projects/mobilityserver") )
 
 ;; cua-mode
 (setq cua-rectangle-mark-key (kbd "<f5>"))
