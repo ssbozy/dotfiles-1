@@ -59,9 +59,8 @@ dest_porn=""
 dest_mirror=""
 dest_logs=""
 
-# disabling auto-deletion since I plan on nuking ~/Documents - and running backup before it's restored
-# would severely fuck me.
-OPT_DELETE="" # change to --delete to delete stuff
+# Enabling this; crashplan gives me history stuff.
+OPT_DELETE="--delete" # change to --delete to delete stuff
 OPT_DRYRUN="" # Change to -n to only do a dry run, leave blank otherwise
 
 
@@ -140,7 +139,7 @@ fi
 # Backup projects
 if [[ "$dest_projects" != "" ]]; then
     print_green "Backing up projects to $hostname:$dest_projects"
-    rsync $OPT_DRYRUN -a -r -z -v -u -h $OPT_DELETE --progress --partial --timeout=30 \
+    rsync $OPT_DRYRUN -a -r -z -v -u -h --progress --partial --timeout=30 \
         --exclude="- *.vdi" \
         --exclude="- *.DS_Store" \
         ~/projects/  \
@@ -164,7 +163,7 @@ fi
 # Backup pictures
 if [[ "$dest_pictures" != "" ]]; then
     print_green "Backing up pictures to $hostname:$dest_pictures"
-    rsync $OPT_DRYRUN -a -r -z -v -u -h $OPT_DELETE --progress --partial --timeout=30 \
+    rsync $OPT_DRYRUN -a -r -z -v -u -h --progress --partial --timeout=30 \
         --exclude="- iPhoto Library/" \
         --exclude="- *.DS_Store" \
         ~/Pictures/  \

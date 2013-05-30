@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# NOTE: this requires ghostscript to be installed.
+
 date_string=`date +%Y%m%d.%H%M`
 destination="/home/pavel/pavelcam/pavelcam.$date_string.jpg"
 key=/Users/pavel/.ssh/id_dsa_pavelcam
@@ -8,7 +10,7 @@ key=/Users/pavel/.ssh/id_dsa_pavelcam
 # Capture image.
 if ! /Users/pavel/bin/isightcapture -w 640 -h 480 -t jpg /Users/pavel/Temp/pavelcam.jpg; then
     echo "Unable take photo."
-    /usr/local/bin/growlnotify -t 'Unable to take Pavelcam image' -m "Something went wrong." --sticky
+    #/usr/local/bin/growlnotify -t 'Unable to take Pavelcam image' -m "Something went wrong." --sticky
 else
     # Copy image to isight folder.
     mkdir -p /Users/pavel/Pictures/isight/`date +%Y`/`date +%m`/
