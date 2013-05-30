@@ -127,7 +127,7 @@ esac
 # Host specific stuff
 #####################
 case $HOSTNAME in
-    "vodkamat.netomat.net" | "austin" | "addison")
+    "vodkamat.netomat.net" | "austin" | "austin.local" | "addison")
         # My Macbook
         #TODO this hostname is temporary, damnit, this thing should be called "austin"
 
@@ -147,6 +147,7 @@ case $HOSTNAME in
 
         # Homebrew
         export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+        export PATH=/usr/local/share/python:$PATH
         
         # Android
         export PATH=/Users/pavel/Downloads/android/adt-bundle-mac-x86_64-20130219/sdk/platform-tools:$PATH
@@ -170,9 +171,10 @@ case $HOSTNAME in
         # fi
 
         # Start tmux
-        if ! tmux has-session -t startup 1>/dev/null 2>/dev/null; then
-            tmux -u new-session -d -s startup
-        fi
+        # if ! tmux has-session -t startup 1>/dev/null 2>/dev/null; then
+        #     tmux -u new-session -d -s startup
+        # fi
+
 
         # I don't know why, but when I try to attach tmux in TotalTerminal,
         # it refuses to show UTF8 characters. So fuck it! This really only runs
