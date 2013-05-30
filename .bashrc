@@ -142,6 +142,8 @@ case $HOSTNAME in
         alias 4ch='/Users/pavel/projects/mirror/mirror.py --4ch'
         alias updatedb="LC_ALL='C' sudo gupdatedb --prunepaths='/Volumes'"  # Don't index any external drives, or anything mounted via sshfs, etc.
 
+        alias php=fakephp
+
         # Make sure tmux can display UTF data correctly
         alias tmux='tmux -u'
 
