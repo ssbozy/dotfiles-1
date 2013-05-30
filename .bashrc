@@ -155,9 +155,9 @@ case $HOSTNAME in
 
         # Launch tinyur desktop screenshot monitor
         # *after* my happy Tmux session starts, so we don't get multiples.
-        if ! ps ax | egrep tinyu[r].py > /dev/null && which tinyur.py > /dev/null; then
-            nohup tinyur.py 2>&1 >> ~/tinyur.log &
-        fi
+        # if ! ps ax | egrep tinyu[r].py > /dev/null && which tinyur.py > /dev/null; then
+        #     nohup tinyur.py 2>&1 >> ~/tinyur.log &
+        # fi
 
         # Bash completion, obv.
         # if [ -f `brew --prefix`/etc/bash_completion ]; then
