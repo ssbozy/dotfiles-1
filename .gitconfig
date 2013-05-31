@@ -31,3 +31,5 @@
     conflictstyle = diff3
 [color "diff"]
     whitespace = blue reverse
+[diff]
+	algorithm = patience
