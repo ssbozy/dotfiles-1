@@ -141,7 +141,6 @@ case $HOSTNAME in
         alias mirror=/Users/pavel/projects/mirror/mirror.py
         alias 4ch='/Users/pavel/projects/mirror/mirror.py --4ch'
         alias updatedb="LC_ALL='C' sudo gupdatedb --prunepaths='/Volumes'"  # Don't index any external drives, or anything mounted via sshfs, etc.
-
         alias php=fakephp
 
         # Make sure tmux can display UTF data correctly
@@ -176,6 +175,11 @@ case $HOSTNAME in
         # if ! tmux has-session -t startup 1>/dev/null 2>/dev/null; then
         #     tmux -u new-session -d -s startup
         # fi
+
+        # git bash completion
+        if [ -f $HOME/git-completion.bash ]; then
+            source $HOME/git-completion.bash
+        fi
 
         # ec2-api-tools
         export JAVA_HOME="$(/usr/libexec/java_home)"
