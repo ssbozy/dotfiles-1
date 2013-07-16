@@ -343,3 +343,6 @@ if [ -f ~/.localbashrc ]; then
     # but I still need/want to customize
     . ~/.localbashrc
 fi
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
