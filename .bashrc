@@ -127,6 +127,14 @@ esac
 # Host specific stuff
 #####################
 case $HOSTNAME in
+    "plishin.local")
+        # BazaarVoice Macbook
+        # Not committing this to public repo, might contain sensitive stuff
+        if [ -f $HOME/.bazaarvoice.bashrc ]; then
+            source $HOME/.bazaarvoice.bashrc
+        fi
+
+    ;;
     "vodkamat.netomat.net" | "austin" | "austin.local" | "addison")
         # My Macbook
         #TODO this hostname is temporary, damnit, this thing should be called "austin"

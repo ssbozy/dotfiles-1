@@ -8,6 +8,9 @@
 [color]
     ui = auto
     whitespace = trailing-space,space-before-tab,tab-in-indent
+	branch = auto
+	interactive = auto
+	status = auto
 
 [alias]
     st = status
