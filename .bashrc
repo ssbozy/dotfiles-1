@@ -99,6 +99,11 @@ case $OSTYPE in
             #source `brew --prefix`/etc/bash_completion
         fi
 
+        # git bash completion
+        if [ -f $HOME/git-completion.bash ]; then
+            source $HOME/git-completion.bash
+        fi
+
         # Use OS X emacs
         if [ -d /Applications/Emacs.app/Contents/MacOS/bin ]; then
             export PATH=/Applications/Emacs.app/Contents/MacOS/bin:$PATH
@@ -131,6 +136,7 @@ case $HOSTNAME in
         # BazaarVoice Macbook
         # Not committing this to public repo, might contain sensitive stuff
         if [ -f $HOME/.bazaarvoice.bashrc ]; then
+            export JAVA_HOME=$(/usr/libexec/java_home)
             source $HOME/.bazaarvoice.bashrc
         fi
 
@@ -184,10 +190,6 @@ case $HOSTNAME in
         #     tmux -u new-session -d -s startup
         # fi
 
-        # git bash completion
-        if [ -f $HOME/git-completion.bash ]; then
-            source $HOME/git-completion.bash
-        fi
 
         # ec2-api-tools
         export JAVA_HOME="$(/usr/libexec/java_home)"
