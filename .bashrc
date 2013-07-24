@@ -140,6 +140,9 @@ case $HOSTNAME in
             source $HOME/.bazaarvoice.bashrc
         fi
 
+        # Copy of Chrome that I've signed into on my personal account
+        alias chrm="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --user-data-dir=/Users/pavel.lishin/Temp/chrm/"
+
     ;;
     "vodkamat.netomat.net" | "austin" | "austin.local" | "addison")
         # My Macbook
