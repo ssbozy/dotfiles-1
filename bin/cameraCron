@@ -5,7 +5,7 @@
 date_string=`date +%Y%m%d.%H%M`
 destination="/home/pavel/pavelcam/pavelcam.$date_string.jpg"
 key=$HOME/.ssh/id_dsa_pavelcam
-WIFI=`/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I | grep ' SSID' | cut -d : -f 2`
+WIFI=`/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I | grep ' SSID' | cut -d : -f 2 | cut -c 2-`
 
 # Capture image.
 if [ "$WIFI" == "wlBazaar" ]; then
