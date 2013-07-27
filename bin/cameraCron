@@ -17,8 +17,8 @@ elif ! $HOME/bin/isightcapture -w 640 -h 480 -t jpg $HOME/Temp/pavelcam.jpg; the
         echo "$date_string: Unable take photo."
 else
     # Copy image to isight folder.
-    mkdir -p $HOME/Pictures/isight/$hostname/`date +%Y`/`date +%m`/
-    cp $HOME/Temp/pavelcam.jpg $HOME/Pictures/isight/$hostname/`date +%Y`/`date +%m`/pavelcam.$date_string.jpg
+    mkdir -p $HOME/Pictures/isight/`date +%Y`/`date +%m`/
+    cp $HOME/Temp/pavelcam.jpg $HOME/Pictures/isight/`date +%Y`/`date +%m`/pavelcam.$hostname.$date_string.jpg
 
     # Tag picture with date
     /usr/local/bin/convert $HOME/Temp/pavelcam.jpg -fill white -draw "text 434,474 '`date '+%Y-%m-%d %H:%M'`'" -fill black -draw "text 435,475 '`date '+%Y-%m-%d %H:%M'`'" $HOME/Temp/pavelcam_date.jpg
