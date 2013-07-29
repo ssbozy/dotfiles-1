@@ -35,4 +35,8 @@
 [color "diff"]
     whitespace = blue reverse
 [diff]
-	algorithm = patience
+    algorithm = patience
+
+[diff "zip"]
+    textconv = unzip -c -a
+
