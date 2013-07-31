@@ -143,6 +143,9 @@ case $HOSTNAME in
         # Copy of Chrome that I've signed into on my personal account
         alias chrm="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --user-data-dir=/Users/pavel.lishin/Temp/chrm/"
 
+        # Open file in IntelliJ from command line
+        alias idea="open -b com.jetbrains.intellij"
+
     ;;
     "vodkamat.netomat.net" | "austin" | "austin.local" | "addison")
         # My Macbook
