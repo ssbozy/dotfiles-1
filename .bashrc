@@ -110,6 +110,9 @@ case $OSTYPE in
             alias emacs='emacsclient -n' # Open new files from command line in existing frame
             EDITOR="emacsclient"
         fi
+
+        # Homebrew
+        export PATH=/usr/local/bin:/usr/local/sbin:$PATH
     ;;
     *)
         # Everything else
@@ -166,10 +169,6 @@ case $HOSTNAME in
         # Make sure tmux can display UTF data correctly
         alias tmux='tmux -u'
 
-        # Homebrew
-        export PATH=/usr/local/bin:/usr/local/sbin:$PATH
-        export PATH=/usr/local/share/python:$PATH
-        
         # Android
         export PATH=/Users/pavel/Downloads/android/adt-bundle-mac-x86_64-20130219/sdk/platform-tools:$PATH
 
