@@ -148,6 +148,9 @@ case $HOSTNAME in
 
         # Open file in IntelliJ from command line
         alias idea="open -b com.jetbrains.intellij"
+        
+        # There is perhaps a 1% chance that I give a remote shit about gwt
+        alias gwag="ag --ignore='*gwt*'"
 
     ;;
     "vodkamat.netomat.net" | "austin" | "austin.local" | "addison")
