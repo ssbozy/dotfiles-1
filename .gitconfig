@@ -4,6 +4,7 @@
 
 [core]
     excludesfile = ~/.gitignore
+    ignorecase = false
 
 [color]
     ui = auto
@@ -36,6 +37,7 @@
     whitespace = blue reverse
 [diff]
     algorithm = patience
+    renames = copies
 
 [diff "zip"]
     textconv = unzip -c -a
