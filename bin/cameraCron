@@ -27,5 +27,5 @@ else
     scp -i $key $HOME/Temp/pavelcam_date.jpg pavelcam@lishin.org:$destination
 
     # Symlink across domains
-    ssh -i $key pavelcam@lishin.org "ln -sf $destination /var/domains/widgetsex.com/pavelcam.jpg; ln -sf $destination /var/domains/lishin.org/pavelcam.jpg; ln -sf $destination /var/domains/pavel.lishin.org/pavelcam.jpg"
+    ssh -i $key pavelcam@lishin.org "cp $destination /var/domains/widgetsex.com/pavelcam.jpg; cp $destination /var/domains/lishin.org/pavelcam.jpg; cp $destination /var/domains/pavel.lishin.org/pavelcam.jpg; rm $destination;"
 fi
