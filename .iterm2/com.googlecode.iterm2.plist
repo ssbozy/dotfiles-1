@@ -218,11 +218,15 @@
 	<key>NSWindow Frame SUStatusFrame</key>
 	<string>1055 966 384 129 0 0 2560 1418 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 0 2560 1440 0 0 2560 1418 </string>
+	<string>0 108 732 469 0 0 1920 1178 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>1340 8 1160 865 0 0 2560 1440 </string>
+	<string>1287 10 1210 735 0 0 2560 1418 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
-	<string>1183 206 732 469 0 0 2560 1418 </string>
+	<string>1205 420 1166 987 0 0 2560 1418 </string>
+	<key>NSWindow Frame iTerm Window 3</key>
+	<string>1525 825 746 469 0 0 2560 1418 </string>
+	<key>NSWindow Frame iTerm Window 4</key>
+	<string>401 949 732 469 0 0 2560 1418 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -476,7 +480,6 @@
 			<key>Jobs to Ignore</key>
 			<array>
 				<string>rlogin</string>
-				<string>ssh</string>
 				<string>slogin</string>
 				<string>telnet</string>
 				<string>tmux</string>
@@ -1932,7 +1935,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2013-08-12T18:23:05Z</date>
+	<date>2013-09-25T15:14:59Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>ShowBookmarkName</key>
