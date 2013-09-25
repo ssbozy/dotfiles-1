@@ -137,6 +137,10 @@ esac
 case $HOSTNAME in
     "plishin.local")
         # BazaarVoice Macbook
+
+        # Come on, weechat, let's have some unicode
+        export LC_ALL="en_US.UTF-8"
+
         # Not committing this to public repo, might contain sensitive stuff
         if [ -f $HOME/.bazaarvoice.bashrc ]; then
             export JAVA_HOME=$(/usr/libexec/java_home)
