@@ -4,10 +4,12 @@
 
 [core]
     excludesfile = ~/.gitignore
+    # Do not ignore case-changes, we're not in Windowsland.
     ignorecase = false
 
 [color]
     ui = auto
+    # Highlight trailing spaces, and tabs, which I hate.
     whitespace = trailing-space,space-before-tab,tab-in-indent
 	branch = auto
 	interactive = auto
@@ -19,26 +21,37 @@
     cm = commit -m
     cp = cherry-pick
 
+    # Pretty log, with one-commit-per-line
     lg = log --pretty=format:'%Cred%h%Creset %Cblue%ci%Creset %s %Cgreen%cn %ce%Creset'
-    lg2 = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen%cn%Creset %Cblue(%cr)%Creset' --abbrev-commit --date=relative
     
+    # Pretty tree-like log, with branches and tags hilighted
+    lg2 = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen%cn%Creset %Cblue(%cr)%Creset' --abbrev-commit --date=relative
+
+    # log -p with pretty colors
     logp = log -p --word-diff=color
-    diffp = diff --word-diff=colorb
+
 [format]
     # pretty = format:Commit %C(red black)%H %Creset %nAuthor: %an %nDate: %cD %n%n%s %n
 
 [branch]
     autosetuprebase = always
+
+# When running `git push`, only push the current branch.
 [push]
-    default = matching
+    default = current
+
 [merge]
     conflictstyle = diff3
+
+# Highlight pointless trailing white space
 [color "diff"]
     whitespace = blue reverse
+
 [diff]
     algorithm = patience
     renames = copies
 
+# When comparing zipped files, unzip them first to compare the contents
 [diff "zip"]
     textconv = unzip -c -a
 
