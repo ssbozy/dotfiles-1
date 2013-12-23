@@ -1289,7 +1289,7 @@
 			<key>Idle Code</key>
 			<integer>0</integer>
 			<key>Initial Text</key>
-			<string></string>
+			<string>tmux att -t startup || tmux new -s startup</string>
 			<key>Jobs to Ignore</key>
 			<array>
 				<string>rlogin</string>
