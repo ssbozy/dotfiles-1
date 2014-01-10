@@ -11,6 +11,8 @@ WIFI=`/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Re
 # Capture image.
 if [ "$WIFI" == "wlBazaar" ]; then
     echo "$date_string: Not taking photo on BazaarVoice wifi"
+elif [ "$WIFI" == "BVAir" ]; then
+    echo "$date_string: Not taking photo on BazaarVoice wifi"
 elif [ "$WIFI" == "guestBazaar" ]; then
     echo "$date_string: Not taking photo on BazaarVoice wifi"
 elif ! $HOME/bin/isightcapture -w 640 -h 480 -t jpg $HOME/Temp/pavelcam.jpg; then
