@@ -51,7 +51,6 @@ for dotfile_path in `find $DOT_DIR -maxdepth 1 -not -ipath "$DOT_DIR/.git/*" -an
 done
 
 print_green "Symlinking bin files."
-
 # Now, take care of ~/bin/
 if [[ -d $HOME/bin || -L $HOME/bin ]]; then
     print_green "Moving $HOME/bin to $BAK_DIR/bin"
@@ -83,6 +82,10 @@ if [[ -f $HOSTBIPCONF ]]; then
     print_green "Installing ~/.bip/bip.conf from $HOSTBIPCONF"
     rm ~/.bip/bip.conf
     ln -s $HOSTBIPCONF .bip/bip.conf
+    
+    print_red "Be sure to symlink ~/.bip/logs/ to ~/Dropbox/irclogs/"
 else
     print_yellow "Not configuring bip; $HOSTBIPCONF not found"
 fi
+
+print_red "Be sure to symlink ~/Pictures/isight/ to ~/Dropbox/isight/"
