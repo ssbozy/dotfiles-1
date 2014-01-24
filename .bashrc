@@ -142,8 +142,10 @@ case $HOSTNAME in
         export LC_ALL="en_US.UTF-8"
 
         # Not committing this to public repo, might contain sensitive stuff
+        
         if [ -f $HOME/.bazaarvoice.bashrc ]; then
-            export JAVA_HOME=$(/usr/libexec/java_home)
+            # ABBA does not work with Java 1.7 yet, so we need this for maven.
+            export JAVA_HOME=/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/
             source $HOME/.bazaarvoice.bashrc
         fi
 
@@ -152,10 +154,6 @@ case $HOSTNAME in
 
         # Open file in IntelliJ from command line
         alias idea="open -b com.jetbrains.intellij"
-        
-        # There is perhaps a 1% chance that I give a remote shit about gwt
-        alias gwag="ag --ignore='*gwt*'"
-
     ;;
     "vodkamat.netomat.net" | "austin" | "austin.local" | "addison")
         # My Macbook
