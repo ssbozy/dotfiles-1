@@ -33,10 +33,13 @@ export HISTSIZE=15000
 export HISTFILESIZE=15000
 # Store timestamps
 export HISTTIMEFORMAT='%F %T '
-# Append to history file, don't overwrite.
-shopt -s histappend
-# don't try to complete on nothing
-shopt -s no_empty_cmd_completion
+if [ -n "$BASH_VERSION" ] && [ -n "$POSIXLY_CORRECT" ]; then
+    # Append to history file, don't overwrite.
+    shopt -s histappend
+    # don't try to complete on nothing
+    shopt -s no_empty_cmd_completion
+fi
+
 # check the window size after each command and, if necessary, update the values of LINES and COLUMNS.
 # Uh, I think this is actually fucking shit up.
 # shopt -s checkwinsize
@@ -82,8 +85,11 @@ export PROMPT_COMMAND='history -a'
 # iPython should live in ~/.ipython/
 export IPYTHONDIR=~/.ipython/
 
-# http://bclary.com/blog/2006/07/20/pipefail-testing-pipeline-exit-codes/
-set -o pipefail
+# If block needed due to Ubuntu bug: https://bugs.launchpad.net/ubuntu/+source/lightdm/+bug/1097903
+if [ -n "$BASH_VERSION" ] && [ -n "$POSIXLY_CORRECT" ]; then
+    # http://bclary.com/blog/2006/07/20/pipefail-testing-pipeline-exit-codes/
+    set -o pipefail
+fi
 
 ###################
 # OS specific stuff
