@@ -74,6 +74,7 @@ PS1_HOST_COLOR=$COLOR_LIGHT_BLUE
 PS1_PATH_COLOR=$COLOR_LIGHT_CYAN
 
 alias grep='grep --color=auto'
+alias rot13="tr '[A-Za-z]' '[N-ZA-Mn-za-m]'"
 
 # for crontabs, git, etc.
 export EDITOR=vim
