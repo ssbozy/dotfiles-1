@@ -15,6 +15,8 @@ elif [ "$WIFI" == "BVAir" ]; then
     echo "$date_string: Not taking photo on BazaarVoice wifi"
 elif [ "$WIFI" == "guestBazaar" ]; then
     echo "$date_string: Not taking photo on BazaarVoice wifi"
+elif [ "$WIFI" == "wifi.bazaarvoice.com" ]; then
+    echo "$date_string: Not taking photo on BazaarVoice wifi"
 elif ! $HOME/bin/isightcapture -w 640 -h 480 -t jpg $HOME/Temp/pavelcam.jpg; then
         echo "$date_string: Unable take photo."
 else
