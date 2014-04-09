@@ -216,17 +216,17 @@
 	<key>NSTableView Sort Ordering KeyBingingTable</key>
 	<array/>
 	<key>NSWindow Frame Preferences</key>
-	<string>1049 660 924 485 0 0 2560 1418 </string>
+	<string>1024 660 924 485 0 0 2560 1418 </string>
 	<key>NSWindow Frame SUStatusFrame</key>
 	<string>736 786 384 129 0 0 1920 1178 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 1181 2497 237 0 0 2560 1418 </string>
+	<string>0 370 732 469 0 0 2560 1418 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>2 4 1734 1169 0 0 1920 1178 </string>
+	<string>1127 0 732 866 0 0 1920 1178 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
-	<string>595 33 732 777 0 0 1920 1178 </string>
+	<string>1222 937 732 469 0 0 2560 1418 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
-	<string>3 4 1628 1169 0 0 1920 1178 </string>
+	<string>1843 7 651 952 0 0 2560 1418 </string>
 	<key>NSWindow Frame iTerm Window 4</key>
 	<string>401 949 732 469 0 0 2560 1418 </string>
 	<key>New Bookmarks</key>
@@ -1945,7 +1945,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2013-12-22T20:34:13Z</date>
+	<date>2014-04-09T15:31:10Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>ShowBookmarkName</key>
@@ -1991,6 +1991,6 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>1.0.0.20131124</string>
+	<string>1.0.0.20140112</string>
 </dict>
 </plist>
