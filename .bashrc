@@ -102,7 +102,9 @@ fi
 case $OSTYPE in
     darwin*)
         # OS X
-        alias ls='ls -G'
+
+        alias ls='ls -G' # -G colorizes ls output
+        alias updatedb='sudo /usr/libexec/locate.updatedb'
 
         # Optional bash_completion
         if [ -f `brew --prefix`/etc/bash_completion ]; then
