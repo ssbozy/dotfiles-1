@@ -76,6 +76,10 @@ PS1_PATH_COLOR=$COLOR_LIGHT_CYAN
 alias grep='grep --color=auto'
 alias rot13="tr '[A-Za-z]' '[N-ZA-Mn-za-m]'"
 
+function tmuxx() {
+  tmux att -t "$1" || tmux new -s "$1"
+}
+
 # for crontabs, git, etc.
 export EDITOR=vim
 
