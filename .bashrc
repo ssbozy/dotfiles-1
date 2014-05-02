@@ -154,16 +154,12 @@ case $HOSTNAME in
         # Come on, weechat, let's have some unicode
         export LC_ALL="en_US.UTF-8"
 
+        export JAVA_HOME="$(/usr/libexec/java_home)"
+
         # Not committing this to public repo, might contain sensitive stuff
-        
         if [ -f $HOME/.bazaarvoice.bashrc ]; then
-            # ABBA does not work with Java 1.7 yet, so we need this for maven.
-            export JAVA_HOME=/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/
             source $HOME/.bazaarvoice.bashrc
         fi
-
-        # Copy of Chrome that I've signed into on my personal account
-        alias chrm="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --user-data-dir=/Users/pavel.lishin/Temp/chrm/"
 
         # Open file in IntelliJ from command line
         alias idea="open -b com.jetbrains.intellij"
