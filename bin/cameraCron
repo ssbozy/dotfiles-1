@@ -25,7 +25,7 @@ else
     cp $HOME/Temp/pavelcam.jpg $HOME/Pictures/isight/`date +%Y`/`date +%m`/pavelcam.$hostname.$date_string.jpg
 
     # Tag picture with date
-    /usr/local/bin/convert $HOME/Temp/pavelcam.jpg -fill white -draw "text 434,474 '`date '+%Y-%m-%d %H:%M'`'" -fill black -draw "text 435,475 '`date '+%Y-%m-%d %H:%M'`'" $HOME/Temp/pavelcam_date.jpg
+    /usr/local/bin/convert $HOME/Temp/pavelcam.jpg -pointsize 20 -fill white -draw "text 434,474 '`date '+%Y-%m-%d %H:%M'`'" -fill black -draw "text 436,476 '`date '+%Y-%m-%d %H:%M'`'" $HOME/Temp/pavelcam_date.jpg
 
     # Upload to server.
     scp -i $key $HOME/Temp/pavelcam_date.jpg pavelcam@lishin.org:$destination
