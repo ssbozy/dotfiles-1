@@ -13,7 +13,7 @@ URL=$1
 BOARD=$(echo $URL | sed -e 's/http:..boards.4chan.org.//' | sed -Ee 's/.thread.*//')
 THREAD=$(echo $URL | sed -e 's/http:..boards.4chan.org.//' | sed -e 's/..thread.//' | sed -e 's/\/.*//')
 TITLE=$(echo $URL | sed -e 's/http:..boards.4chan.org\/.\/.*\///')
-echo "Parsed info: $BOARD/$THREAD: $TITLE"
+echo "Parsed $URL into info: $BOARD/$THREAD: $TITLE"
 
 if [[ ! -e ~/Downloads/complete/\!4/boards/ ]]; then
   echo "Making directory"
@@ -24,7 +24,7 @@ cd ~/Downloads/complete/\!4/boards/
 mkdir -p "$THREAD-$TITLE"
 cd "$THREAD-$TITLE"
 
-curl -s http://a.4cdn.org/$BOARD/thread/$THREAD.json > $THREAD-fetch.json
+curl --fail --silent http://a.4cdn.org/$BOARD/thread/$THREAD.json > $THREAD-fetch.json
 
 SUCCESS_CODE=$?
 if [[ ! ${SUCCESS_CODE} -eq 0 ]]; then
@@ -32,7 +32,7 @@ if [[ ! ${SUCCESS_CODE} -eq 0 ]]; then
   exit
 fi
 
-mv $THREAD-fetch.json $THREAD.json
+mv "$THREAD-fetch.json" "$THREAD.json"
 JSON=$(cat $THREAD.json)
 
 FILES=$(echo $JSON | jq -r ".posts | map(select(.tim != null)) | map( \"https://i.4cdn.org/$BOARD/\" + (.tim | tostring) + .ext )" | jq -r '@sh' | sed -e "s/'//g")
