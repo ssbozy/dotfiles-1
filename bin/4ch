@@ -1,0 +1,44 @@
+# TODO - only works for single-char boards
+# TODO - add loop to check for thread existence
+# TODO - add If-Modified-Since to comply with API rules
+
+
+function print_red() {
+    echo -e "\033[0;31m$1\033[0m"
+}
+
+# http://boards.4chan.org/b/thread/547632370/boop-beep
+URL=$1
+
+BOARD=$(echo $URL | sed -e 's/http:..boards.4chan.org.//' | sed -Ee 's/.thread.*//')
+THREAD=$(echo $URL | sed -e 's/http:..boards.4chan.org.//' | sed -e 's/..thread.//' | sed -e 's/\/.*//')
+TITLE=$(echo $URL | sed -e 's/http:..boards.4chan.org\/.\/.*\///')
+echo "Parsed info: $BOARD/$THREAD: $TITLE"
+
+if [[ ! -e ~/Downloads/complete/\!4/boards/ ]]; then
+  echo "Making directory"
+  mkdir -p ~/Downloads/complete/\!4/boards/
+fi
+
+cd ~/Downloads/complete/\!4/boards/
+mkdir -p "$THREAD-$TITLE"
+cd "$THREAD-$TITLE"
+
+curl -s http://a.4cdn.org/$BOARD/thread/$THREAD.json > $THREAD-fetch.json
+
+SUCCESS_CODE=$?
+if [[ ! ${SUCCESS_CODE} -eq 0 ]]; then
+  echo "Thread's dead."
+  exit
+fi
+
+mv $THREAD-fetch.json $THREAD.json
+JSON=$(cat $THREAD.json)
+
+FILES=$(echo $JSON | jq -r ".posts | map(select(.tim != null)) | map( \"https://i.4cdn.org/$BOARD/\" + (.tim | tostring) + .ext )" | jq -r '@sh' | sed -e "s/'//g")
+
+echo "Downloading files"
+
+for LOC in $FILES; do
+  wget -nv -nc -c $LOC
+done
