@@ -77,6 +77,9 @@ alias grep='grep --color=auto'
 alias rot13="tr '[A-Za-z]' '[N-ZA-Mn-za-m]'"
 
 function tmuxx() {
+  if [[ "$1" == "bv" && -e /gitwork/Hubs-Core/ ]]; then
+    cd /gitwork/Hubs-Core/
+  fi
   tmux att -t "$1" || tmux new -s "$1"
 }
 
