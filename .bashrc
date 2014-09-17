@@ -109,6 +109,10 @@ case $OSTYPE in
         alias ls='ls -G' # -G colorizes ls output
         alias updatedb='sudo /usr/libexec/locate.updatedb'
 
+        if [[ -f /usr/libexec/java_home ]]; then
+            export JAVA_HOME="$(/usr/libexec/java_home)"
+        fi
+
         # Optional bash_completion
         if [ -f `brew --prefix`/etc/bash_completion ]; then
             alias bash_completion='source `brew --prefix`/etc/bash_completion'
@@ -156,8 +160,6 @@ case $HOSTNAME in
 
         # Come on, weechat, let's have some unicode
         export LC_ALL="en_US.UTF-8"
-
-        export JAVA_HOME="$(/usr/libexec/java_home)"
 
         # Not committing this to public repo, might contain sensitive stuff
         if [ -f $HOME/.bazaarvoice.bashrc ]; then
