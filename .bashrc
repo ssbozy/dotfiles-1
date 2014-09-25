@@ -133,6 +133,8 @@ case $OSTYPE in
 
         # Homebrew
         export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+
+        export SUDO_PROMPT="Seno akta gamat: "
     ;;
     *)
         # Everything else
