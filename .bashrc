@@ -167,6 +167,9 @@ case $HOSTNAME in
         if [ -f $HOME/.bazaarvoice.bashrc ]; then
             source $HOME/.bazaarvoice.bashrc
         fi
+        if [ -f /tmp/abba_servers ]; then
+            source /tmp/abba_servers
+        fi
 
         # Open file in IntelliJ from command line
         alias idea="open -b com.jetbrains.intellij"
