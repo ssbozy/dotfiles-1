@@ -76,6 +76,11 @@ PS1_PATH_COLOR=$COLOR_LIGHT_CYAN
 alias grep='grep --color=auto'
 alias rot13="tr '[A-Za-z]' '[N-ZA-Mn-za-m]'"
 
+if [[ -f $HOME/.screensaver.sh ]]; then
+    source .screensaver.sh
+fi
+
+
 function tmuxx() {
   if [[ "$1" == "bv" && -e /gitwork/Hubs-Core/ ]]; then
     cd /gitwork/Hubs-Core/
@@ -129,6 +134,12 @@ case $OSTYPE in
             export PATH=/Applications/Emacs.app/Contents/MacOS/bin:$PATH
             alias emacs='emacsclient -n' # Open new files from command line in existing frame
             EDITOR="emacsclient"
+        fi
+
+        # Android Development Tools
+        if [ -d "/Applications/Android Studio.app/sdk" ]; then
+            export PATH="/Applications/Android Studio.app/sdk/platform-tools:${PATH}"
+            export PATH="/Applications/Android Studio.app/sdk/tools:${PATH}"
         fi
 
         # Homebrew
