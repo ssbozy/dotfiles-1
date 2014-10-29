@@ -182,6 +182,11 @@ case $HOSTNAME in
             source /tmp/abba_servers
         fi
 
+        # Docker crap
+        export DOCKER_HOST=tcp://192.168.59.103:2376
+        export DOCKER_CERT_PATH=/Users/pavel.lishin/.boot2docker/certs/boot2docker-vm
+        export DOCKER_TLS_VERIFY=1
+
         # Open file in IntelliJ from command line
         alias idea="open -b com.jetbrains.intellij"
     ;;
