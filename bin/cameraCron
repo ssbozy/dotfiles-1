@@ -18,14 +18,13 @@ echo "$date_string: Taking pavelcam picture"
 # Capture image.
 if [[ ! -e /usr/local/bin/convert ]]; then
     echo "$date_string: /usr/local/bin/convert not found"
-
-elif [[ -z $1 && ! "$WIFI" == "wlBazaar" ]]; then
+elif [[ -z $1 && "$WIFI" == "wlBazaar" ]]; then
     echo "$date_string: Not taking photo on BazaarVoice wifi"
-elif [[ -z $1 && ! "$WIFI" == "BVAir" ]]; then
+elif [[ -z $1 && "$WIFI" == "BVAir" ]]; then
     echo "$date_string: Not taking photo on BazaarVoice wifi"
-elif [[ -z $1 && ! "$WIFI" == "guestBazaar" ]]; then
+elif [[ -z $1 && "$WIFI" == "guestBazaar" ]]; then
     echo "$date_string: Not taking photo on BazaarVoice wifi"
-elif [[ -z $1 && ! "$WIFI" == "wifi.bazaarvoice.com" ]]; then
+elif [[ -z $1 && "$WIFI" == "wifi.bazaarvoice.com" ]]; then
     echo "$date_string: Not taking photo on BazaarVoice wifi"
 
 elif ! imagesnap $HOME/Temp/pavelcam-fullsize.jpg; then
