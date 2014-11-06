@@ -27,7 +27,7 @@ elif [[ -z $1 && "$WIFI" == "guestBazaar" ]]; then
 elif [[ -z $1 && "$WIFI" == "wifi.bazaarvoice.com" ]]; then
     echo "$date_string: Not taking photo on BazaarVoice wifi"
 
-elif ! /usr/local/bin/imagesnap $HOME/Temp/pavelcam-fullsize.jpg; then
+elif ! /usr/local/bin/imagesnap -w 1 $HOME/Temp/pavelcam-fullsize.jpg; then
         echo "$date_string: Unable take photo."
 else
     # Resize image to 720x480 (imagesnap does not support this)
