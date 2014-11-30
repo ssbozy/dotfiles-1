@@ -254,6 +254,22 @@ HTML_TEMPLATE = Template("""
         <style>
         ${STYLESHEET}
         </style>
+        <script src="file://localhost${JQUERY}"></script>
+        <script>
+        $$(function() {
+            $$("a.fileThumb img").click(function() {
+                if ($$(this).hasClass("thumb")) {
+                    $$(this).width( $$(this).data("width") );
+                    $$(this).height( $$(this).data("height") );
+                } else {
+                    $$(this).width( $$(this).data("thumbWidth") );
+                    $$(this).height( $$(this).data("thumbHeight") );
+                }
+                $$(this).toggleClass("thumb");
+                return false; // disable link
+            });
+        });
+        </script>
     </head>
     <body>
         <form>
@@ -271,7 +287,11 @@ IMAGE_TEMPLATE = Template("""
 <div class="file" id="f${POSTID}">
     <div class="fileText" id="fT${POSTID}">File: <a href="${TIM}${FILEEXT}" target="_blank">${FILENAME}.${FILEEXT}</a> (${FILESIZE}, ${WIDTH}x${HEIGHT})</div>
     <a class="fileThumb" href="${TIM}${FILEEXT}" target="_blank">
-        <img src="${TIM}${FILEEXT}" style="height: ${THUMB_HEIGHT}px; width: ${THUMB_WIDTH}px;">
+        <img src="${TIM}${FILEEXT}" class="thumb" style="height: ${THUMB_HEIGHT}px; width: ${THUMB_WIDTH}px;"
+        data-thumb-width="${THUMB_WIDTH}"
+        data-thumb-height="${THUMB_HEIGHT}"
+        data-width="${WIDTH}"
+        data-height="${HEIGHT}">
         <div data-tip="" data-tip-cb="mShowFull" class="mFileInfo mobile">${FILESIZE} ${FILEEXT}</div>
     </a>
 </div>
@@ -351,5 +371,6 @@ for post in JSON['posts']:
 
 HTML_FILE.write(HTML_TEMPLATE.substitute(THREADID = JSON['posts'][0]['no'],
                                          THREAD = HTML,
-                                         STYLESHEET = STYLESHEET))
+                                         STYLESHEET = STYLESHEET,
+                                         JQUERY = JQUERY_LOC))
 HTML_FILE.close()
