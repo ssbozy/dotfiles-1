@@ -1,6 +1,10 @@
 #!/usr/bin/env python
 # coding=utf-8
 
+# TODO - hover-over-link-content
+# TODO - hovering over a reply link highlights the comment being replied to
+
+
 import sys
 import os
 import json
