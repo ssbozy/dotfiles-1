@@ -9,14 +9,15 @@ function print_red() {
 
 # http://boards.4chan.org/b/thread/547632370/boop-beep
 URL=$1
+DATE=$(date +%Y-%m-%d.%H:%M)
 
 BOARD=$(echo $URL | sed -e 's/http:..boards.4chan.org.//' | sed -Ee 's/.thread.*//')
 THREAD=$(echo $URL | sed -e 's/http:..boards.4chan.org.//' | sed -e 's/..thread.//' | sed -e 's/\/.*//' | tr -d [:alpha:])
 TITLE=$(echo $URL | sed -e 's/http:..boards.4chan.org\/.\{1,3\}\/.*\///')
-echo "Parsed $URL into info: $BOARD/$THREAD: $TITLE"
+echo "$DATE - Parsed $URL into info: $BOARD/$THREAD: $TITLE"
 
 if [[ ! -e ~/Downloads/complete/\!4/boards/ ]]; then
-  echo "Making directory"
+  echo "$DATE - Making directory"
   mkdir -p ~/Downloads/complete/\!4/boards/
 fi
 
@@ -24,12 +25,12 @@ cd ~/Downloads/complete/\!4/boards/
 mkdir -p "$BOARD-$THREAD-$TITLE"
 cd "$BOARD-$THREAD-$TITLE"
 
-echo "Curling http://a.4cdn.org/$BOARD/thread/$THREAD.json to $THREAD-$TITLE"
+echo "$DATE - Curling http://a.4cdn.org/$BOARD/thread/$THREAD.json to $THREAD-$TITLE"
 curl --fail --silent http://a.4cdn.org/$BOARD/thread/$THREAD.json > $THREAD-fetch.json
 
 SUCCESS_CODE=$?
 if [[ ! ${SUCCESS_CODE} -eq 0 ]]; then
-  echo "Thread's dead."
+  echo "$DATE - Thread's dead."
   exit
 fi
 
