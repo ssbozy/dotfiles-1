@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # coding=utf-8
 
-# TODO - hover-over-link-content
-# TODO - hovering over a reply link highlights the comment being replied to
+# TODO - show all replies to a post
+# TODO - make images drag-resizeable, like RES
 
 
 import sys
@@ -261,16 +261,31 @@ HTML_TEMPLATE = Template("""
         <script src="file://localhost${JQUERY}"></script>
         <script>
         $$(function() {
+            var quotation = $$("#quotation");
+
+            // Toggle thumbnail/full-size image on click
             $$("a.fileThumb img").click(function() {
-                if ($$(this).hasClass("thumb")) {
-                    $$(this).width( $$(this).data("width") );
-                    $$(this).height( $$(this).data("height") );
-                } else {
-                    $$(this).width( $$(this).data("thumbWidth") );
-                    $$(this).height( $$(this).data("thumbHeight") );
-                }
+                $$(this).width(  $$(this).hasClass("thumb") ? $$(this).data("width")  : $$(this).data("thumbWidth") );
+                $$(this).height( $$(this).hasClass("thumb") ? $$(this).data("height") : $$(this).data("thumbHeight") );
                 $$(this).toggleClass("thumb");
                 return false; // disable link
+            });
+
+            // Show original post when hovering over link to post
+            $$("a.quotelink").mouseover(function() {
+              var quoteLink = $$(this);
+
+              // make sure that the link points to a post in this thread
+              if ( quoteLink.attr("href")[0] !== "#") { return; }
+
+              quotation = $$( quoteLink.attr("href") ).clone();
+              quotation.insertAfter( quoteLink );
+              quotation.attr("id", "quotation");
+              quotation.css("position", "absolute");
+              quotation.css("border", "1px solid");
+            });
+            $$("a.quotelink").mouseout(function() {
+              quotation.remove();
             });
         });
         </script>
