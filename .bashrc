@@ -171,6 +171,8 @@ case $HOSTNAME in
     "plishin.local")
         # BazaarVoice Macbook
 
+        export MAVEN_OPTS="-Xmx512m -XX:MaxPermSize=128m"
+
         # Come on, weechat, let's have some unicode
         export LC_ALL="en_US.UTF-8"
 
@@ -180,6 +182,9 @@ case $HOSTNAME in
         fi
         if [ -f /tmp/abba_servers ]; then
             source /tmp/abba_servers
+        fi
+        if [ -f /tmp/connections_reporting_servers ]; then
+            source /tmp/connections_reporting_servers
         fi
 
         # Docker crap
