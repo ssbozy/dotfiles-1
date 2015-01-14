@@ -3,7 +3,7 @@
 
 # TODO - show all replies to a post
 # TODO - make images drag-resizeable, like RES
-
+# TODO - handle webm/mp4
 
 import sys
 import os
