@@ -129,7 +129,7 @@ case $OSTYPE in
             source $HOME/git-completion.bash
         fi
 
-        if [ -f $HOME/.rvm/bin ]; then
+        if [ -d $HOME/.rvm/bin ]; then
             export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
         fi
 
