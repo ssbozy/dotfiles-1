@@ -129,6 +129,10 @@ case $OSTYPE in
             source $HOME/git-completion.bash
         fi
 
+        if [ -f $HOME/.rvm/bin ]; then
+            export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+        fi
+
         # Use OS X emacs
         if [ -d /Applications/Emacs.app/Contents/MacOS/bin ]; then
             export PATH=/Applications/Emacs.app/Contents/MacOS/bin:$PATH
