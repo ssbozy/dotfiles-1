@@ -22,7 +22,7 @@ DOT_DIR=`pwd`
 BAK_DIR="$HOME/.dotfiles-$(date +%Y%m%d.%H%M)"
 mkdir -p $BAK_DIR
 
-EXCLUDE="install.sh README .git bin"
+EXCLUDE="install.sh README.md .git bin"
 
 # Go through all files in $DOT_DIR, excluding those in $EXCLUDE
 # If that file exists in $HOME, back it up to $HOME/dot-bak-%Y%m%d.%H%M/
