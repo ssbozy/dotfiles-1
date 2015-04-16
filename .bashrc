@@ -56,8 +56,6 @@ fi
 
 export LC_ALL="C"
 
-
-
 PS1=""
 PS1_DATE=1
 PS1_USER=1
@@ -197,99 +195,6 @@ case $HOSTNAME in
         # Open file in IntelliJ from command line
         alias idea="open -b com.jetbrains.intellij"
     ;;
-    "vodkamat.netomat.net" | "austin" | "austin.local" | "addison")
-        # My Macbook
-        #TODO this hostname is temporary, damnit, this thing should be called "austin"
-
-        # Prompt
-        PS1_DATE_COLOR=$COLOR_LIGHT_GREEN
-        PS1_USER_COLOR=$COLOR_LIGHT_GREEN
-        PS1_HOST_COLOR=$COLOR_LIGHT_GREEN
-        PS1_PATH_COLOR=$COLOR_LIGHT_CYAN
-
-        # Aliases
-        alias mirror=/Users/pavel/projects/mirror/mirror.py
-        alias 4ch='/Users/pavel/projects/mirror/mirror.py --4ch'
-        alias updatedb="LC_ALL='C' sudo gupdatedb --prunepaths='/Volumes'"  # Don't index any external drives, or anything mounted via sshfs, etc.
-        alias php=fakephp
-
-        # Make sure tmux can display UTF data correctly
-        alias tmux='tmux -u'
-
-        # Android
-        export PATH=/Users/pavel/Downloads/android/adt-bundle-mac-x86_64-20130219/sdk/platform-tools:$PATH
-
-        alias restart_growl="killall GrowlHelperApp; open -b com.Growl.GrowlHelperApp"
-
-        # Launch tinyur desktop screenshot monitor
-        # *after* my happy Tmux session starts, so we don't get multiples.
-        # if ! ps ax | egrep tinyu[r].py > /dev/null && which tinyur.py > /dev/null; then
-        #     nohup tinyur.py 2>&1 >> ~/tinyur.log &
-        # fi
-
-        # Bash completion, obv.
-        # if [ -f `brew --prefix`/etc/bash_completion ]; then
-        #     source `brew --prefix`/etc/bash_completion
-        # fi
-
-        # Virtualenv Wrapper
-        # if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
-        #     source /usr/local/bin/virtualenvwrapper.sh
-        # fi
-
-        # Start tmux
-        # if ! tmux has-session -t startup 1>/dev/null 2>/dev/null; then
-        #     tmux -u new-session -d -s startup
-        # fi
-
-
-        # ec2-api-tools
-        export JAVA_HOME="$(/usr/libexec/java_home)"
-        test -e $HOME/.ec2 && export EC2_PRIVATE_KEY="$(/bin/ls "$HOME"/.ec2/pk-*.pem | /usr/bin/head -1)"
-        test -e $HOME/.ec2 && export EC2_CERT="$(/bin/ls "$HOME"/.ec2/cert-*.pem | /usr/bin/head -1)"
-        export EC2_HOME="/usr/local/Library/LinkedKegs/ec2-api-tools/jars"
-
-        # I don't know why, but when I try to attach tmux in TotalTerminal,
-        # it refuses to show UTF8 characters. So fuck it! This really only runs
-        # once per boot, anyway.
-        #ONLY attach in visor
-        # if [[ $COLUMNS -gt 120 ]]; then tmux att -t startup fi
-
-        if [ -f /Applications/XAMPP/xamppfiles/bin/php ]; then
-            alias xphp='/Applications/XAMPP/xamppfiles/bin/php'
-            alias xmysql='/Applications/XAMPP/xamppfiles/bin/mysql'
-        fi
-        if [ -f /Applications/MAMP/bin/php/php5.3.6/bin/php ]; then
-            alias mphp='/Applications/MAMP/bin/php/php5.3.6/bin/php'
-            alias mmysql='/Applications/MAMP/Library/bin/mysqll'
-        fi
-
-        #TODO these might have to be global
-        export CLICOLOR=1
-        export LSCOLORS=ExFxCxDxBxegedabagacad
-
-        # Load RVM into a shell session *as a function*
-        [[ -s "/Users/pavel/.rvm/scripts/rvm" ]] && source "/Users/pavel/.rvm/scripts/rvm"
-
-        # Weechat UTF8 support, hopefully.
-        export LC_ALL=en_US.UTF-8
-
-        export NODE_PATH="$NODE_PATH;/usr/local/lib/node_modules"
-
-        ### Set iTerm2 window/tab title
-        # $1 = type; 0 - both, 1 - tab, 2 - title
-        # rest = text
-        setTerminalText () {
-            # echo works in bash & zsh
-            local mode=$1 ; shift
-            echo -ne "\033]$mode;$@\007"
-        }
-        stt_both  () { setTerminalText 0 $@; }
-        stt_tab   () { setTerminalText 1 $@; }
-        stt_title () { setTerminalText 2 $@; }
-
-
-    ;;
     "newyork")
         # Ubuntu desktop, at home.
 
@@ -304,28 +209,6 @@ case $HOSTNAME in
         #    synergyc -f -n newyork 192.168.0.11 # gotta figure out a permanent ip for adison
         #fi
     ;;
-    "vodka")
-        # My virtualbox
-
-        PS1_DATE_COLOR=$COLOR_LIGHT_CYAN
-        PS1_USER_COLOR=$COLOR_LIGHT_CYAN
-        PS1_HOST_COLOR=$COLOR_LIGHT_CYAN
-        PS1_PATH_COLOR=$COLOR_LIGHT_GREEN
-
-        # enable programmable completion features (you don't need to enable
-        # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-        # sources /etc/bash.bashrc).
-        if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-            . /etc/bash_completion
-        fi
-
-        # Update ForwardAgent settings
-        [[ -f $HOME/bin/grabssh.sh ]] && $HOME/bin/grabssh.sh
-
-        # Lol, node.js
-        export PATH=$HOME/local/node/bin:$PATH
-
-    ;;
     "yonk")
         # My slicehost server
         if [[ "$TERM" == "xterm-256color" ]]; then
@@ -338,48 +221,11 @@ case $HOSTNAME in
         # Gotta say somethin'
         true
     ;;
-    "champ" | "boom")
-        # Work servers
-
-        PS1_DATE_COLOR=$COLOR_LIGHT_GREEN
-        PS1_USER_COLOR=$COLOR_LIGHT_GREEN
-        PS1_HOST_COLOR=$COLOR_YELLOW
-        PS1_PATH_COLOR=$COLOR_LIGHT_CYAN
-
-        # Update ForwardAgent settings
-        [[ -f $HOME/bin/grabssh.sh ]] && $HOME/bin/grabssh.sh
-
-        # No idea why /sbin/ isn't in path by default
-        export PATH=/sbin/:$PATH
-
-        # Path to python 2.6
-        export PATH=/opt/py26/usr/local/bin/:$PATH
-        # Path to Ruby 1.9.2
-        export PATH=/opt/ruby192/bin/:$PATH
-
-    ;;
-    "moobox")
-        # Work server under my desk
-
-        PS1_DATE_COLOR=$COLOR_LIGHT_GREEN
-        PS1_USER_COLOR=$COLOR_LIGHT_GREEN
-        PS1_HOST_COLOR=$COLOR_YELLOW
-        PS1_PATH_COLOR=$COLOR_LIGHT_CYAN
-
-        # Update ForwardAgent settings
-        [[ -f $HOME/bin/grabssh.sh ]] && $HOME/bin/grabssh.sh
-
-        # Start synergyc, unless it's already running
-        if ! ps ax | grep synergyc | grep -v grep > /dev/null; then
-            synergyc austin.netomat.net
-        fi
-    ;;
     *)
         # Everything else
 
     ;;
 esac
-
 
 if [[ "$USER" == "root" ]]; then
     PS1_USER_COLOR=$COLOR_RED
@@ -402,7 +248,6 @@ if [[ $PS1_PATH == 1 ]]; then
 fi
 PS1="${PS1}${PS1_DICKS}"
 export PS1
-
 
 if [ -f ~/.localbashrc ]; then
     # Maybe I'm on a system I don't want to stick in the repo,
