@@ -114,10 +114,6 @@ case $OSTYPE in
         alias ls='ls -G' # -G colorizes ls output
         alias updatedb='sudo /usr/libexec/locate.updatedb'
 
-        if [[ -f /usr/libexec/java_home ]]; then
-            export JAVA_HOME="$(/usr/libexec/java_home)"
-        fi
-
         # Optional bash_completion
         if [ -f `brew --prefix`/etc/bash_completion ]; then
             alias bash_completion='source `brew --prefix`/etc/bash_completion'
@@ -175,7 +171,9 @@ case $HOSTNAME in
     "plishin.local")
         # BazaarVoice Macbook
 
-        export MAVEN_OPTS="-Xmx512m -XX:MaxPermSize=128m"
+        export JENV_ROOT=/usr/local/opt/jenv
+
+        export MAVEN_OPTS="-Xmx1024M -XX:MaxPermSize=1024M"
 
         # Come on, weechat, let's have some unicode
         export LC_ALL="en_US.UTF-8"
