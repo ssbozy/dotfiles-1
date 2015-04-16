@@ -34,6 +34,8 @@ if [[ ! ${SUCCESS_CODE} -eq 0 ]]; then
   exit
 fi
 
+wget -nv http://boards.4chan.org/$BOARD/thread/$THREAD.html -O $THREAD.html
+
 mv "$THREAD-fetch.json" "$THREAD.json"
 JSON=$(cat $THREAD.json)
 
