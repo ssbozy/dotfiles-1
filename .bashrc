@@ -170,6 +170,7 @@ case $HOSTNAME in
         # BazaarVoice Macbook
 
         export JENV_ROOT=/usr/local/opt/jenv
+        eval "$(jenv init -)"
 
         export MAVEN_OPTS="-Xmx1024M -XX:MaxPermSize=1024M"
 
