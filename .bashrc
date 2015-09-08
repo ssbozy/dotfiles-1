@@ -29,8 +29,8 @@ export HISTIGNORE="sudo shutdown:sudo re:bg:fg"
 # Ignore duplicates, and commands that start with a space
 export HISTCONTROL=ignoredups:ignorespace
 # Remember a lot.
-export HISTSIZE=15000
-export HISTFILESIZE=15000
+export HISTSIZE=50000
+export HISTFILESIZE=50000
 # Store timestamps
 export HISTTIMEFORMAT='%F %T '
 if [ -n "$BASH_VERSION" ] && [ -n "$POSIXLY_CORRECT" ]; then
