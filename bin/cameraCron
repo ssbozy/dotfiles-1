@@ -16,8 +16,8 @@ yshadow=$(( $ypos-2 ))
 echo "$date_string: Taking pavelcam picture"
 
 # Capture image.
-if [[ ! -e /usr/local/bin/convert ]]; then
-    echo "$date_string: /usr/local/bin/convert not found"
+if [[ ! -e /usr/local/bin/gm ]]; then
+    echo "$date_string: /usr/local/bin/gm not found"
 elif [[ -z $1 && "$WIFI" == "wlBazaar" ]]; then
     echo "$date_string: Not taking photo on BazaarVoice wifi"
 elif [[ -z $1 && "$WIFI" == "BVAir" ]]; then
@@ -31,14 +31,14 @@ elif ! /usr/local/bin/imagesnap -w 1 $HOME/Temp/pavelcam-fullsize.jpg; then
         echo "$date_string: Unable take photo."
 else
     # Resize image to 720x480 (imagesnap does not support this)
-    /usr/local/bin/convert $HOME/Temp/pavelcam-fullsize.jpg -resize 720x480 $HOME/Temp/pavelcam.jpg
+    /usr/local/bin/gm convert $HOME/Temp/pavelcam-fullsize.jpg -resize 720x480 $HOME/Temp/pavelcam.jpg
 
     # Copy image to isight folder.
     mkdir -p $HOME/Pictures/isight/`date +%Y`/`date +%m`/
     cp $HOME/Temp/pavelcam.jpg $HOME/Pictures/isight/`date +%Y`/`date +%m`/pavelcam.$hostname.$date_string.jpg
 
     # Tag picture with date
-    /usr/local/bin/convert $HOME/Temp/pavelcam.jpg -pointsize 20 -fill white -draw "text $xshadow,$yshadow '`date '+%Y-%m-%d %H:%M'`'" -fill black -draw "text $xpos,$ypos '`date '+%Y-%m-%d %H:%M'`'" $HOME/Temp/pavelcam_date.jpg
+    /usr/local/bin/gm convert $HOME/Temp/pavelcam.jpg -pointsize 20 -fill white -draw "text $xshadow,$yshadow '`date '+%Y-%m-%d %H:%M'`'" -fill black -draw "text $xpos,$ypos '`date '+%Y-%m-%d %H:%M'`'" $HOME/Temp/pavelcam_date.jpg
 
     # Upload to server.
     scp -i $key $HOME/Temp/pavelcam_date.jpg pavelcam@lishin.org:$destination
