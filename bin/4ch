@@ -34,7 +34,8 @@ if [[ ! ${SUCCESS_CODE} -eq 0 ]]; then
   exit
 fi
 
-wget -nv http://boards.4chan.org/$BOARD/thread/$THREAD.html -O $THREAD.html
+wget --no-check-certificate -nv http://boards.4chan.org/$BOARD/thread/$THREAD.html -O $THREAD.html
+
 
 mv "$THREAD-fetch.json" "$THREAD.json"
 JSON=$(cat $THREAD.json)
@@ -42,5 +43,5 @@ JSON=$(cat $THREAD.json)
 FILES=$(echo $JSON | jq -r ".posts | map(select(.tim != null)) | map( \"https://i.4cdn.org/$BOARD/\" + (.tim | tostring) + .ext )" | jq -r '@sh' | sed -e "s/'//g")
 
 for LOC in $FILES; do
-  wget -nv -nc -c $LOC
+  wget --no-check-certificate -nv -nc -c $LOC
 done
