@@ -18,3 +18,4 @@ bin/sshfs
 # iPython history
 .ipython/profile_default/history.sqlite
 bin/nssh
+.ipython
