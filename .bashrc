@@ -110,6 +110,7 @@ case $OSTYPE in
         # OS X
 
         alias ls='ls -G' # -G colorizes ls output
+        export LSCOLORS="Exfxcxdxbxegedabagacad" # make directories a readable color of blue
         alias updatedb='sudo /usr/libexec/locate.updatedb'
 
         # Optional bash_completion
