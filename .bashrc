@@ -144,6 +144,11 @@ case $OSTYPE in
         # Homebrew
         export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 
+        if [ -f $(brew --prefix nvm)/nvm.sh ]; then
+            export NVM_DIR=~/.nvm
+            source $(brew --prefix nvm)/nvm.sh
+        fi
+
         export SUDO_PROMPT="Seno akta gamat: "
     ;;
     *)
