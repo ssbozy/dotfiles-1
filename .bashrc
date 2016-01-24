@@ -204,17 +204,7 @@ case $HOSTNAME in
     ;;
     "newyork")
         # Ubuntu desktop, at home.
-
-        # Start synergys, unless it's already running
-        if ! ps ax | grep synergy[s] > /dev/null; then
-            synergys -c $HOME/.synergy.newyork.conf
-        fi
-        # alternatively, i might actually start working on my new macbook
-        # since SYNERGY and EMACS don't FUCKING WORK WELL TOGETHER
-        # better UNSUBJUGATE MYSELF http://debbugs.gnu.org/cgi-bin/bugreport.cgi?bug=4008
-            #if ! ps ax | grep synergy[c] > /dev/null; tehn
-        #    synergyc -f -n newyork 192.168.0.11 # gotta figure out a permanent ip for adison
-        #fi
+        true
     ;;
     "yonk")
         # My slicehost server
