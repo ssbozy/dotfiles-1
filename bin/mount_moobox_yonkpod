@@ -1,4 +1,0 @@
-#! /usr/bin/env bash
-
-mkdir -p /Volumes/Yonkpod
-sudo -p "Enter password to run mount_nfs: " mount_nfs moobox.netomat.net:/media/MooDrive/Yonkpod /Volumes/Yonkpod

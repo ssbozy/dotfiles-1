@@ -1,5 +1,0 @@
-export SSH_CLIENT="10.0.2.2 49256 22"
-export SSH_TTY="/dev/pts/0"
-export SSH_AUTH_SOCK="/tmp/ssh-VvyuXr8666/agent.8666"
-export SSH_CONNECTION="10.0.2.2 49256 10.0.2.15 22"
-export DISPLAY=""
