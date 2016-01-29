@@ -80,10 +80,17 @@ fi
 
 
 function tmuxx() {
-  if [[ "$1" == "bv" && -e /gitwork/Hubs-Core/ ]]; then
+  name="$1";
+  if [[ "$1" == "" ]]; then
+      curdir=$(basename $(pwd));
+      name="$curdir";
+  fi
+
+  if [[ "$name" == "bv" && -e /gitwork/Hubs-Core/ ]]; then
     cd /gitwork/Hubs-Core/
   fi
-  tmux att -t "$1" || tmux new -s "$1"
+
+  tmux att -t "$name" || tmux new -s "$name"
 }
 
 # for crontabs, git, etc.
