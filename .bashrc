@@ -73,6 +73,7 @@ PS1_PATH_COLOR=$COLOR_LIGHT_CYAN
 
 alias grep='grep --color=auto'
 alias rot13="tr '[A-Za-z]' '[N-ZA-Mn-za-m]'"
+alias gitprune='git branch --merged master | grep -v "\* master" | xargs -n 1 git branch -d'
 
 if [[ -f $HOME/.screensaver.sh ]]; then
     source .screensaver.sh
