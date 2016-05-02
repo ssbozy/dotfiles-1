@@ -157,6 +157,13 @@ case $OSTYPE in
             source $(brew --prefix nvm)/nvm.sh
         fi
 
+        # Git status in tmux status
+        if [[ $TMUX ]]; then
+            if [[ -f ~/.tmux-git/tmux-git.sh ]]; then
+                source ~/.tmux-git/tmux-git.sh;
+            fi
+        fi
+
         export SUDO_PROMPT="Seno akta gamat: "
     ;;
     *)
