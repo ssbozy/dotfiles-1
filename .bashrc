@@ -83,12 +83,15 @@ fi
 function tmuxx() {
   name="$1";
   if [[ "$1" == "" ]]; then
-      curdir=$(basename $(pwd));
-      name="$curdir";
+    curdir=$(basename $(pwd));
+    name="$curdir";
   fi
 
-  if [[ "$name" == "bv" && -e /gitwork/Hubs-Core/ ]]; then
-    cd /gitwork/Hubs-Core/
+  if [[ "$name" == "bv" ]]; then
+    if [[ -e /gitwork/greenlight/ ]]; then
+      cd /gitwork/greenlight/;
+    fi
+    mysql.server start; # basically a noop if it's already running
   fi
 
   tmux att -t "$name" || tmux new -s "$name"
