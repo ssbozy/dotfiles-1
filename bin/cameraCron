@@ -8,6 +8,8 @@ destination="/home/pavel/pavelcam/pavelcam.$hostname.$date_string.jpg"
 key=$HOME/.ssh/id_dsa_pavelcam
 WIFI=`/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I | grep ' SSID' | cut -d : -f 2 | cut -c 2-`
 
+BVWIFI="false"
+
 xpos=550
 ypos=400
 xshadow=$(( $xpos-2 ))
@@ -15,20 +17,22 @@ yshadow=$(( $ypos-2 ))
 
 echo "$date_string: Taking pavelcam picture"
 
+
+if [[ "$WIFI" == "wlBazaar" ]]; then
+    BVWIFI="true"
+elif [[ "$WIFI" == "BVAir" ]]; then
+  BVWIFI="true"
+elif [[ "$WIFI" == "guestBazaar" ]]; then
+  BVWIFI="true"
+elif [[ "$WIFI" == "wifi.bazaarvoice.com" ]]; then
+  BVWIFI="true"
+fi
+
 # Capture image.
 if [[ ! -e /usr/local/bin/gm ]]; then
     echo "$date_string: /usr/local/bin/gm not found"
-elif [[ -z $1 && "$WIFI" == "wlBazaar" ]]; then
-    echo "$date_string: Not taking photo on BazaarVoice wifi"
-elif [[ -z $1 && "$WIFI" == "BVAir" ]]; then
-    echo "$date_string: Not taking photo on BazaarVoice wifi"
-elif [[ -z $1 && "$WIFI" == "guestBazaar" ]]; then
-    echo "$date_string: Not taking photo on BazaarVoice wifi"
-elif [[ -z $1 && "$WIFI" == "wifi.bazaarvoice.com" ]]; then
-    echo "$date_string: Not taking photo on BazaarVoice wifi"
-
-elif ! /usr/local/bin/imagesnap -w 1 $HOME/Temp/pavelcam-fullsize.jpg; then
-        echo "$date_string: Unable take photo."
+elif ! /usr/local/bin/imagesnap -w 3 $HOME/Temp/pavelcam-fullsize.jpg; then
+    echo "$date_string: Unable take photo."
 else
     # Resize image to 720x480 (imagesnap does not support this)
     /usr/local/bin/gm convert $HOME/Temp/pavelcam-fullsize.jpg -resize 720x480 $HOME/Temp/pavelcam.jpg
@@ -37,12 +41,16 @@ else
     mkdir -p $HOME/Pictures/isight/`date +%Y`/`date +%m`/
     cp $HOME/Temp/pavelcam.jpg $HOME/Pictures/isight/`date +%Y`/`date +%m`/pavelcam.$hostname.$date_string.jpg
 
-    # Tag picture with date
-    /usr/local/bin/gm convert $HOME/Temp/pavelcam.jpg -pointsize 20 -fill white -draw "text $xshadow,$yshadow '`date '+%Y-%m-%d %H:%M'`'" -fill black -draw "text $xpos,$ypos '`date '+%Y-%m-%d %H:%M'`'" $HOME/Temp/pavelcam_date.jpg
+    if [[ -z $1 && $BVWIFI == "true" ]]; then
+      echo "Not uploading photo on BV Wifi"
+    else
+      # Tag picture with date
+      /usr/local/bin/gm convert $HOME/Temp/pavelcam.jpg -pointsize 20 -fill white -draw "text $xshadow,$yshadow '`date '+%Y-%m-%d %H:%M'`'" -fill black -draw "text $xpos,$ypos '`date '+%Y-%m-%d %H:%M'`'" $HOME/Temp/pavelcam_date.jpg
 
-    # Upload to server.
-    scp -i $key $HOME/Temp/pavelcam_date.jpg pavelcam@lishin.org:$destination
+      # Upload to server.
+      scp -i $key $HOME/Temp/pavelcam_date.jpg pavelcam@lishin.org:$destination
 
-    # Symlink across domains
-    ssh -i $key pavelcam@lishin.org "cp $destination /var/domains/widgetsex.com/pavelcam.jpg; cp $destination /var/domains/lishin.org/pavelcam.jpg; cp $destination /var/domains/pavel.lishin.org/pavelcam.jpg; rm $destination;"
+      # Symlink across domains
+      ssh -i $key pavelcam@lishin.org "cp $destination /var/domains/widgetsex.com/pavelcam.jpg; cp $destination /var/domains/lishin.org/pavelcam.jpg; cp $destination /var/domains/pavel.lishin.org/pavelcam.jpg; rm $destination;"
+    fi
 fi
