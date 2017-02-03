@@ -62,3 +62,5 @@
 [diff "zip"]
     textconv = unzip -c -a
 
+[credential "https://git.flynn-sbx-qa-us-east-1.nexus.bazaarvoice.com"]
+	helper = /usr/local/bin/flynn git-credentials
