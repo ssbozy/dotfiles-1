@@ -17,7 +17,7 @@
 	<key>AutoHideTmuxClientSession</key>
 	<false/>
 	<key>CheckTestRelease</key>
-	<true/>
+	<false/>
 	<key>ClosingHotkeySwitchesSpaces</key>
 	<true/>
 	<key>CommandSelection</key>
@@ -193,12 +193,16 @@
 	<key>NSFontPanelAttributes</key>
 	<string>1, 10</string>
 	<key>NSNavLastRootDirectory</key>
-	<string>~/projects/dotfiles/.iterm2</string>
+	<string>~/Documents</string>
+	<key>NSNavPanelExpandedSizeForSaveMode</key>
+	<string>{712, 532}</string>
 	<key>NSQuotedKeystrokeBinding</key>
 	<string></string>
 	<key>NSRepeatCountBinding</key>
 	<string></string>
 	<key>NSScrollAnimationEnabled</key>
+	<false/>
+	<key>NSScrollViewShouldScrollUnderTitlebar</key>
 	<false/>
 	<key>NSTableView Columns KeyBingingTable</key>
 	<array>
@@ -211,26 +215,35 @@
 		BAtzdHJlYW10eXBlZIHoA4QBQISEhAhOU1N0cmluZwGEhAhOU09iamVjdACF
 		hAErATGG
 		</data>
-		<string>287</string>
+		<string>307</string>
 	</array>
 	<key>NSTableView Hidden Columns KeyBingingTable</key>
 	<array/>
 	<key>NSTableView Sort Ordering KeyBingingTable</key>
 	<array/>
+	<key>NSToolbar Configuration com.apple.NSColorPanel</key>
+	<dict>
+		<key>TB Is Shown</key>
+		<integer>1</integer>
+	</dict>
 	<key>NSWindow Frame NSFontPanel</key>
 	<string>3184 79 445 270 1920 -120 1920 1178 </string>
 	<key>NSWindow Frame Preferences</key>
-	<string>519 304 924 485 0 0 1920 1177 </string>
+	<string>815 671 606 456 0 0 2560 1417 </string>
+	<key>NSWindow Frame SUStatusFrame</key>
+	<string>1024 955 384 129 0 0 1920 1177 </string>
+	<key>NSWindow Frame SUUpdateAlert</key>
+	<string>944 768 620 392 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 274 1044 903 0 0 1920 1177 </string>
+	<string>0 940 1869 237 0 0 1920 1177 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>1763 10 746 1407 0 0 2560 1417 </string>
+	<string>2267 708 746 469 1920 120 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
-	<string>544 708 732 469 0 0 1920 1177 </string>
+	<string>0 704 732 469 0 0 1920 1177 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
-	<string>159 112 746 469 0 0 1920 1057 </string>
+	<string>3 708 732 469 0 0 1920 1177 </string>
 	<key>NSWindow Frame iTerm Window 4</key>
-	<string>2732 432 786 259 1920 -120 1920 1178 </string>
+	<string>1255 457 746 469 0 0 2560 1417 </string>
 	<key>NeverWarnAboutShortLivedSessions_BA2310A7-B4EF-4B54-A5CD-5F276990D735</key>
 	<true/>
 	<key>New Bookmarks</key>
@@ -402,6 +415,8 @@
 			<key>Background Image Is Tiled</key>
 			<false/>
 			<key>Background Image Location</key>
+			<string></string>
+			<key>Badge Text</key>
 			<string></string>
 			<key>Blend</key>
 			<real>0.30000001192092896</real>
@@ -1885,10 +1900,36 @@
 			<string>/Users/pavel</string>
 		</dict>
 	</array>
+	<key>NoSyncCommandHistoryHasEverBeenUsed</key>
+	<true/>
+	<key>NoSyncConfirmBeta</key>
+	<true/>
+	<key>NoSyncDoNotWarnBeforeMultilinePaste</key>
+	<true/>
+	<key>NoSyncDoNotWarnBeforeMultilinePaste_selection</key>
+	<integer>0</integer>
+	<key>NoSyncHaveShownPromoWithId_4</key>
+	<true/>
+	<key>NoSyncInstallationId</key>
+	<string>07A1F28F-6B87-49DD-9EE9-033E7F70BF08</string>
+	<key>NoSyncLastTipTime</key>
+	<real>488297529.45739901</real>
+	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
+	<true/>
+	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
+	<integer>0</integer>
+	<key>NoSyncPermissionToShowTip</key>
+	<false/>
+	<key>NoSyncTimeOfFirstLaunchOfVersionWithTip</key>
+	<real>486442872.78130502</real>
 	<key>NoSyncTimeOfLastPromo</key>
-	<real>453399813.277587</real>
+	<real>477545024.799748</real>
 	<key>NoSyncTimeOfLastPromoDownload</key>
-	<real>465467180.45481402</real>
+	<real>486413266.64553702</real>
+	<key>NoSyncTipsToNotShow</key>
+	<array>
+		<string>000</string>
+	</array>
 	<key>OnlyWhenMoreTabs</key>
 	<true/>
 	<key>OpenArrangementAtStartup</key>
@@ -1950,12 +1991,14 @@
 	<integer>3</integer>
 	<key>SUEnableAutomaticChecks</key>
 	<true/>
+	<key>SUFeedAlternateAppNameKey</key>
+	<string>iTerm</string>
 	<key>SUFeedURL</key>
-	<string>http://iterm2.com/appcasts/testing.xml</string>
+	<string>https://iterm2.com/appcasts/final.xml?shard=37</string>
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2015-10-02T07:11:23Z</date>
+	<date>2016-07-26T14:27:41Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>ShowBookmarkName</key>
@@ -2001,6 +2044,6 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>2.1.1</string>
+	<string>3.0.4</string>
 </dict>
 </plist>
