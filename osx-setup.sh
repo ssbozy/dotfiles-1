@@ -87,3 +87,7 @@ defaults write org.m0k.transmission WarningLegal -bool false
 
 # Stop iTunes Responding to Key Presses
 launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist
+
+# Disable the sound effects on boot - https://github.com/mathiasbynens/dotfiles/blob/6d228f29a32e4c6f3593dceb563df1374a075978/.macos
+sudo nvram SystemAudioVolume=" "
+
