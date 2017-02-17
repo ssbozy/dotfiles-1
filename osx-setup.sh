@@ -91,3 +91,6 @@ launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist
 # Disable the sound effects on boot - https://github.com/mathiasbynens/dotfiles/blob/6d228f29a32e4c6f3593dceb563df1374a075978/.macos
 sudo nvram SystemAudioVolume=" "
 
+# Disable shadow in screenshots - https://github.com/mathiasbynens/dotfiles/blob/6d228f29a32e4c6f3593dceb563df1374a075978/.macos
+defaults write com.apple.screencapture disable-shadow -bool true
+
