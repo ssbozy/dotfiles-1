@@ -19,3 +19,4 @@ bin/sshfs
 .ipython/profile_default/history.sqlite
 bin/nssh
 .ipython
+bin/cool-retro-term.app/
